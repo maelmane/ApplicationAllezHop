@@ -42,5 +42,3 @@ Développer une application mobile "Pick Me Up" pour faciliter le covoiturage pa
 ## Licence
 <!-- TODO -->
 À venir...
-
-
