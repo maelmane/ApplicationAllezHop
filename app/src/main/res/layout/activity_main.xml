@@ -24,4 +24,6 @@
         tools:layout="@layout/fragment_vue_accueil" />
 
 
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
