@@ -9,15 +9,45 @@
         android:id="@+id/vue_profil"
         android:name="crosemont.dti.g55.applicationallezhop.Vue.vue_profil"
         android:label="fragment_vue_profil"
-        tools:layout="@layout/fragment_vue_profil" />
+        tools:layout="@layout/fragment_vue_profil" >
+        <action
+            android:id="@+id/action_vue_profil_self"
+            app:destination="@id/vue_profil" />
+        <action
+            android:id="@+id/action_vue_profil_to_vue_accueil"
+            app:destination="@id/vue_accueil" />
+        <action
+            android:id="@+id/action_vue_profil_to_vue_trajet"
+            app:destination="@id/vue_trajet" />
+    </fragment>
     <fragment
         android:id="@+id/vue_accueil"
         android:name="crosemont.dti.g55.applicationallezhop.Vue.vue_accueil"
         android:label="fragment_vue_accueil"
-        tools:layout="@layout/fragment_vue_accueil" />
+        tools:layout="@layout/fragment_vue_accueil" >
+        <action
+            android:id="@+id/action_vue_accueil_to_vue_profil"
+            app:destination="@id/vue_profil" />
+        <action
+            android:id="@+id/action_vue_accueil_to_vue_trajet"
+            app:destination="@id/vue_trajet" />
+        <action
+            android:id="@+id/action_vue_accueil_self"
+            app:destination="@id/vue_accueil" />
+    </fragment>
     <fragment
         android:id="@+id/vue_trajet"
         android:name="crosemont.dti.g55.applicationallezhop.Vue.vue_trajet"
         android:label="fragment_vue_trajet"
-        tools:layout="@layout/fragment_vue_trajet" />
+        tools:layout="@layout/fragment_vue_trajet" >
+        <action
+            android:id="@+id/action_vue_trajet_self2"
+            app:destination="@id/vue_trajet" />
+        <action
+            android:id="@+id/action_vue_trajet_to_vue_profil"
+            app:destination="@id/vue_profil" />
+        <action
+            android:id="@+id/action_vue_trajet_to_vue_accueil"
+            app:destination="@id/vue_accueil" />
+    </fragment>
 </navigation>
