@@ -13,6 +13,8 @@
 .externalNativeBuild
 .cxx
 local.properties
+<<<<<<< HEAD
 /app/build.gradle.kts
 /.idea/misc.xml
 /.idea/gradle.xml
+
