@@ -38,7 +38,7 @@
         android:id="@+id/trajetCours"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Trajets en cours"
+        android:text="Trajet en cours"
         android:textColor="@color/bleu"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -65,7 +65,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/trajetInformationDestination"
-        android:text="Heure d'arrivée à la destination : 7:45"
+        android:text="Heure d'arrivée à l'arrêt : 7:45"
         android:textSize="13sp" />
 
     <ImageView
