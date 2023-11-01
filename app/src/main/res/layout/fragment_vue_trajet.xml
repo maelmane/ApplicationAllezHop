@@ -7,11 +7,12 @@
     tools:context=".Vue.vue_trajet">
 
     <!-- TODO: Update blank fragment layout -->
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="Trajet"
-        android:translationY="100dp"/>
+        android:translationY="100dp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -53,4 +54,13 @@
         android:translationX="100dp"
         android:background="@android:color/transparent"/>
 
+
+    <ImageView
+        android:id="@+id/reload"
+        android:layout_width="46dp"
+        android:layout_height="36dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="-140dp"
+        android:src="@drawable/reload" />
 </FrameLayout>
