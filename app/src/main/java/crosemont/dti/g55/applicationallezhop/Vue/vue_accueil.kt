@@ -10,6 +10,8 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.bottomnavigation.LabelVisibilityMode
+import com.google.android.material.navigation.NavigationBarView
 import crosemont.dti.g55.applicationallezhop.Présentateur.PrésentateurAccueil
 import crosemont.dti.g55.applicationallezhop.R
 
@@ -39,7 +41,7 @@ class vue_accueil : Fragment() {
 
         val bottomNavigationView = view.findViewById<BottomNavigationView>(R.id.bottom_navigation)
         NavigationUI.setupWithNavController(bottomNavigationView, navController)
-
+        bottomNavigationView.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_LABELED
         bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.menu_profil -> {

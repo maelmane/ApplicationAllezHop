@@ -13,29 +13,26 @@
         android:text="Accueil"
         android:translationY="100dp"/>
 
-    <Button
-        android:id="@+id/btnAccueilProfil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Profil" />
-
-    <Button
-        android:id="@+id/btnAccueilTrajet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Trajet"
-        android:translationX="150dp" />
-    <Button
-        android:id="@+id/btnAccueilAccueil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Accueil"
-        android:translationX="300dp" />
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
+        android:layout_gravity="top"
+        android:translationY="50dp"
+        app:itemBackground="@drawable/bottom_navigation_background"
+        app:itemIconTint="@color/bottom_navigation_item_color"
+        app:itemTextColor="@color/bottom_navigation_item_color"
+        app:labelVisibilityMode="labeled"
         app:menu="@menu/menu_nav" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_gravity="top|left"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="2dp"
+        android:src="@drawable/screenshot_2023_10_31_211142" />
+
 
 </FrameLayout>

@@ -10,6 +10,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
 import crosemont.dti.g55.applicationallezhop.Présentateur.PrésentateurAccueil
 import crosemont.dti.g55.applicationallezhop.Présentateur.PrésentateurProfil
 import crosemont.dti.g55.applicationallezhop.R
@@ -21,8 +22,6 @@ import crosemont.dti.g55.applicationallezhop.R
  */
 class vue_profil : Fragment() {
     lateinit var navController: NavController
-    lateinit var  btnProfilAccueil : Button
-    lateinit var  btnProfilTrajet : Button
     var présentateurProfil = PrésentateurProfil(this)
 
     override fun onCreateView(
@@ -32,15 +31,6 @@ class vue_profil : Fragment() {
 
         // Déclaration de la vue afin de le lier au layout
         val vue = inflater.inflate(R.layout.fragment_vue_profil, container, false)
-
-        btnProfilTrajet = vue.findViewById(R.id.btnProfilTrajet)
-        btnProfilTrajet.setOnClickListener(){
-            présentateurProfil.effectuerNavigationTrajet()
-        }
-        btnProfilAccueil = vue.findViewById(R.id.btnProfilAccueil)
-        btnProfilAccueil.setOnClickListener(){
-            présentateurProfil.effectuerNavigationAccueil()
-        }
 
         // Inflate the layout for this fragment
         return vue
@@ -52,7 +42,7 @@ class vue_profil : Fragment() {
         navController = Navigation.findNavController(view)
         val bottomNavigationView = view.findViewById<BottomNavigationView>(R.id.bottom_navigation)
         NavigationUI.setupWithNavController(bottomNavigationView, navController)
-
+        bottomNavigationView.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_LABELED
         bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.menu_accueil -> {
