@@ -7,11 +7,7 @@
     tools:context=".Vue.vue_accueil">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Accueil"
-        android:translationY="100dp"/>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -32,7 +28,65 @@
         android:layout_gravity="top|left"
         android:layout_marginLeft="2dp"
         android:layout_marginTop="2dp"
-        android:src="@drawable/screenshot_2023_10_31_211142" />
+        android:src="@drawable/logo_couleur"
+        app:srcCompat="@drawable/logo_couleur" />
+
+    <TextView
+        android:id="@+id/trajetCours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Trajets en cours"
+        android:textColor="@color/bleu"
+        android:textSize="30sp"
+        android:translationX="-58dp"
+        android:translationY="130dp" />
+
+    <TextView
+        android:id="@+id/trajetInformationDestination"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Heure d'arrivée à la destination : 7:45"
+        android:textSize="13sp"
+        android:translationX="45dp"
+        android:translationY="170dp"/>
+    <TextView
+        android:id="@+id/trajetInformationArriver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Heure d'arrivée à la destination : 7:45"
+        android:textSize="13sp"
+        android:translationX="45dp"
+        android:translationY="190dp"/>
+
+    <ImageView
+        android:id="@+id/mapImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map"
+        android:layout_gravity="center_horizontal"
+        android:translationY="250dp"/>
+
+    <Button
+        android:id="@+id/passagerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Passager"
+        android:layout_gravity="bottom|center"
+        android:translationX="-125dp"
+        android:textColor="@color/rouge"
+        android:background="@android:color/transparent"/>
+
+    <Button
+        android:id="@+id/conducteurButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Conducteur"
+        android:textColor="@color/gris"
+        android:layout_gravity="bottom|center"
+        android:translationX="100dp"
+        android:background="@android:color/transparent"/>
+
 
 
 </FrameLayout>

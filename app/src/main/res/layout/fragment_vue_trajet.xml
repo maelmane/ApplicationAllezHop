@@ -32,6 +32,25 @@
         android:layout_gravity="top|left"
         android:layout_marginLeft="2dp"
         android:layout_marginTop="2dp"
-        android:src="@drawable/screenshot_2023_10_31_211142" />
+        android:src="@drawable/logo_couleur" />
+    <Button
+        android:id="@+id/passagerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Passager"
+        android:layout_gravity="bottom|center"
+        android:translationX="-125dp"
+        android:textColor="@color/rouge"
+        android:background="@android:color/transparent"/>
+
+    <Button
+        android:id="@+id/conducteurButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Conducteur"
+        android:textColor="@color/gris"
+        android:layout_gravity="bottom|center"
+        android:translationX="100dp"
+        android:background="@android:color/transparent"/>
 
 </FrameLayout>
