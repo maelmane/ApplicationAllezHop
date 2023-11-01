@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "crosemont.dti.g55.applicationallezhop"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "crosemont.dti.g55.applicationallezhop"
