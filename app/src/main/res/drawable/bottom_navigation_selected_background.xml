@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Cette partie est pour la barre bleue en bas -->
+    <item android:top="-3dp" android:right="-3dp" android:left="-3dp">
+        <shape android:shape="rectangle">
+
+            <size android:height="3dp"/>
+        </shape>
+    </item>
+    <!-- Cette partie est pour le reste de l'élément -->
+    <item android:bottom="3dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent"/>
+        </shape>
+    </item>
+</layer-list>

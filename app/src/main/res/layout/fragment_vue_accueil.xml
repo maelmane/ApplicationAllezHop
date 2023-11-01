@@ -3,12 +3,90 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Vue.vue_accueil">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:translationY="50dp"
+        app:itemBackground="@drawable/bottom_navigation_background"
+        app:itemIconTint="@color/bottom_navigation_item_color"
+        app:itemTextColor="@color/bottom_navigation_item_color"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/menu_nav" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_gravity="top|left"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="2dp"
+        android:src="@drawable/logo_couleur"
+        app:srcCompat="@drawable/logo_couleur" />
+
+    <TextView
+        android:id="@+id/trajetCours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Trajets en cours"
+        android:textColor="@color/bleu"
+        android:textSize="30sp"
+        android:translationX="-58dp"
+        android:translationY="130dp" />
+
+    <TextView
+        android:id="@+id/trajetInformationDestination"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Heure d'arrivée à la destination : 7:45"
+        android:textSize="13sp"
+        android:translationX="45dp"
+        android:translationY="170dp"/>
+    <TextView
+        android:id="@+id/trajetInformationArriver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Heure d'arrivée à la destination : 7:45"
+        android:textSize="13sp"
+        android:translationX="45dp"
+        android:translationY="190dp"/>
+
+    <ImageView
+        android:id="@+id/mapImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map"
+        android:layout_gravity="center_horizontal"
+        android:translationY="250dp"/>
+
+    <Button
+        android:id="@+id/passagerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Passager"
+        android:layout_gravity="bottom|center"
+        android:translationX="-125dp"
+        android:textColor="@color/rouge"
+        android:background="@android:color/transparent"/>
+
+    <Button
+        android:id="@+id/conducteurButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Conducteur"
+        android:textColor="@color/gris"
+        android:layout_gravity="bottom|center"
+        android:translationX="100dp"
+        android:background="@android:color/transparent"/>
+
+
 
 </FrameLayout>
