@@ -20,8 +20,23 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.068"
+        app:layout_constraintVertical_bias="0.099"
         app:menu="@menu/menu_nav" />
+
+    <TextView
+        android:id="@+id/tvAdressesFavorites"
+        android:layout_width="165dp"
+        android:layout_height="30dp"
+        android:text="Adresses Favorites"
+        android:textAllCaps="false"
+        android:textColor="#1E55B3"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.117"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.215" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -59,20 +74,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.981" />
-
-    <TextView
-        android:id="@+id/tvAdressesFavorites"
-        android:layout_width="165dp"
-        android:layout_height="30dp"
-        android:text="Adresses Favorites"
-        android:textAllCaps="false"
-        android:textColor="#1E55B3"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.117"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.186" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
