@@ -31,8 +31,8 @@
         android:layout_height="65dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/logo_couleur"
-        app:srcCompat="@drawable/logo_couleur" />
+        android:src="@drawable/only_logo_no_background"
+        app:srcCompat="@drawable/only_logo_no_background" />
 
     <TextView
         android:id="@+id/trajetCours"

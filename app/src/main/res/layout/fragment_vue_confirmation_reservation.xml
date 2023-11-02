@@ -11,7 +11,8 @@
         android:id="@+id/logo"
         android:layout_width="65dp"
         android:layout_height="65dp"
-        android:src="@drawable/logo_couleur"
+        android:src="@drawable/only_logo_no_background"
+        app:srcCompat="@drawable/only_logo_no_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
