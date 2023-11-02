@@ -49,5 +49,20 @@
         <action
             android:id="@+id/action_vue_trajet_to_vue_accueil"
             app:destination="@id/vue_accueil" />
+        <action
+            android:id="@+id/action_vue_trajet_to_vue_confirmation_reservation"
+            app:destination="@id/vue_confirmation_reservation" />
+    </fragment>
+    <fragment
+        android:id="@+id/vue_confirmation_reservation"
+        android:name="crosemont.dti.g55.applicationallezhop.Vue.vue_confirmation_reservation"
+        android:label="fragment_vue_confirmation_reservation"
+        tools:layout="@layout/fragment_vue_confirmation_reservation" >
+        <action
+            android:id="@+id/action_vue_confirmation_reservation_to_vue_accueil"
+            app:destination="@id/vue_accueil" />
+        <action
+            android:id="@+id/action_vue_confirmation_reservation_to_vue_trajet"
+            app:destination="@id/vue_trajet" />
     </fragment>
 </navigation>

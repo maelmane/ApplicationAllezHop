@@ -11,4 +11,8 @@ class PrésentateurTrajet(var vue : vue_trajet) {
     fun effectuerNavigationAccueil() {
         vue.naviguerVerVueAccueil()
     }
+
+    fun effectuerNavigationConfirmation() {
+        vue.naviguerVerVueConfirmationRéservation()
+    }
 }

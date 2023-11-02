@@ -11,32 +11,27 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
-import crosemont.dti.g55.applicationallezhop.Présentateur.PrésentateurAccueil
 import crosemont.dti.g55.applicationallezhop.Présentateur.PrésentateurConfirmationRéservation
-import crosemont.dti.g55.applicationallezhop.Présentateur.PrésentateurTrajet
-
 import crosemont.dti.g55.applicationallezhop.R
 
-/**
- * A simple [Fragment] subclass.
- * Use the [vue_trajet.newInstance] factory method to
- * create an instance of this fragment.
- */
-class vue_trajet : Fragment() {
+
+class vue_confirmation_reservation : Fragment() {
     lateinit var navController: NavController
-    lateinit var btnRéserver : Button
-    var présentateurTrajet = PrésentateurTrajet(this)
+    var présentateurConfiramtionRéservation = PrésentateurConfirmationRéservation(this)
+    lateinit var btnConfirmationRéservation : Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         // Déclaration de la vue afin de le lier au layout
-        val vue = inflater.inflate(R.layout.fragment_vue_trajet, container, false)
+        val vue = inflater.inflate(R.layout.fragment_vue_confirmation_reservation, container, false)
 
         // Inflate the layout for this fragment
         return vue
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -48,40 +43,34 @@ class vue_trajet : Fragment() {
         bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.menu_accueil -> {
-                    présentateurTrajet.effectuerNavigationAccueil()
+                    présentateurConfiramtionRéservation.effectuerNavigationAccueil()
                     true
                 }
-                R.id.menu_profil -> {
-                    présentateurTrajet.effectuerNavigationProfil()
+                R.id.menu_trajet -> {
+                    présentateurConfiramtionRéservation.effectuerNavigationTrajet()
                     true
                 }
-                R.id.menu_trajet -> true
+                R.id.menu_profil -> true
                 else -> false
             }
         }
 
-// Mettez en surbrillance l'élément correspondant dans le BottomNavigationView
+        // Mettez en surbrillance l'élément correspondant dans le BottomNavigationView
         when (navController.currentDestination?.id) {
             R.id.vue_accueil -> bottomNavigationView.menu.findItem(R.id.menu_accueil).isChecked = true
             R.id.vue_profil -> bottomNavigationView.menu.findItem(R.id.menu_profil).isChecked = true
             R.id.vue_trajet -> bottomNavigationView.menu.findItem(R.id.menu_trajet).isChecked = true
         }
 
-        btnRéserver = view.findViewById(R.id.btnRéserver)
-        btnRéserver.setOnClickListener { présentateurTrajet.effectuerNavigationConfirmation() }
+        btnConfirmationRéservation = view.findViewById(R.id.btn_confirmer_reservation)
+        btnConfirmationRéservation.setOnClickListener{ présentateurConfiramtionRéservation.effectuerNavigationAccueil() }
     }
 
-    fun naviguerVerVueProfil(){
-        navController.navigate(R.id.action_vue_trajet_to_vue_profil)
-    }
     fun naviguerVerVueAccueil(){
-        navController.navigate(R.id.action_vue_trajet_to_vue_accueil)
+        navController.navigate(R.id.action_vue_confirmation_reservation_to_vue_accueil)
     }
 
-    fun naviguerVerVueConfirmationRéservation(){
-        navController.navigate(R.id.action_vue_trajet_to_vue_confirmation_reservation)
+    fun naviguerVerVueTrajet(){
+        navController.navigate(R.id.action_vue_confirmation_reservation_to_vue_trajet)
     }
-
-
-
 }

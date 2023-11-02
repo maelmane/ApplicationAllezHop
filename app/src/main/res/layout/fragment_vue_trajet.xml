@@ -220,14 +220,15 @@
                 android:text="8:00" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnRéserver"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_weight="1"
-                android:background="@drawable/reservation"
-                android:fontFamily="@font/roboto_black"
-                android:textColor="@android:color/white"
                 android:layout_margin="8dp"
-                android:text="Réserver" />
+                android:layout_weight="1"
+                android:background="#1E55B3"
+                android:fontFamily="@font/roboto_black"
+                android:text="Réserver"
+                android:textColor="@android:color/white" />
         </TableRow>
 
         <TableRow>
@@ -248,13 +249,13 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_weight="1"
-                android:background="@drawable/reservation"
-                android:fontFamily="@font/roboto_black"
-                android:textColor="@android:color/white"
                 android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="#1E55B3"
+                android:fontFamily="@font/roboto_black"
+                android:text="Réserver"
 
-                android:text="Réserver" />
+                android:textColor="@android:color/white" />
         </TableRow>
         <TableRow>
             <TextView
@@ -274,13 +275,13 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_weight="1"
-                android:background="@drawable/reservation"
-                android:fontFamily="@font/roboto_black"
-                android:textColor="@android:color/white"
                 android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="#1E55B3"
+                android:fontFamily="@font/roboto_black"
+                android:text="Réserver"
 
-                android:text="Réserver" />
+                android:textColor="@android:color/white" />
 
         </TableRow>
         <TableRow>
@@ -301,13 +302,13 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_weight="1"
-                android:background="@drawable/reservation"
-                android:fontFamily="@font/roboto_black"
-                android:textColor="@android:color/white"
                 android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="#1E55B3"
+                android:fontFamily="@font/roboto_black"
+                android:text="Réserver"
 
-                android:text="Réserver" />
+                android:textColor="@android:color/white" />
         </TableRow>
 
 
