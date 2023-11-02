@@ -1,6 +1,4 @@
-package crosemont.dti.g55.applicationallezhop.Présentateur
-
-import crosemont.dti.g55.applicationallezhop.Vue.vue_profil
+package crosemont.dti.g55.applicationallezhop.PageProfil
 
 class PrésentateurProfil(var vue : vue_profil) {
     //    Méthode pour effectuer la navigation vers l'écran des accueil

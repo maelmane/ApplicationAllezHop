@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/vue_profil"
-        android:name="crosemont.dti.g55.applicationallezhop.Vue.vue_profil"
+        android:name="crosemont.dti.g55.applicationallezhop.PageProfil.vue_profil"
         android:label="fragment_vue_profil"
         tools:layout="@layout/fragment_vue_profil" >
         <action
@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/vue_accueil"
-        android:name="crosemont.dti.g55.applicationallezhop.Vue.vue_accueil"
+        android:name="crosemont.dti.g55.applicationallezhop.PageAcceuil.vue_accueil"
         android:label="fragment_vue_accueil"
         tools:layout="@layout/fragment_vue_accueil" >
         <action
@@ -37,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/vue_trajet"
-        android:name="crosemont.dti.g55.applicationallezhop.Vue.vue_trajet"
+        android:name="crosemont.dti.g55.applicationallezhop.PageTrajet.vue_trajet"
         android:label="fragment_vue_trajet"
         tools:layout="@layout/fragment_vue_trajet" >
         <action

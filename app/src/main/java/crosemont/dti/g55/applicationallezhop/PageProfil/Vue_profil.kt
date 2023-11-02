@@ -1,38 +1,34 @@
-package crosemont.dti.g55.applicationallezhop.Vue
+package crosemont.dti.g55.applicationallezhop.PageProfil
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
-import crosemont.dti.g55.applicationallezhop.Présentateur.PrésentateurAccueil
-import crosemont.dti.g55.applicationallezhop.Présentateur.PrésentateurConfirmationRéservation
-import crosemont.dti.g55.applicationallezhop.Présentateur.PrésentateurTrajet
-
+import crosemont.dti.g55.applicationallezhop.PageProfil.PrésentateurProfil
 import crosemont.dti.g55.applicationallezhop.R
 
 /**
  * A simple [Fragment] subclass.
- * Use the [vue_trajet.newInstance] factory method to
+ * Use the [vue_profil.newInstance] factory method to
  * create an instance of this fragment.
  */
-class vue_trajet : Fragment() {
+class vue_profil : Fragment() {
     lateinit var navController: NavController
-    lateinit var btnRéserver : Button
-    var présentateurTrajet = PrésentateurTrajet(this)
+    var présentateurProfil = PrésentateurProfil(this)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         // Déclaration de la vue afin de le lier au layout
-        val vue = inflater.inflate(R.layout.fragment_vue_trajet, container, false)
+        val vue = inflater.inflate(R.layout.fragment_vue_profil, container, false)
 
         // Inflate the layout for this fragment
         return vue
@@ -48,14 +44,14 @@ class vue_trajet : Fragment() {
         bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.menu_accueil -> {
-                    présentateurTrajet.effectuerNavigationAccueil()
+                    présentateurProfil.effectuerNavigationAccueil()
                     true
                 }
-                R.id.menu_profil -> {
-                    présentateurTrajet.effectuerNavigationProfil()
+                R.id.menu_trajet -> {
+                    présentateurProfil.effectuerNavigationTrajet()
                     true
                 }
-                R.id.menu_trajet -> true
+                R.id.menu_profil -> true
                 else -> false
             }
         }
@@ -66,22 +62,12 @@ class vue_trajet : Fragment() {
             R.id.vue_profil -> bottomNavigationView.menu.findItem(R.id.menu_profil).isChecked = true
             R.id.vue_trajet -> bottomNavigationView.menu.findItem(R.id.menu_trajet).isChecked = true
         }
-
-        btnRéserver = view.findViewById(R.id.btnRéserver)
-        btnRéserver.setOnClickListener { présentateurTrajet.effectuerNavigationConfirmation() }
-    }
-
-    fun naviguerVerVueProfil(){
-        navController.navigate(R.id.action_vue_trajet_to_vue_profil)
     }
     fun naviguerVerVueAccueil(){
-        navController.navigate(R.id.action_vue_trajet_to_vue_accueil)
+        navController.navigate(R.id.action_vue_profil_to_vue_accueil)
     }
-
-    fun naviguerVerVueConfirmationRéservation(){
-        navController.navigate(R.id.action_vue_trajet_to_vue_confirmation_reservation)
+    fun naviguerVerVueTrajet(){
+        navController.navigate(R.id.action_vue_profil_to_vue_trajet)
     }
-
-
 
 }

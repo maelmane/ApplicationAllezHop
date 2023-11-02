@@ -1,4 +1,4 @@
-package crosemont.dti.g55.applicationallezhop.Vue
+package crosemont.dti.g55.applicationallezhop.PageConfirmationRéservation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,26 +10,24 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.bottomnavigation.LabelVisibilityMode
 import com.google.android.material.navigation.NavigationBarView
-import crosemont.dti.g55.applicationallezhop.Présentateur.PrésentateurAccueil
+import crosemont.dti.g55.applicationallezhop.PageConfirmationRéservation.PrésentateurConfirmationRéservation
 import crosemont.dti.g55.applicationallezhop.R
 
-/**
- * A simple [Fragment] subclass.
- * Use the [vue_accueil.newInstance] factory method to
- * create an instance of this fragment.
- */
-class vue_accueil : Fragment() {
+class vue_confirmation_réservation  : Fragment() {
     lateinit var navController: NavController
-    var présentateurAccueil = PrésentateurAccueil(this)
+    var présentateurConfiramtionRéservation = PrésentateurConfirmationRéservation(this)
+    lateinit var btnConfirmationRéservation : Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         // Déclaration de la vue afin de le lier au layout
-        val vue = inflater.inflate(R.layout.fragment_vue_accueil, container, false)
+        val vue = inflater.inflate(R.layout.fragment_vue_confirmation_reservation, container, false)
+
+        // Inflate the layout for this fragment
         return vue
     }
 
@@ -38,40 +36,40 @@ class vue_accueil : Fragment() {
 
         // Obtient le NavController pour la navigation
         navController = Navigation.findNavController(view)
-
         val bottomNavigationView = view.findViewById<BottomNavigationView>(R.id.bottom_navigation)
         NavigationUI.setupWithNavController(bottomNavigationView, navController)
         bottomNavigationView.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_LABELED
         bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.menu_profil -> {
-                    présentateurAccueil.effectuerNavigationProfil()
+                R.id.menu_accueil -> {
+                    présentateurConfiramtionRéservation.effectuerNavigationAccueil()
                     true
                 }
                 R.id.menu_trajet -> {
-                    présentateurAccueil.effectuerNavigationTrajet()
+                    présentateurConfiramtionRéservation.effectuerNavigationTrajet()
                     true
                 }
-                R.id.menu_accueil -> true
+                R.id.menu_profil -> true
                 else -> false
             }
         }
 
-// Mettez en surbrillance l'élément correspondant dans le BottomNavigationView
+        // Mettez en surbrillance l'élément correspondant dans le BottomNavigationView
         when (navController.currentDestination?.id) {
             R.id.vue_accueil -> bottomNavigationView.menu.findItem(R.id.menu_accueil).isChecked = true
             R.id.vue_profil -> bottomNavigationView.menu.findItem(R.id.menu_profil).isChecked = true
             R.id.vue_trajet -> bottomNavigationView.menu.findItem(R.id.menu_trajet).isChecked = true
         }
 
-
+        btnConfirmationRéservation = view.findViewById(R.id.btn_confirmer_reservation)
+        btnConfirmationRéservation.setOnClickListener{ présentateurConfiramtionRéservation.effectuerNavigationAccueil() }
     }
 
-    fun naviguerVerVueProfil(){
-        navController.navigate(R.id.action_vue_accueil_to_vue_profil)
+    fun naviguerVerVueAccueil(){
+        navController.navigate(R.id.action_vue_confirmation_reservation_to_vue_accueil)
     }
 
     fun naviguerVerVueTrajet(){
-        navController.navigate(R.id.action_vue_accueil_to_vue_trajet)
+        navController.navigate(R.id.action_vue_confirmation_reservation_to_vue_trajet)
     }
 }
