@@ -1,6 +1,9 @@
 package crosemont.dti.g55.applicationallezhop.PageProfil
+import crosemont.dti.g55.applicationallezhop.sourceDeDonnées.SourceDeDonnées
 
-class PrésentateurProfil(var vue : vue_profil) {
+import crosemont.dti.g55.applicationallezhop.Modèle.Trajet
+
+class PrésentateurProfil(var vue: vue_profil, var sourceDeDonnées: SourceDeDonnées) {
     //    Méthode pour effectuer la navigation vers l'écran des accueil
     fun effectuerNavigationAccueil() {
         vue.naviguerVerVueAccueil()
@@ -9,8 +12,15 @@ class PrésentateurProfil(var vue : vue_profil) {
     fun effectuerNavigationTrajet() {
         vue.naviguerVerVueTrajet()
     }
-//    //    Méthode pour effectuer la navigation vers l'écran des profil
-//    fun effectuerNavigationProfil() {
-//        vue.naviguerVerVueProfil()
-//    }
+
+
+    fun getTrajetsVenirData(): List<Trajet> {
+        return sourceDeDonnées.getTrajetsVenirData()
+    }
+
+    fun getTrajetsAnciensData(): List<Trajet> {
+        return sourceDeDonnées.getTrajetsAnciensData()
+    }
+
+
 }
