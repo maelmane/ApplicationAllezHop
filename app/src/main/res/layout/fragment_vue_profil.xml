@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -74,41 +75,111 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <LinearLayout
+        android:id="@+id/indicatorsLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTrajetVenir">
+
+        <TextView
+            android:id="@+id/tvDateIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="110dp"/>
+
+        <TextView
+            android:id="@+id/tvAdresseIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Adresse"
+            android:layout_marginEnd="130dp"/>
+
+        <TextView
+            android:id="@+id/tvConducteurIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Conducteur"/>
+
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewTrajetsVenir"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="411dp"
+        android:layout_height="233dp"
 
         app:layout_constraintBottom_toTopOf="@+id/tvTrajetAnciens"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTrajetVenir"
+        app:layout_constraintTop_toBottomOf="@+id/indicatorsLayout"
         app:layout_constraintVertical_bias="0.2" />
 
     <TextView
         android:id="@+id/tvTrajetAnciens"
-        android:layout_width="165dp"
-        android:layout_height="30dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:text="Anciens trajets"
         android:textAllCaps="false"
         android:textColor="#1E55B3"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerViewTrajetsAnciens"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.065"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/recyclerViewTrajetsVenir"
         app:layout_constraintVertical_bias="0.1" />
 
-    <!-- RecyclerView for Anciens trajets -->
+    <LinearLayout
+        android:id="@+id/indicatorsLayout2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTrajetAnciens">
+
+        <TextView
+            android:id="@+id/tvDateIndicator2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="110dp" />
+
+        <TextView
+            android:id="@+id/tvAdresseIndicator2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Adresse"
+            android:layout_marginEnd="130dp" />
+
+        <TextView
+            android:id="@+id/tvConducteurIndicator2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Conducteur" />
+
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewTrajetsAnciens"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="256dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTrajetAnciens"
+        app:layout_constraintTop_toBottomOf="@id/indicatorsLayout2"
         app:layout_constraintVertical_bias="0.1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
