@@ -15,10 +15,14 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import crosemont.dti.g55.applicationallezhop.Modèle.Trajet
+import crosemont.dti.g55.applicationallezhop.PageProfil.ProfilAdapter
 import crosemont.dti.g55.applicationallezhop.R
 
 
@@ -34,6 +38,7 @@ class vue_trajet : Fragment() {
     lateinit var reloadButton: ImageButton
     lateinit var Destination : TextInputLayout
     lateinit var Position : TextInputLayout
+    private lateinit var recyclerViewTrajet: RecyclerView
 
 
 
@@ -93,6 +98,10 @@ class vue_trajet : Fragment() {
 
 //        btnRéserver = view.findViewById(R.id.btnRéserver)
 //        btnRéserver.setOnClickListener { naviguerVerVueConfirmationRéservation() }
+
+        recyclerViewTrajet= view.findViewById(R.id.recyclerViewTrajets)
+        setUpRecyclerView(recyclerViewTrajet, présentateurTrajet.getTrajetsVenirData())
+
     }
 
     fun naviguerVerVueProfil(){
@@ -120,6 +129,11 @@ class vue_trajet : Fragment() {
         Position.editText?.setText(textDestination)
         Destination.editText?.setText(textPosition)
 
+    }
+
+    fun setUpRecyclerView(recyclerView: RecyclerView, data: List<Trajet>) {
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.adapter = TrajetAdapter(data)
     }
 
 

@@ -23,8 +23,8 @@ class ProfilAdapter(private val data: List<Trajet>) : RecyclerView.Adapter<Profi
     override fun getItemCount(): Int = data.size
 
     class ProfilViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val dateTextView: TextView = itemView.findViewById(R.id.dateTextView)
-        private val destinationTextView: TextView = itemView.findViewById(R.id.destinationTextView)
+        private val dateTextView: TextView = itemView.findViewById(R.id.tvConducteurItem)
+        private val destinationTextView: TextView = itemView.findViewById(R.id.tvHeureArriverItem)
         private val conducteurTextView: TextView = itemView.findViewById(R.id.conducteurTextView)
 
         fun bind(trajet: Trajet) {

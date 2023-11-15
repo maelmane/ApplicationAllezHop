@@ -9,21 +9,22 @@
         android:id="@+id/tvConducteurItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Date "
-        android:layout_marginRight="70dp" />
+        android:layout_marginRight="45dp"
+        android:text="Conducteur" />
 
     <TextView
         android:id="@+id/tvHeureArriverItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Destination "
-        android:layout_marginRight="70dp" />
+        android:layout_row="0"
+        android:layout_column="1"
+        android:layout_marginRight="45dp"
+        android:text="Heure d'arriver" />
 
-    <TextView
-        android:id="@+id/conducteurTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Conducteur "
-        android:layout_marginRight="8dp" />
+    <Button
+        android:id="@+id/btnConfirmationItem"
+        android:layout_width="154dp"
+        android:layout_height="match_parent"
+        android:text="Réserver une place" />
 
 </GridLayout>

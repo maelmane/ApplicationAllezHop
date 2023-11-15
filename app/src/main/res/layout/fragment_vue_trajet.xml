@@ -56,12 +56,6 @@
         android:background="@android:color/transparent"/>
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewTrajets"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp" />
-
     <ImageButton
         android:id="@+id/reload"
         android:layout_width="25dp"

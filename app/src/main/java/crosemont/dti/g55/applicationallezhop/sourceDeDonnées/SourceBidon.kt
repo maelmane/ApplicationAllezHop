@@ -1,6 +1,7 @@
 package crosemont.dti.g55.applicationallezhop.sourceDeDonnées
 
 import crosemont.dti.g55.applicationallezhop.Modèle.Trajet
+import crosemont.dti.g55.applicationallezhop.Modèle.Voiture
 import kotlin.random.Random
 import kotlinx.coroutines.delay
 
@@ -8,19 +9,19 @@ class SourceBidon : SourceDeDonnées {
 
 	override fun getTrajetsVenirData(): List<Trajet> {
 		return listOf(
-			Trajet("04/01/2023", "6400 16e Avenue,...", "Iris"),
-			Trajet("06/01/2023", "6400 16e Avenue,...", "Bobby"),
-			Trajet("09/01/2023", "6400 16e Avenue,...", "Sacha"),
-			Trajet("12/01/2023", "6400 16e Avenue,...", "Megan")
+			Trajet("04/01/2023", "6400 16e Avenue,...", "Iris", "8:00", "7:00", voiture = Voiture(null)),
+			Trajet("06/01/2023", "6400 16e Avenue,...", "Bobby", "8:00", "7:25", voiture = Voiture(null)),
+			Trajet("09/01/2023", "6400 16e Avenue,...", "Sacha", "7:30", "6:59", voiture = Voiture(null)),
+			Trajet("12/01/2023", "6400 16e Avenue,...", "Megan", "7:07", "6:32", voiture = Voiture(null))
 		)
 	}
 
 	override fun getTrajetsAnciensData(): List<Trajet> {
 
 		return listOf(
-			Trajet("03/01/2023", "6400 16e Avenue,...", "Megan"),
-			Trajet("02/01/2023", "6400 16e Avenue,...", "Sacha"),
-			Trajet("01/01/2023", "6400 16e Avenue,...", "Bobby")
+			Trajet("03/01/2023", "6400 16e Avenue,...", "Megan", "8:00", "7:00", voiture = Voiture(null)),
+			Trajet("02/01/2023", "6400 16e Avenue,...", "Sacha", "8:00", "7:00", voiture = Voiture(null)),
+			Trajet("01/01/2023", "6400 16e Avenue,...", "Bobby", "7:45", "6:48", voiture = Voiture(null))
 		)
 	}
 
