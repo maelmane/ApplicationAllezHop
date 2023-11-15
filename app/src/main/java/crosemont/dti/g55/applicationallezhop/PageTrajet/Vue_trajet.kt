@@ -72,11 +72,11 @@ class vue_trajet : Fragment() {
         bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.menu_accueil -> {
-                    présentateurTrajet.effectuerNavigationAccueil()
+                    naviguerVerVueAccueil()
                     true
                 }
                 R.id.menu_profil -> {
-                    présentateurTrajet.effectuerNavigationProfil()
+                    naviguerVerVueProfil()
                     true
                 }
                 R.id.menu_trajet -> true
@@ -92,7 +92,7 @@ class vue_trajet : Fragment() {
         }
 
 //        btnRéserver = view.findViewById(R.id.btnRéserver)
-//        btnRéserver.setOnClickListener { présentateurTrajet.effectuerNavigationConfirmation() }
+//        btnRéserver.setOnClickListener { naviguerVerVueConfirmationRéservation() }
     }
 
     fun naviguerVerVueProfil(){

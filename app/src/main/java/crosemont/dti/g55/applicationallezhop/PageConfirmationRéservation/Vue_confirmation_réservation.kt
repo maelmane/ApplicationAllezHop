@@ -42,11 +42,11 @@ class vue_confirmation_réservation  : Fragment() {
         bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.menu_accueil -> {
-                    présentateurConfiramtionRéservation.effectuerNavigationAccueil()
+                    naviguerVerVueAccueil()
                     true
                 }
                 R.id.menu_trajet -> {
-                    présentateurConfiramtionRéservation.effectuerNavigationTrajet()
+                    naviguerVerVueTrajet()
                     true
                 }
                 R.id.menu_profil -> true
@@ -62,7 +62,7 @@ class vue_confirmation_réservation  : Fragment() {
         }
 
         btnConfirmationRéservation = view.findViewById(R.id.btn_confirmer_reservation)
-        btnConfirmationRéservation.setOnClickListener{ présentateurConfiramtionRéservation.effectuerNavigationAccueil() }
+        btnConfirmationRéservation.setOnClickListener{ naviguerVerVueAccueil() }
     }
 
     fun naviguerVerVueAccueil(){

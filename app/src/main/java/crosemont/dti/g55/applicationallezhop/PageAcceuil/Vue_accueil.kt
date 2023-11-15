@@ -43,11 +43,11 @@ class vue_accueil : Fragment() {
         bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.menu_profil -> {
-                    présentateurAccueil.effectuerNavigationProfil()
+                    naviguerVerVueProfil()
                     true
                 }
                 R.id.menu_trajet -> {
-                    présentateurAccueil.effectuerNavigationTrajet()
+                    naviguerVerVueTrajet()
                     true
                 }
                 R.id.menu_accueil -> true

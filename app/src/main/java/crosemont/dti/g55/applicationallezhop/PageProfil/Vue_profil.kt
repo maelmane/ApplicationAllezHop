@@ -23,7 +23,7 @@ import crosemont.dti.g55.applicationallezhop.sourceDeDonnées.SourceBidon
  */
 class vue_profil : Fragment() {
     lateinit var navController: NavController
-    var présentateurProfil = PrésentateurProfil(this, SourceBidon())
+    var présentateurProfil = PrésentateurProfil(this)
     private lateinit var recyclerViewTrajetsVenir: RecyclerView
     private lateinit var recyclerViewTrajetsAnciens: RecyclerView
 
@@ -38,9 +38,6 @@ class vue_profil : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
-
         // Obtain NavController for navigation
         navController = Navigation.findNavController(view)
         val bottomNavigationView = view.findViewById<BottomNavigationView>(R.id.bottom_navigation)
@@ -51,11 +48,11 @@ class vue_profil : Fragment() {
         bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.menu_accueil -> {
-                    présentateurProfil.effectuerNavigationAccueil()
+                    naviguerVerVueAccueil()
                     true
                 }
                 R.id.menu_trajet -> {
-                    présentateurProfil.effectuerNavigationTrajet()
+                    naviguerVerVueTrajet()
                     true
                 }
                 R.id.menu_profil -> true
