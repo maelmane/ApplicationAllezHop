@@ -17,6 +17,8 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import crosemont.dti.g55.applicationallezhop.R
 
 
@@ -30,6 +32,8 @@ class vue_trajet : Fragment() {
     lateinit var btnRéserver : Button
     var présentateurTrajet = PrésentateurTrajet(this)
     lateinit var reloadButton: ImageButton
+    lateinit var Destination : TextInputLayout
+    lateinit var Position : TextInputLayout
 
 
 
@@ -59,7 +63,7 @@ class vue_trajet : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        Destination = view.findViewById(R.id.Destination)
         // Obtient le NavController pour la navigation
         navController = Navigation.findNavController(view)
         val bottomNavigationView = view.findViewById<BottomNavigationView>(R.id.bottom_navigation)
@@ -87,8 +91,8 @@ class vue_trajet : Fragment() {
             R.id.vue_trajet -> bottomNavigationView.menu.findItem(R.id.menu_trajet).isChecked = true
         }
 
-        btnRéserver = view.findViewById(R.id.btnRéserver)
-        btnRéserver.setOnClickListener { présentateurTrajet.effectuerNavigationConfirmation() }
+//        btnRéserver = view.findViewById(R.id.btnRéserver)
+//        btnRéserver.setOnClickListener { présentateurTrajet.effectuerNavigationConfirmation() }
     }
 
     fun naviguerVerVueProfil(){
@@ -103,7 +107,18 @@ class vue_trajet : Fragment() {
     }
 
     fun reloadButton(){
+        // Assurez-vous que Destination est initialisé correctement
+        Destination = view?.findViewById(R.id.Destination) ?: return
+        Position = view?.findViewById(R.id.Position) ?: return
+        val textDestination = Destination.editText?.text.toString()
+        val textPosition = Position.editText?.text.toString()
+
+        // Affichez le texte dans un Toast pour le test
         Toast.makeText(requireContext(), "Cliqué", Toast.LENGTH_SHORT).show()
+
+        // Transfert du texte
+        Position.editText?.setText(textDestination)
+        Destination.editText?.setText(textPosition)
 
     }
 

@@ -56,6 +56,12 @@
         android:background="@android:color/transparent"/>
 
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewTrajets"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" />
+
     <ImageButton
         android:id="@+id/reload"
         android:layout_width="25dp"
@@ -88,7 +94,7 @@
             android:layout_marginTop="-220dp"
             android:src="@drawable/reload" />
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editText"
+            android:id="@+id/txtiedepartPosition"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -161,7 +167,7 @@
         >
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editText4"
+            android:id="@+id/txtiearriverPosition"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -176,146 +182,12 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-    <TableLayout
-        android:layout_marginTop="20dp"
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewTrajets"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center">
-
-        <TableRow>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-
-                android:text="Conducteur" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Heure d'arrivée" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Réservation" />
-        </TableRow>
-
-        <TableRow>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Iris" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="8:00" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnRéserver"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_margin="8dp"
-                android:layout_weight="1"
-                android:background="#1E55B3"
-                android:fontFamily="@font/roboto_black"
-                android:text="Réserver"
-                android:textColor="@android:color/white" />
-        </TableRow>
-
-        <TableRow>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Bobby" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="8:00" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_margin="8dp"
-                android:layout_weight="1"
-                android:background="#1E55B3"
-                android:fontFamily="@font/roboto_black"
-                android:text="Réserver"
-
-                android:textColor="@android:color/white" />
-        </TableRow>
-        <TableRow>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Sacha" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="7:30" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_margin="8dp"
-                android:layout_weight="1"
-                android:background="#1E55B3"
-                android:fontFamily="@font/roboto_black"
-                android:text="Réserver"
-
-                android:textColor="@android:color/white" />
-
-        </TableRow>
-        <TableRow>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Megan" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="7:00" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_margin="8dp"
-                android:layout_weight="1"
-                android:background="#1E55B3"
-                android:fontFamily="@font/roboto_black"
-                android:text="Réserver"
-
-                android:textColor="@android:color/white" />
-        </TableRow>
-
-
-    </TableLayout>
+        android:layout_marginTop="20dp"
+        android:translationY="250dp" />
 
 
 </FrameLayout>

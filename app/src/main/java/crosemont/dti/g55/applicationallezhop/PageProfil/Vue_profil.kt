@@ -91,7 +91,7 @@ class vue_profil : Fragment() {
 
     fun setUpRecyclerView(recyclerView: RecyclerView, data: List<Trajet>) {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = TrajetAdapter(data)
+        recyclerView.adapter = ProfilAdapter(data)
     }
 
 }

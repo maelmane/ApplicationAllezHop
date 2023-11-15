@@ -8,21 +8,21 @@ import androidx.recyclerview.widget.RecyclerView
 import crosemont.dti.g55.applicationallezhop.Modèle.Trajet
 import crosemont.dti.g55.applicationallezhop.R
 
-class TrajetAdapter(private val data: List<Trajet>) : RecyclerView.Adapter<TrajetAdapter.TrajetViewHolder>() {
+class ProfilAdapter(private val data: List<Trajet>) : RecyclerView.Adapter<ProfilAdapter.ProfilViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrajetViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfilViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_trajet, parent, false)
-        return TrajetViewHolder(view)
+        return ProfilViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: TrajetViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ProfilViewHolder, position: Int) {
         val trajet = data[position]
         holder.bind(trajet)
     }
 
     override fun getItemCount(): Int = data.size
 
-    class TrajetViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ProfilViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val dateTextView: TextView = itemView.findViewById(R.id.dateTextView)
         private val destinationTextView: TextView = itemView.findViewById(R.id.destinationTextView)
         private val conducteurTextView: TextView = itemView.findViewById(R.id.conducteurTextView)
