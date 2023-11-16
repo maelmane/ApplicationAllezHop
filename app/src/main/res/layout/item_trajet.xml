@@ -1,29 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:columnCount="3"
+    android:columnCount="4"
     android:rowCount="1">
 
     <TextView
         android:id="@+id/tvConducteurItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Date "
-        android:layout_marginRight="70dp" />
+        android:layout_marginRight="70dp"
+        android:layout_weight="5"
+        android:text="Date " />
 
     <TextView
         android:id="@+id/tvHeureArriverItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Destination "
-        android:layout_marginRight="70dp" />
+        android:layout_marginRight="60dp"
+        android:layout_weight="5"
+        android:text="Destination " />
 
     <TextView
         android:id="@+id/conducteurTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Conducteur "
-        android:layout_marginRight="8dp" />
+        android:layout_weight="5"
+        android:text="Conducteur " />
 
-</GridLayout>
+    <ImageButton
+        android:id="@+id/btnSupprimer"
+        android:layout_width="38dp"
+        android:layout_height="39dp"
+        android:layout_weight="1"
+        android:src="@android:drawable/ic_menu_delete" />
+
+</LinearLayout>
