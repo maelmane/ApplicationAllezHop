@@ -5,9 +5,30 @@ import crosemont.dti.g55.applicationallezhop.Modèle.Trajet
 import crosemont.dti.g55.applicationallezhop.PageTrajet.vue_trajet
 import crosemont.dti.g55.applicationallezhop.sourceDeDonnées.SourceBidon
 
-class PrésentateurTrajet(var vue : vue_trajet) {
-    val modèle=ModèleTrajet(SourceBidon())
-    fun getTrajetsVenirData(): List<Trajet> {
+class PrésentateurTrajet(val vue : vue_trajet): IPrésentateurTrajet {
+    val modèle = ModèleTrajet(SourceBidon())
+    override fun getTrajetsVenirData(): List<Trajet> {
         return modèle.sourceDeDonnées.getTrajetsVenirData()
     }
+
+    override fun rafraîchirAffichage() {
+        TODO("Not yet implemented")
+    }
+
+    override fun effectuerRéservation(position: Int) {
+        var trajet = modèle.obtenirTrajetÀVenir(position)
+        modèle.réserver(trajet)
+        vue.naviguerVerVueConfirmationRéservation()
+    }
+
+    override fun getConducteurString(position: Int): String? {
+        TODO("Not yet implemented")
+    }
+
+    override fun getHeureString(position: Int): String? {
+        TODO("Not yet implemented")
+    }
+
+    override val nbItems: Int
+        get() = modèle.tailleTrajetsÀVenir
 }
