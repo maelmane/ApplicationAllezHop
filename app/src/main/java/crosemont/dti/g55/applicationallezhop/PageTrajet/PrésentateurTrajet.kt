@@ -6,7 +6,7 @@ import crosemont.dti.g55.applicationallezhop.PageTrajet.vue_trajet
 import crosemont.dti.g55.applicationallezhop.sourceDeDonnées.SourceBidon
 
 class PrésentateurTrajet(val vue : vue_trajet): IPrésentateurTrajet {
-    val modèle = ModèleTrajet(SourceBidon())
+    var modèle = ModèleTrajet(SourceBidon())
     override fun getTrajetsVenirData(): List<Trajet> {
         return modèle.sourceDeDonnées.getTrajetsVenirData()
     }

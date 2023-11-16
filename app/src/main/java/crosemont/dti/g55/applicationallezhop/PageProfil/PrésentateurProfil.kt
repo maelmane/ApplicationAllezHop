@@ -7,7 +7,7 @@ import crosemont.dti.g55.applicationallezhop.sourceDeDonnées.SourceBidon
 
 class PrésentateurProfil(var vue: vue_profil): IPrésentateurProfil {
 
-    val modèle= ModèleProfil(SourceBidon())
+    var modèle= ModèleProfil(SourceBidon())
     
     override fun getTrajetsVenirData(): List<Trajet> {
         return modèle.sourceDeDonnées.getTrajetsVenirData()
