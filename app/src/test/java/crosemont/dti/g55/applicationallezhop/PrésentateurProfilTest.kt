@@ -41,10 +41,9 @@ class PrésentateurProfilTest {
 
         val trajets = présentateur.getTrajetsAnciensData()
 
-        // Modifier intentionnellement l'assertion pour qu'elle échoue
-        assertNotEquals(trajetsAnciensAttendus.size, trajets.size)
+        assertEquals(trajetsAnciensAttendus.size, trajets.size)
+        assertEquals(trajetsAnciensAttendus, trajets)
     }
-
 
     @Test
     fun `lorsqu'on demande les trajets à venir, on obtient la liste correcte`() {
@@ -56,8 +55,8 @@ class PrésentateurProfilTest {
 
         val trajets = présentateur.getTrajetsVenirData()
 
-        // Modifier intentionnellement l'assertion pour qu'elle échoue
-        assertNotEquals(trajetsÀVenirAttendus, trajets)
+        assertEquals(trajetsÀVenirAttendus.size, trajets.size)
+        assertEquals(trajetsÀVenirAttendus, trajets)
     }
-
 }
+

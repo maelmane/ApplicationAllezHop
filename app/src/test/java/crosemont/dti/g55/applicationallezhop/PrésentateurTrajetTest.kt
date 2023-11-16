@@ -39,14 +39,7 @@ class PrésentateurTrajetTest {
 
         val trajets = présentateur.getTrajetsVenirData()
 
-        // Modifier la taille attendue pour qu'elle soit incorrecte
-        assertEquals(trajetsAttendus.size + 1, trajets.size)
-
-        // Ou changer l'assertion pour comparer avec une liste différente
-        val trajetsIncorrects = listOf(
-            Trajet("07/01/2023", "6400 16e Avenue,...", "Charlie", "10:00", "9:00", Voiture(null))
-        )
-        assertEquals(trajetsIncorrects, trajets)
+        assertEquals(trajetsAttendus.size, trajets.size)
+        assertEquals(trajetsAttendus, trajets) // Comparaison des listes entières pour plus de précision
     }
-
 }
