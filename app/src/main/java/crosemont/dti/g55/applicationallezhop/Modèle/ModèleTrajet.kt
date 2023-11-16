@@ -9,8 +9,9 @@ class ModèleTrajet(var sourceDeDonnées: SourceDeDonnées) {
         return _trajetsÀVenir[indice]
     }
 
-    fun chargerTrajetsÀVenir() {
+    fun chargerTrajetsÀVenir() : MutableList<Trajet>{
         _trajetsÀVenir = sourceDeDonnées.chargerTrajetsÀVenir()
+        return _trajetsÀVenir
     }
 
     fun réserver(trajet: Trajet){

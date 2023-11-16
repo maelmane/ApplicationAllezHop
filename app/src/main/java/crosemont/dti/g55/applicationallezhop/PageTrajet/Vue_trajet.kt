@@ -39,8 +39,12 @@ class vue_trajet : Fragment() {
     lateinit var Destination : TextInputLayout
     lateinit var Position : TextInputLayout
     private lateinit var recyclerViewTrajet: RecyclerView
+    private var _adapter : TrajetAdapter? = null
 
 
+    fun rafraîchir() {
+        _adapter!!.notifyDataSetChanged()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,17 +58,14 @@ class vue_trajet : Fragment() {
         reloadButton.setImageResource(android.R.drawable.ic_popup_sync)
         reloadButton.setColorFilter(ContextCompat.getColor(requireContext(), android.R.color.black))
 
-
-
         reloadButton.setOnClickListener {
             reloadButton()
         }
+
+        _adapter = TrajetAdapter(présentateurTrajet)
+
         // Inflate the layout for this fragment
         return vue
-
-
-
-
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -89,19 +90,15 @@ class vue_trajet : Fragment() {
             }
         }
 
-// Mettez en surbrillance l'élément correspondant dans le BottomNavigationView
+        // Mettez en surbrillance l'élément correspondant dans le BottomNavigationView
         when (navController.currentDestination?.id) {
             R.id.vue_accueil -> bottomNavigationView.menu.findItem(R.id.menu_accueil).isChecked = true
             R.id.vue_profil -> bottomNavigationView.menu.findItem(R.id.menu_profil).isChecked = true
             R.id.vue_trajet -> bottomNavigationView.menu.findItem(R.id.menu_trajet).isChecked = true
         }
 
-//        btnRéserver = view.findViewById(R.id.btnRéserver)
-//        btnRéserver.setOnClickListener { naviguerVerVueConfirmationRéservation() }
-
         recyclerViewTrajet= view.findViewById(R.id.recyclerViewTrajets)
         setUpRecyclerView(recyclerViewTrajet, présentateurTrajet.getTrajetsVenirData())
-
     }
 
     fun naviguerVerVueProfil(){
@@ -133,7 +130,7 @@ class vue_trajet : Fragment() {
 
     fun setUpRecyclerView(recyclerView: RecyclerView, data: List<Trajet>) {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = TrajetAdapter(data)
+        recyclerView.adapter = _adapter
     }
 
 

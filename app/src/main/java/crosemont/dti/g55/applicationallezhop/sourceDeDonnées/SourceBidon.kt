@@ -7,8 +7,8 @@ import kotlinx.coroutines.delay
 
 class SourceBidon : SourceDeDonnées {
 
-	override fun getTrajetsVenirData(): List<Trajet> {
-		return listOf(
+	override fun getTrajetsVenirData(): MutableList<Trajet> {
+		return mutableListOf(
 			Trajet("04/01/2023", "6400 16e Avenue,...", "Iris", "8:00", "7:00", voiture = Voiture(null)),
 			Trajet("06/01/2023", "6400 16e Avenue,...", "Bobby", "8:00", "7:25", voiture = Voiture(null)),
 			Trajet("09/01/2023", "6400 16e Avenue,...", "Sacha", "7:30", "6:59", voiture = Voiture(null)),
@@ -16,9 +16,9 @@ class SourceBidon : SourceDeDonnées {
 		)
 	}
 
-	override fun getTrajetsAnciensData(): List<Trajet> {
+	override fun getTrajetsAnciensData(): MutableList<Trajet> {
 
-		return listOf(
+		return mutableListOf(
 			Trajet("03/01/2023", "6400 16e Avenue,...", "Megan", "8:00", "7:00", voiture = Voiture(null)),
 			Trajet("02/01/2023", "6400 16e Avenue,...", "Sacha", "8:00", "7:00", voiture = Voiture(null)),
 			Trajet("01/01/2023", "6400 16e Avenue,...", "Bobby", "7:45", "6:48", voiture = Voiture(null))

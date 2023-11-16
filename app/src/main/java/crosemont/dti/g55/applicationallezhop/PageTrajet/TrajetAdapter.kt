@@ -1,5 +1,6 @@
 package crosemont.dti.g55.applicationallezhop.PageTrajet
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,17 +10,15 @@ import androidx.recyclerview.widget.RecyclerView
 import crosemont.dti.g55.applicationallezhop.Modèle.Trajet
 import crosemont.dti.g55.applicationallezhop.R
 
-class TrajetAdapter(private val trajets: List<Trajet>) : RecyclerView.Adapter<TrajetAdapter.TrajetViewHolder>() {
+class TrajetAdapter(val _présentateur: IPrésentateurTrajet?) : RecyclerView.Adapter<TrajetAdapter.TrajetViewHolder>() {
 
     class TrajetViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val conducteurTextView: TextView = view.findViewById(R.id.tvConducteurItem)
         private val heureArriveeTextView: TextView = view.findViewById(R.id.tvHeureArriverItem)
-        private val btnReserver: Button = view.findViewById(R.id.btnConfirmationItem)
 
         fun bind(trajet: Trajet) {
             conducteurTextView.text = trajet.conducteur
             heureArriveeTextView.text = trajet.heureArriver
-
         }
     }
 
@@ -29,10 +28,16 @@ class TrajetAdapter(private val trajets: List<Trajet>) : RecyclerView.Adapter<Tr
     }
 
     override fun onBindViewHolder(holder: TrajetViewHolder, position: Int) {
-        holder.bind(trajets[position])
+        val trajet = _présentateur!!.getTrajetsVenirData()[position]
+        holder.bind(trajet)
+        val btnReserver: Button = holder.itemView.findViewById(R.id.btnConfirmationItem)
+        btnReserver.setOnClickListener {
+            Log.d("Réservation", "réserver $position")
+            _présentateur.effectuerRéservation(position)
+        }
     }
 
-    override fun getItemCount():Int  = trajets.size
+    override fun getItemCount():Int  = _présentateur!!.nbItems
 }
 
 
