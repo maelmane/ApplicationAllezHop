@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
     tools:context=".PageAcceuil.vue_accueil">
 
     <!-- Autres vues ici... -->
@@ -34,50 +36,20 @@
         android:src="@drawable/only_logo_no_background"
         app:srcCompat="@drawable/only_logo_no_background" />
 
-    <TextView
-        android:id="@+id/trajetCours"
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Trajet en cours"
-        android:textColor="#1E55B3"
-        android:textSize="30sp"
+        android:layout_height="600dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintHorizontal_bias="0.468"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.204" />
-
-    <TextView
-        android:id="@+id/trajetInformationDestination"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Heure d'arrivée à la destination : 7:45"
-        android:textSize="13sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/trajetCours" />
-
-    <TextView
-        android:id="@+id/trajetInformationArriver"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/trajetInformationDestination"
-        android:text="Heure d'arrivée à l'arrêt : 7:45"
-        android:textSize="13sp" />
-
-    <ImageView
-        android:id="@+id/mapImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/map"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/trajetInformationArriver"
-        app:layout_constraintVertical_bias="0.144" />
+        app:layout_constraintVertical_bias="0.602"
+        map:cameraTilt="30"
+        map:uiRotateGestures="true"
+        map:uiZoomControls="true" />
 
     <Button
         android:id="@+id/passagerButton"
