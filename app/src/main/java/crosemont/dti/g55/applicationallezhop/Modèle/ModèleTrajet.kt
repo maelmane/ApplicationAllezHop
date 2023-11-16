@@ -15,7 +15,7 @@ class ModèleTrajet(var sourceDeDonnées: SourceDeDonnées) {
     }
 
     fun réserver(trajet: Trajet){
-        TODO()
+
     }
 
     val tailleTrajetsÀVenir: Int
