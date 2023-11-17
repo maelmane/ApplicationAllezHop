@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -18,6 +19,13 @@ class vue_confirmation_réservation  : Fragment() {
     lateinit var navController: NavController
     var présentateurConfiramtionRéservation = PrésentateurConfirmationRéservation(this)
     lateinit var btnConfirmationRéservation : Button
+    lateinit var txtConducteur : EditText
+    lateinit var txtHeureArriver : EditText
+    lateinit var txtAdresseEmbarcation : EditText
+    lateinit var conducteur :String
+    lateinit var AddresseEmbarcation :String
+    lateinit var HeureArrivé :String
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,6 +71,18 @@ class vue_confirmation_réservation  : Fragment() {
 
         btnConfirmationRéservation = view.findViewById(R.id.btn_confirmer_reservation)
         btnConfirmationRéservation.setOnClickListener{ naviguerVerVueAccueil() }
+
+        this.arguments?.let {
+            conducteur = it.getString("Conducteur")!!
+            AddresseEmbarcation = it.getString("AddresseEmbarcation")!!
+            HeureArrivé = it.getString("HeureArrivé")!!
+        }
+        txtConducteur= view.findViewById(R.id.txt_conducteur)
+        txtAdresseEmbarcation= view.findViewById(R.id.txt_adresse_embarcation)
+        txtHeureArriver= view.findViewById(R.id.txt_heure_arriver)
+        txtConducteur.setText(conducteur)
+        txtAdresseEmbarcation.setText(AddresseEmbarcation)
+        txtHeureArriver.setText(HeureArrivé)
     }
 
     fun naviguerVerVueAccueil(){

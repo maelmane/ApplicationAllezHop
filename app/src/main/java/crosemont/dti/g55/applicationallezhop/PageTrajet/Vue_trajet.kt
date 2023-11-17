@@ -163,8 +163,8 @@ class vue_trajet : Fragment() {
         navController.navigate(R.id.action_vue_trajet_to_vue_accueil)
     }
 
-    fun naviguerVerVueConfirmationRéservation(){
-        navController.navigate(R.id.action_vue_trajet_to_vue_confirmation_reservation)
+    fun naviguerVerVueConfirmationRéservation(bundle: Bundle){
+        navController.navigate(R.id.action_vue_trajet_to_vue_confirmation_reservation, bundle)
     }
 
     fun reloadButton(){

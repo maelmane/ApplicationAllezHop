@@ -1,5 +1,6 @@
 package crosemont.dti.g55.applicationallezhop.PageTrajet
 
+import android.os.Bundle
 import crosemont.dti.g55.applicationallezhop.Modèle.ModèleTrajet
 import crosemont.dti.g55.applicationallezhop.Modèle.Trajet
 import crosemont.dti.g55.applicationallezhop.PageTrajet.vue_trajet
@@ -18,7 +19,13 @@ class PrésentateurTrajet(val vue : vue_trajet): IPrésentateurTrajet {
     override fun effectuerRéservation(position: Int) {
         var trajet = modèle.obtenirTrajetÀVenir(position)
         modèle.réserver(trajet)
-        vue.naviguerVerVueConfirmationRéservation()
+        val myBundle = Bundle().apply {
+            putString("Conducteur", modèle._trajetsÀVenir.get(position).conducteur)
+            putString("AddresseEmbarcation", modèle._trajetsÀVenir.get(position).destination)
+            putString("HeureArrivé", modèle._trajetsÀVenir.get(position).heureArriver)
+        }
+
+        vue.naviguerVerVueConfirmationRéservation(myBundle)
     }
 
     override fun getConducteurString(position: Int): String? {
