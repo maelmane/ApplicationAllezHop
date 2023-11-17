@@ -2,7 +2,9 @@ package crosemont.dti.g55.applicationallezhop.sourceDeDonnées
 
 import crosemont.dti.g55.applicationallezhop.Modèle.Trajet
 
-interface SourceDeDonnées {
+interface SourceDeDonnees {
+	abstract val trajetsVenirData: Any
+
 	fun getTrajetsVenirData(): MutableList<Trajet>
 	fun getTrajetsAnciensData(): MutableList<Trajet>
 
@@ -14,4 +16,7 @@ interface SourceDeDonnées {
 	fun chargerTrajetsÀVenir() : MutableList<Trajet>
 
 	fun chargerAnciensTrajet() : MutableList<Trajet>
+
+	fun supprimerTrajet(position: Int)
+
 }
