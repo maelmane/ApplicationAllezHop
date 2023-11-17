@@ -5,7 +5,7 @@ import crosemont.dti.g55.applicationallezhop.Modèle.Voiture
 import kotlin.random.Random
 import kotlinx.coroutines.delay
 
-class SourceBidon : SourceDeDonnées {
+class SourceBidon(/*override val trajetsVenirData: Any*/) : SourceDeDonnées {
 
 	override fun getTrajetsVenirData(): MutableList<Trajet> {
 		return mutableListOf(
@@ -48,6 +48,10 @@ class SourceBidon : SourceDeDonnées {
 			Trajet("02/01/2023", "6400 16e Avenue,...", "Sacha", "8:00", "7:00", voiture = Voiture(null)),
 			Trajet("01/01/2023", "6400 16e Avenue,...", "Bobby", "7:45", "6:48", voiture = Voiture(null))
 		)
+	}
+
+	override fun supprimerTrajet(position: Int) {
+		TODO("Not yet implemented")
 	}
 
 	override fun lire(uid: Long): Trajet {
