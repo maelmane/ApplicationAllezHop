@@ -1,7 +1,6 @@
 package crosemont.dti.g55.applicationallezhop.PageProfil
-import crosemont.dti.g55.applicationallezhop.Modèle.ModèleProfil
-import crosemont.dti.g55.applicationallezhop.sourceDeDonnées.SourceDeDonnées
 
+import crosemont.dti.g55.applicationallezhop.Modèle.ModèleProfil
 import crosemont.dti.g55.applicationallezhop.Modèle.Trajet
 import crosemont.dti.g55.applicationallezhop.sourceDeDonnées.SourceBidon
 
