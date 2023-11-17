@@ -50,6 +50,10 @@ class SourceBidon : SourceDeDonnées {
 		)
 	}
 
+	override fun supprimerTrajet(position: Int) {
+		TODO("Not yet implemented")
+	}
+
 	override fun lire(uid: Long): Trajet {
 		TODO("Not yet implemented")
 	}
