@@ -1,14 +1,13 @@
 package crosemont.dti.g55.applicationallezhop.PageTrajet
 
-import android.content.Intent
-import android.content.Intent.getIntent
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
-import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -19,11 +18,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
-import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import crosemont.dti.g55.applicationallezhop.Modèle.Trajet
-import crosemont.dti.g55.applicationallezhop.PageProfil.ProfilAdapter
 import crosemont.dti.g55.applicationallezhop.R
+import java.time.LocalDate
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
+import java.util.Calendar
 
 
 /**
@@ -32,12 +33,15 @@ import crosemont.dti.g55.applicationallezhop.R
  * create an instance of this fragment.
  */
 class vue_trajet : Fragment() {
-    lateinit var navController: NavController
-    lateinit var btnRéserver : Button
-    var présentateurTrajet = PrésentateurTrajet(this)
+
     lateinit var reloadButton: ImageButton
     lateinit var Destination : TextInputLayout
     lateinit var Position : TextInputLayout
+    lateinit var selectedTimeTV: TextView
+    lateinit var selectedDateTV: TextView
+
+    var présentateurTrajet = PrésentateurTrajet(this)
+    lateinit var navController: NavController
     private lateinit var recyclerViewTrajet: RecyclerView
     private var _adapter : TrajetAdapter? = null
 
@@ -63,6 +67,57 @@ class vue_trajet : Fragment() {
         }
 
         _adapter = TrajetAdapter(présentateurTrajet)
+
+        selectedTimeTV = vue.findViewById(R.id.idTVSelectedTime)
+        var formatTemps = DateTimeFormatter.ofPattern("HH:mm")
+        selectedTimeTV.text = LocalTime.now().format(formatTemps)
+
+        selectedTimeTV.setOnClickListener {
+            val c = Calendar.getInstance()
+            val hour = c.get(Calendar.HOUR_OF_DAY)
+            val minute = c.get(Calendar.MINUTE)
+
+            val timePickerDialog = TimePickerDialog(
+                context,
+                { view, hourOfDay, minute ->
+                    selectedTimeTV.setText("$hourOfDay:$minute")
+                },
+                hour,
+                minute,
+                true
+            )
+            timePickerDialog.show()
+        }
+
+        selectedDateTV = vue.findViewById(R.id.idTVSelectedDate)
+        var formatDate = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        selectedDateTV.text = LocalDate.now().format(formatDate)
+
+        selectedDateTV.setOnClickListener {
+            val c = Calendar.getInstance()
+
+            val year = c.get(Calendar.YEAR)
+            val month = c.get(Calendar.MONTH)
+            val day = c.get(Calendar.DAY_OF_MONTH)
+
+            val datePickerDialog = DatePickerDialog(
+                // on below line we are passing context.
+                requireContext(),
+                { view, year, monthOfYear, dayOfMonth ->
+                    // on below line we are setting
+                    // date to our text view.
+                    selectedDateTV.text =
+                        (dayOfMonth.toString() + "-" + (monthOfYear + 1) + "-" + year)
+                },
+                // on below line we are passing year, month
+                // and day for the selected date in our date picker.
+                year,
+                month,
+                day
+            )
+
+            datePickerDialog.show()
+        }
 
         // Inflate the layout for this fragment
         return vue
