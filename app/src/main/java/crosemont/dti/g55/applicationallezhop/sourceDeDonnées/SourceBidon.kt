@@ -5,7 +5,7 @@ import crosemont.dti.g55.applicationallezhop.Modèle.Voiture
 import kotlin.random.Random
 import kotlinx.coroutines.delay
 
-class SourceBidon(/*override val trajetsVenirData: Any*/) : SourceDeDonnées {
+class SourceBidon() : SourceDeDonnées {
 
 	override fun getTrajetsVenirData(): MutableList<Trajet> {
 		return mutableListOf(
