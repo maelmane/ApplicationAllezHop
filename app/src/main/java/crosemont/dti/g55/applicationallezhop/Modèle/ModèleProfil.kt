@@ -32,4 +32,8 @@ class ModèleProfil(var sourceDeDonnées: SourceDeDonnées) {
     val tailleAnciensTrajets: Int
         get() = _anciensTrajets.size
 
+    fun addTrajetVenir(trajet: Trajet) {
+        _trajetsÀVenir.add(trajet)
+    }
+
 }

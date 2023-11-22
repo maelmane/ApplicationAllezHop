@@ -23,6 +23,10 @@ class PrésentateurTrajet(val vue : vue_trajet): IPrésentateurTrajet {
             putString("Conducteur", modèle._trajetsÀVenir.get(position).conducteur)
             putString("AddresseEmbarcation", modèle._trajetsÀVenir.get(position).destination)
             putString("HeureArrivé", modèle._trajetsÀVenir.get(position).heureArriver)
+            putString("Date", modèle._trajetsÀVenir.get(position).date )
+            putString("HeureDépart",modèle._trajetsÀVenir.get(position).heureDépart)
+            putSerializable("Voiture", modèle._trajetsÀVenir[position].voiture)
+
         }
 
         vue.naviguerVerVueConfirmationRéservation(myBundle)

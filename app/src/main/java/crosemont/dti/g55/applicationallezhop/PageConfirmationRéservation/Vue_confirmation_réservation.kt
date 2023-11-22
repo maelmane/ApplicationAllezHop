@@ -17,7 +17,7 @@ import crosemont.dti.g55.applicationallezhop.R
 
 class vue_confirmation_réservation  : Fragment() {
     lateinit var navController: NavController
-    var présentateurConfiramtionRéservation = PrésentateurConfirmationRéservation(this)
+    var présentateurConfirmationRéservation = PrésentateurConfirmationRéservation(this)
     lateinit var btnConfirmationRéservation : Button
     lateinit var txtConducteur : EditText
     lateinit var txtHeureArriver : EditText
@@ -53,10 +53,12 @@ class vue_confirmation_réservation  : Fragment() {
                     naviguerVerVueAccueil()
                     true
                 }
+
                 R.id.menu_trajet -> {
                     naviguerVerVueTrajet()
                     true
                 }
+
                 R.id.menu_profil -> true
                 else -> false
             }
@@ -64,32 +66,53 @@ class vue_confirmation_réservation  : Fragment() {
 
         // Mettez en surbrillance l'élément correspondant dans le BottomNavigationView
         when (navController.currentDestination?.id) {
-            R.id.vue_accueil -> bottomNavigationView.menu.findItem(R.id.menu_accueil).isChecked = true
+            R.id.vue_accueil -> bottomNavigationView.menu.findItem(R.id.menu_accueil).isChecked =
+                true
+
             R.id.vue_profil -> bottomNavigationView.menu.findItem(R.id.menu_profil).isChecked = true
             R.id.vue_trajet -> bottomNavigationView.menu.findItem(R.id.menu_trajet).isChecked = true
         }
 
-        btnConfirmationRéservation = view.findViewById(R.id.btn_confirmer_reservation)
-        btnConfirmationRéservation.setOnClickListener{ naviguerVerVueAccueil() }
+
 
         this.arguments?.let {
             conducteur = it.getString("Conducteur")!!
             AddresseEmbarcation = it.getString("AddresseEmbarcation")!!
             HeureArrivé = it.getString("HeureArrivé")!!
         }
-        txtConducteur= view.findViewById(R.id.txt_conducteur)
-        txtAdresseEmbarcation= view.findViewById(R.id.txt_adresse_embarcation)
-        txtHeureArriver= view.findViewById(R.id.txt_heure_arriver)
+        txtConducteur = view.findViewById(R.id.txt_conducteur)
+        txtAdresseEmbarcation = view.findViewById(R.id.txt_adresse_embarcation)
+        txtHeureArriver = view.findViewById(R.id.txt_heure_arriver)
+
         txtConducteur.setText(conducteur)
         txtAdresseEmbarcation.setText(AddresseEmbarcation)
         txtHeureArriver.setText(HeureArrivé)
+
+
+        val bundleForProfil = Bundle().apply {
+            putString("Conducteur", conducteur)
+            putString("AddresseEmbarcation", AddresseEmbarcation)
+            putString("HeureArrivé", HeureArrivé)
+        }
+
+
+
+        btnConfirmationRéservation = view.findViewById(R.id.btn_confirmer_reservation)
+        btnConfirmationRéservation.setOnClickListener { naviguerVerVueProfil(bundleForProfil) }
+
+
     }
 
     fun naviguerVerVueAccueil(){
         navController.navigate(R.id.action_vue_confirmation_reservation_to_vue_accueil)
     }
 
+    fun naviguerVerVueProfil(bundle: Bundle) {
+        navController.navigate(R.id.action_vue_confirmation_réservation_to_vue_profil, bundle)
+    }
+
     fun naviguerVerVueTrajet(){
         navController.navigate(R.id.action_vue_confirmation_reservation_to_vue_trajet)
     }
+
 }

@@ -1,6 +1,7 @@
 package crosemont.dti.g55.applicationallezhop.PageProfil
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 import crosemont.dti.g55.applicationallezhop.Modèle.Trajet
+import crosemont.dti.g55.applicationallezhop.Modèle.Voiture
+import crosemont.dti.g55.applicationallezhop.PageTrajet.TrajetAdapter
 import crosemont.dti.g55.applicationallezhop.R
 import crosemont.dti.g55.applicationallezhop.sourceDeDonnées.SourceBidon
 
@@ -27,6 +30,10 @@ class vue_profil : Fragment() {
     private lateinit var recyclerViewTrajetsVenir: RecyclerView
     private lateinit var recyclerViewTrajetsAnciens: RecyclerView
 
+    private var _adapter: ProfilAdapter? = null
+
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,6 +41,7 @@ class vue_profil : Fragment() {
         // Declaration of the view to link it to the layout
         return inflater.inflate(R.layout.fragment_vue_profil, container, false)
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -60,7 +68,6 @@ class vue_profil : Fragment() {
             }
         }
 
-        // Highlight the corresponding item in BottomNavigationView
         when (navController.currentDestination?.id) {
             R.id.vue_accueil -> bottomNavigationView.menu.findItem(R.id.menu_accueil).isChecked = true
             R.id.vue_profil -> bottomNavigationView.menu.findItem(R.id.menu_profil).isChecked = true
@@ -70,8 +77,40 @@ class vue_profil : Fragment() {
         recyclerViewTrajetsVenir = view.findViewById(R.id.recyclerViewTrajetsVenir)
         recyclerViewTrajetsAnciens = view.findViewById(R.id.recyclerViewTrajetsAnciens)
 
+
+        if (_adapter == null) {
+            val trajetsVenirData = présentateurProfil.getTrajetsVenirData()
+            _adapter = ProfilAdapter(trajetsVenirData)
+            recyclerViewTrajetsVenir.adapter = _adapter
+        }
+
         val trajetsVenirData = présentateurProfil.getTrajetsVenirData()
         val trajetsAnciensData = présentateurProfil.getTrajetsAnciensData()
+        val bundle = arguments
+        if (bundle != null) {
+            val conducteur = bundle.getString("Conducteur", "")
+            val addresseEmbarcation = bundle.getString("AddresseEmbarcation", "")
+            val heureArrive = bundle.getString("HeureArrivé", "")
+            val heureDepart = bundle.getString("HeureDépart", "")
+            val date = bundle.getString("Date", "")
+            val voitureString = bundle.getString("Voiture", "")
+
+            val voiture = Voiture(voitureString)
+            val newTrajet = Trajet(date, addresseEmbarcation, conducteur, heureArrive, heureDepart, voiture)
+            présentateurProfil.addReservedTrajet(newTrajet)
+
+            val trajetsVenirData = présentateurProfil.getTrajetsVenirData()
+            _adapter?.setData(trajetsVenirData)
+            _adapter?.notifyDataSetChanged()
+
+
+            Log.d("vue_profil", "New Trajet added: $newTrajet")
+            Log.d("vue_profil", "Adapter data updated: ${_adapter?.itemCount} items")
+
+            recyclerViewTrajetsVenir.adapter?.notifyItemInserted(présentateurProfil.nbItems - 1)
+
+
+        }
 
         setUpRecyclerView(recyclerViewTrajetsVenir, trajetsVenirData)
         setUpRecyclerView(recyclerViewTrajetsAnciens, trajetsAnciensData)
@@ -88,7 +127,14 @@ class vue_profil : Fragment() {
 
     fun setUpRecyclerView(recyclerView: RecyclerView, data: List<Trajet>) {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = ProfilAdapter(data)
+        _adapter = ProfilAdapter(data)
+        recyclerView.adapter = _adapter
+
     }
+
+
+
+
+
 
 }

@@ -1,23 +1,25 @@
-package crosemont.dti.g55.applicationallezhop.PageProfil
+    package crosemont.dti.g55.applicationallezhop.PageProfil
 
-import crosemont.dti.g55.applicationallezhop.Modèle.Trajet
+    import crosemont.dti.g55.applicationallezhop.Modèle.Trajet
 
-interface IPrésentateurProfil {
-    fun requêteSupprimerTrajetProfil(position: Int)
+    interface IPrésentateurProfil {
+        fun requêteSupprimerTrajetProfil(position: Int)
 
-    fun rafraîchirAffichage()
+        fun rafraîchirAffichage()
 
-    fun getItemString(position: Int): String?
+        fun getItemString(position: Int): String?
 
-    fun getConducteurString(position: Int): String?
+        fun getConducteurString(position: Int): String?
 
-    fun getAdresseString(position: Int): String?
+        fun getAdresseString(position: Int): String?
 
-    fun getDateString(position: Int): String?
+        fun getDateString(position: Int): String?
 
-    val nbItems: Int
+        val nbItems: Int
 
-    fun getTrajetsVenirData(): List<Trajet>
+        fun getTrajetsVenirData(): List<Trajet>
 
-    fun getTrajetsAnciensData(): List<Trajet>
-}
+        fun getTrajetsAnciensData(): List<Trajet>
+        fun addReservedTrajet(trajet: Trajet)
+
+    }

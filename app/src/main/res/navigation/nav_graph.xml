@@ -64,5 +64,8 @@
         <action
             android:id="@+id/action_vue_confirmation_reservation_to_vue_trajet"
             app:destination="@id/vue_trajet" />
+        <action
+            android:id="@+id/action_vue_confirmation_réservation_to_vue_profil"
+            app:destination="@id/vue_profil" />
     </fragment>
 </navigation>
