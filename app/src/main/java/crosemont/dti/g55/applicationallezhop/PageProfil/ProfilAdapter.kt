@@ -1,5 +1,6 @@
 package crosemont.dti.g55.applicationallezhop.PageProfil
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,16 +18,19 @@ class ProfilAdapter(private var data: List<Trajet>) : RecyclerView.Adapter<Profi
 
     override fun onBindViewHolder(holder: ProfilViewHolder, position: Int) {
         val trajet = data[position]
-        println("Binding position: $position, Data: $trajet")
-
+        Log.d("ProfilAdapter", "Binding position: $position, Data: $trajet")
         holder.bind(trajet)
-
     }
+
     fun setData(newData: List<Trajet>) {
-        data = newData
+        data = newData.toMutableList()
+        Log.d("ProfilAdapter", "setData called with new data: $newData")
         notifyDataSetChanged()
     }
-    override fun getItemCount(): Int = data.size
+
+    override fun getItemCount(): Int {
+        return data.size
+    }
 
     class ProfilViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val dateTextView: TextView = itemView.findViewById(R.id.tvConducteurItem)
@@ -34,21 +38,11 @@ class ProfilAdapter(private var data: List<Trajet>) : RecyclerView.Adapter<Profi
         private val conducteurTextView: TextView = itemView.findViewById(R.id.conducteurTextView)
 
         fun bind(trajet: Trajet) {
-
-            println("Date: ${trajet.date}, Destination: ${trajet.destination}, Conducteur: ${trajet.conducteur}")
+            Log.d("ProfilAdapter", "Date: ${trajet.date}, Destination: ${trajet.destination}, Conducteur: ${trajet.conducteur}")
 
             dateTextView.text = trajet.date ?: "N/A"
-            destinationTextView.text = trajet.destination ?: "N/A" // If destination is null, display "N/A"
-            conducteurTextView.text = trajet.conducteur ?: "N/A" // If conducteur is null, display "N/A"
+            destinationTextView.text = trajet.destination ?: "N/A"
+            conducteurTextView.text = trajet.conducteur ?: "N/A"
         }
     }
-
-
-    fun addTrajet(trajet: Trajet) {
-        val newList = data.toMutableList()
-        newList.add(trajet)
-        data = newList
-        notifyItemInserted(newList.size - 1)
-    }
-
 }

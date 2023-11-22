@@ -30,8 +30,8 @@ class vue_profil : Fragment() {
     private lateinit var recyclerViewTrajetsVenir: RecyclerView
     private lateinit var recyclerViewTrajetsAnciens: RecyclerView
 
-    private var _adapter: ProfilAdapter? = null
-
+    private var _adapterVenir: ProfilAdapter? = null
+    private var _adapterAnciens: ProfilAdapter? = null
 
 
     override fun onCreateView(
@@ -78,42 +78,57 @@ class vue_profil : Fragment() {
         recyclerViewTrajetsAnciens = view.findViewById(R.id.recyclerViewTrajetsAnciens)
 
 
-        if (_adapter == null) {
+        if (_adapterVenir == null) {
             val trajetsVenirData = présentateurProfil.getTrajetsVenirData()
-            _adapter = ProfilAdapter(trajetsVenirData)
-            recyclerViewTrajetsVenir.adapter = _adapter
+            _adapterVenir = ProfilAdapter(trajetsVenirData)
+            recyclerViewTrajetsVenir.adapter = _adapterVenir
         }
+
+
+        Log.d("vue_profil", "Adapter data updated: ${_adapterVenir?.itemCount} items")
 
         val trajetsVenirData = présentateurProfil.getTrajetsVenirData()
         val trajetsAnciensData = présentateurProfil.getTrajetsAnciensData()
+
+        setUpRecyclerView(recyclerViewTrajetsVenir, trajetsVenirData)
+        setUpRecyclerView(recyclerViewTrajetsAnciens, trajetsAnciensData)
+
         val bundle = arguments
         if (bundle != null) {
             val conducteur = bundle.getString("Conducteur", "")
             val addresseEmbarcation = bundle.getString("AddresseEmbarcation", "")
             val heureArrive = bundle.getString("HeureArrivé", "")
-            val heureDepart = bundle.getString("HeureDépart", "")
+            val heureDepart = bundle.getString("heureDepart", "")
             val date = bundle.getString("Date", "")
-            val voitureString = bundle.getString("Voiture", "")
+            val voitureString = bundle.getString("Voiture", null)
 
             val voiture = Voiture(voitureString)
             val newTrajet = Trajet(date, addresseEmbarcation, conducteur, heureArrive, heureDepart, voiture)
             présentateurProfil.addReservedTrajet(newTrajet)
-
             val trajetsVenirData = présentateurProfil.getTrajetsVenirData()
-            _adapter?.setData(trajetsVenirData)
-            _adapter?.notifyDataSetChanged()
+
+
+            _adapterVenir?.setData(trajetsVenirData)
+            _adapterVenir?.notifyDataSetChanged()
+
+            Log.d("vue_profil", "TrajetsVenirData contents: $trajetsVenirData")
+
+            Log.d("vue_profil", "Adapter data: ${trajetsVenirData.toString()}")
+
+
+            _adapterVenir?.setData(trajetsVenirData)
+            _adapterVenir?.notifyDataSetChanged()
+            recyclerViewTrajetsVenir.invalidate()
 
 
             Log.d("vue_profil", "New Trajet added: $newTrajet")
-            Log.d("vue_profil", "Adapter data updated: ${_adapter?.itemCount} items")
+            Log.d("vue_profil", "Adapter data updated: ${_adapterVenir?.itemCount} items")
 
-            recyclerViewTrajetsVenir.adapter?.notifyItemInserted(présentateurProfil.nbItems - 1)
 
 
         }
 
-        setUpRecyclerView(recyclerViewTrajetsVenir, trajetsVenirData)
-        setUpRecyclerView(recyclerViewTrajetsAnciens, trajetsAnciensData)
+
     }
 
     // Navigation functions
@@ -124,16 +139,25 @@ class vue_profil : Fragment() {
     fun naviguerVerVueTrajet() {
         navController.navigate(R.id.action_vue_profil_to_vue_trajet)
     }
-
     fun setUpRecyclerView(recyclerView: RecyclerView, data: List<Trajet>) {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        _adapter = ProfilAdapter(data)
-        recyclerView.adapter = _adapter
+        when (recyclerView.id) {
+            R.id.recyclerViewTrajetsVenir -> {
+                _adapterVenir = ProfilAdapter(data)
+                recyclerView.adapter = _adapterVenir
 
+                // Add this debug log statement
+                Log.d("vue_profil", "RecyclerViewTrajetsVenir contents: ${data}")
+            }
+            R.id.recyclerViewTrajetsAnciens -> {
+                _adapterAnciens = ProfilAdapter(data)
+                recyclerView.adapter = _adapterAnciens
+
+                // Add this debug log statement
+                Log.d("vue_profil", "RecyclerViewTrajetsAnciens contents: ${data}")
+            }
+        }
     }
-
-
-
 
 
 

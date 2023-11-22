@@ -13,12 +13,6 @@ class PrésentateurProfil(var vue: vue_profil): IPrésentateurProfil {
     var modèle= ModèleProfil(SourceBidon())
     var modèleTrajet= ModèleTrajet(SourceBidon())
     private var _adapter: ProfilAdapter = ProfilAdapter(emptyList())
-
-
-
-
-
-
     override fun getTrajetsVenirData(): List<Trajet> {
         return modèle.sourceDeDonnées.getTrajetsVenirData()
     }
@@ -33,7 +27,6 @@ class PrésentateurProfil(var vue: vue_profil): IPrésentateurProfil {
 
     override fun rafraîchirAffichage() {
         Log.d("DEBUG", "rafraîchirAffichage called")
-
         _adapter?.notifyDataSetChanged()
     }
 
@@ -44,13 +37,8 @@ class PrésentateurProfil(var vue: vue_profil): IPrésentateurProfil {
     override fun getConducteurString(position: Int): String? {
         TODO("Not yet implemented")
     }
-
-
-
-
     override fun addReservedTrajet(trajet: Trajet) {
         Log.d("DEBUG", "Adding new trajet: $trajet")
-
         modèle.sourceDeDonnées.créer(trajet)
         rafraîchirAffichage()
 

@@ -1,6 +1,7 @@
 package crosemont.dti.g55.applicationallezhop.PageTrajet
 
 import android.os.Bundle
+import android.util.Log
 import crosemont.dti.g55.applicationallezhop.Modèle.ModèleTrajet
 import crosemont.dti.g55.applicationallezhop.Modèle.Trajet
 import crosemont.dti.g55.applicationallezhop.PageTrajet.vue_trajet
@@ -28,6 +29,8 @@ class PrésentateurTrajet(val vue : vue_trajet): IPrésentateurTrajet {
             putSerializable("Voiture", modèle._trajetsÀVenir[position].voiture)
 
         }
+
+        Log.d("vue_trajet", "Bundle : $myBundle") // Add this line
 
         vue.naviguerVerVueConfirmationRéservation(myBundle)
     }

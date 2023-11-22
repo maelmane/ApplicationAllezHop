@@ -21,6 +21,8 @@
 				Trajet("02/01/2023", "6400 16e Avenue,...", "Sacha", "8:00", "7:00", voiture = Voiture(null)),
 				Trajet("01/01/2023", "6400 16e Avenue,...", "Bobby", "7:45", "6:48", voiture = Voiture(null))
 			)
+
+
 		}
 
 		override fun créer(unT: Trajet): Trajet {
