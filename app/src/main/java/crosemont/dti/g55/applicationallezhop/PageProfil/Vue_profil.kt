@@ -38,9 +38,24 @@ class vue_profil : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Declaration of the view to link it to the layout
-        return inflater.inflate(R.layout.fragment_vue_profil, container, false)
+        val view = inflater.inflate(R.layout.fragment_vue_profil, container, false)
+        recyclerViewTrajetsVenir = view.findViewById(R.id.recyclerViewTrajetsVenir)
+        recyclerViewTrajetsAnciens = view.findViewById(R.id.recyclerViewTrajetsAnciens)
+
+        val trajetsVenirData = présentateurProfil.getTrajetsVenirData()
+        val trajetsAnciensData = présentateurProfil.getTrajetsAnciensData()
+
+
+        if (_adapterVenir == null) {
+            _adapterVenir = ProfilAdapter(trajetsVenirData)
+            recyclerViewTrajetsVenir.adapter = _adapterVenir
+        }
+        setUpRecyclerView(recyclerViewTrajetsVenir, trajetsVenirData)
+        setUpRecyclerView(recyclerViewTrajetsAnciens, trajetsAnciensData)
+
+        return view
     }
+
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -74,24 +89,17 @@ class vue_profil : Fragment() {
             R.id.vue_trajet -> bottomNavigationView.menu.findItem(R.id.menu_trajet).isChecked = true
         }
 
-        recyclerViewTrajetsVenir = view.findViewById(R.id.recyclerViewTrajetsVenir)
-        recyclerViewTrajetsAnciens = view.findViewById(R.id.recyclerViewTrajetsAnciens)
+      //  recyclerViewTrajetsVenir = view.findViewById(R.id.recyclerViewTrajetsVenir)
+        //recyclerViewTrajetsAnciens = view.findViewById(R.id.recyclerViewTrajetsAnciens)
 
 
-        if (_adapterVenir == null) {
-            val trajetsVenirData = présentateurProfil.getTrajetsVenirData()
-            _adapterVenir = ProfilAdapter(trajetsVenirData)
-            recyclerViewTrajetsVenir.adapter = _adapterVenir
-        }
 
 
         Log.d("vue_profil", "Adapter data updated: ${_adapterVenir?.itemCount} items")
 
-        val trajetsVenirData = présentateurProfil.getTrajetsVenirData()
-        val trajetsAnciensData = présentateurProfil.getTrajetsAnciensData()
 
-        setUpRecyclerView(recyclerViewTrajetsVenir, trajetsVenirData)
-        setUpRecyclerView(recyclerViewTrajetsAnciens, trajetsAnciensData)
+       // setUpRecyclerView(recyclerViewTrajetsVenir, trajetsVenirData)
+       // setUpRecyclerView(recyclerViewTrajetsAnciens, trajetsAnciensData)
 
         val bundle = arguments
         if (bundle != null) {

@@ -12,15 +12,7 @@
         var modèle = ModèleTrajet(SourceBidon())
         private var _adapter: ProfilAdapter = ProfilAdapter(emptyList())
 
-        override fun getTrajetsVenirData(): List<Trajet> {
-            return modèle.sourceDeDonnées.getTrajetsVenirData()
-        }
-        override fun addReservedTrajet(trajet: Trajet) {
-            Log.d("DEBUG", "Adding new trajet FROM CONFIRMATION: $trajet")
-            modèle.sourceDeDonnées.créer(trajet)
-            _adapter?.notifyDataSetChanged()
 
-        }
 
 
 

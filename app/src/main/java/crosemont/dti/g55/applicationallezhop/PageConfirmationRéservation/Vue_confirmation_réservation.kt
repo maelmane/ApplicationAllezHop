@@ -125,14 +125,6 @@ class vue_confirmation_réservation  : Fragment() {
     fun naviguerVerVueProfil(bundle: Bundle) {
 
 
-        val newTrajet = Trajet(date, AddresseEmbarcation, conducteur, HeureArrivé, heureDepart, voiture)
-        présentateurConfirmationRéservation.addReservedTrajet(newTrajet)
-
-
-        val trajetsVenirData = présentateurConfirmationRéservation.getTrajetsVenirData()
-        _adapter?.setData(trajetsVenirData)
-        _adapter?.notifyDataSetChanged()
-
         navController.navigate(R.id.action_vue_confirmation_réservation_to_vue_profil, bundle)
 
     }

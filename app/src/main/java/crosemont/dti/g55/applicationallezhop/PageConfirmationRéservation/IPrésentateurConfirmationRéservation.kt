@@ -5,6 +5,5 @@ import crosemont.dti.g55.applicationallezhop.Modèle.Trajet
 
 interface IPrésentateurConfirmationRéservation {
 
-    fun getTrajetsVenirData(): List<Trajet>
-    fun addReservedTrajet(trajet: Trajet)
+
 }
