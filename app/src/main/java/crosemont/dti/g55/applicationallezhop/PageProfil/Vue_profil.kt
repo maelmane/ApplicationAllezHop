@@ -41,11 +41,22 @@ class vue_profil : Fragment() {
         recyclerViewTrajetsVenir = view.findViewById(R.id.recyclerViewTrajetsVenir)
         recyclerViewTrajetsAnciens = view.findViewById(R.id.recyclerViewTrajetsAnciens)
 
+        /*
         _adapterVenir = ProfilAdapter(emptyList())
         recyclerViewTrajetsVenir.adapter = _adapterVenir
 
         _adapterAnciens = ProfilAdapter(emptyList())
         recyclerViewTrajetsAnciens.adapter = _adapterAnciens
+*/
+        if (_adapterVenir == null) {
+            _adapterVenir = ProfilAdapter(emptyList())
+            recyclerViewTrajetsVenir.adapter = _adapterVenir
+        }
+
+        if (_adapterAnciens == null) {
+            _adapterAnciens = ProfilAdapter(emptyList())
+            recyclerViewTrajetsAnciens.adapter = _adapterAnciens
+        }
 
         val trajetsVenirData = présentateurProfil.getTrajetsVenirData()
         val trajetsAnciensData = présentateurProfil.getTrajetsAnciensData()
@@ -90,17 +101,6 @@ class vue_profil : Fragment() {
             R.id.vue_trajet -> bottomNavigationView.menu.findItem(R.id.menu_trajet).isChecked = true
         }
 
-      //  recyclerViewTrajetsVenir = view.findViewById(R.id.recyclerViewTrajetsVenir)
-        //recyclerViewTrajetsAnciens = view.findViewById(R.id.recyclerViewTrajetsAnciens)
-
-
-
-
-        Log.d("vue_profil", "Adapter data updated: ${_adapterVenir?.itemCount} items")
-
-
-       // setUpRecyclerView(recyclerViewTrajetsVenir, trajetsVenirData)
-       // setUpRecyclerView(recyclerViewTrajetsAnciens, trajetsAnciensData)
 
         val bundle = arguments
         if (bundle != null) {
@@ -119,6 +119,8 @@ class vue_profil : Fragment() {
 
             _adapterVenir?.setData(trajetsVenirData)
             _adapterVenir?.notifyDataSetChanged()
+
+
 
         }
 

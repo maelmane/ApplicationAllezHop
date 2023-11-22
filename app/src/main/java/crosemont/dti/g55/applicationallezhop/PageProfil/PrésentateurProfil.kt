@@ -24,10 +24,6 @@ class PrésentateurProfil(var vue: vue_profil): IPrésentateurProfil {
         TODO("Not yet implemented")
     }
 
-    override fun rafraîchirAffichage() {
-        Log.d("DEBUG", "rafraîchirAffichage called")
-        _adapter?.notifyDataSetChanged()
-    }
 
     override fun getItemString(position: Int): String? {
         TODO("Not yet implemented")
@@ -37,12 +33,14 @@ class PrésentateurProfil(var vue: vue_profil): IPrésentateurProfil {
         TODO("Not yet implemented")
     }
     override fun addReservedTrajet(trajet: Trajet) {
-        Log.d("DEBUG", "Adding new trajet: $trajet")
         modèle.sourceDeDonnées.créer(trajet)
         rafraîchirAffichage()
 
     }
 
+    override fun rafraîchirAffichage() {
+        _adapter?.setData(modèle.sourceDeDonnées.getTrajetsVenirData())
+    }
 
     override fun getAdresseString(position: Int): String? {
         TODO("Not yet implemented")

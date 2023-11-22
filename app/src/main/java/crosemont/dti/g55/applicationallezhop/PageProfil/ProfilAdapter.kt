@@ -22,7 +22,9 @@ class ProfilAdapter(private var data: List<Trajet>) : RecyclerView.Adapter<Profi
     }
 
     fun setData(newData: List<Trajet>) {
-        data = newData.toMutableList()
+        val updatedData = data.toMutableList()
+        updatedData.addAll(newData)
+        data = updatedData
         notifyDataSetChanged()
     }
 
