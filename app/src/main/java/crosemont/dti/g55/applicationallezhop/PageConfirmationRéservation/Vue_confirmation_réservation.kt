@@ -109,7 +109,6 @@ class vue_confirmation_réservation  : Fragment() {
             putString("heureDepart", heureDepart)
         }
 
-        Log.d("vue_confirmation_reservation", "Bundle Confirmation Reservation : $bundleForProfil")
 
         btnConfirmationRéservation = view.findViewById(R.id.btn_confirmer_reservation)
         btnConfirmationRéservation.setOnClickListener { naviguerVerVueProfil(bundleForProfil)
@@ -128,7 +127,6 @@ class vue_confirmation_réservation  : Fragment() {
         navController.navigate(R.id.action_vue_confirmation_réservation_to_vue_profil, bundle)
 
     }
-
 
 
     fun naviguerVerVueTrajet(){

@@ -174,9 +174,6 @@ class vue_trajet : Fragment() {
         val textDestination = Destination.editText?.text.toString()
         val textPosition = Position.editText?.text.toString()
 
-        // Affichez le texte dans un Toast pour le test
-        Toast.makeText(requireContext(), "Cliqué", Toast.LENGTH_SHORT).show()
-
         // Transfert du texte
         Position.editText?.setText(textDestination)
         Destination.editText?.setText(textPosition)

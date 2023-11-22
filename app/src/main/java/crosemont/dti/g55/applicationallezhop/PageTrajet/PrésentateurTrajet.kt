@@ -30,8 +30,6 @@ class PrésentateurTrajet(val vue : vue_trajet): IPrésentateurTrajet {
 
         }
 
-        Log.d("vue_trajet", "Bundle : $myBundle") // Add this line
-
         vue.naviguerVerVueConfirmationRéservation(myBundle)
     }
 

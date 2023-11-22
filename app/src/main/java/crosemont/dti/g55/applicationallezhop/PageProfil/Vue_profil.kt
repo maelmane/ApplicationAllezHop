@@ -33,7 +33,6 @@ class vue_profil : Fragment() {
     private var _adapterVenir: ProfilAdapter? = null
     private var _adapterAnciens: ProfilAdapter? = null
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,19 +41,21 @@ class vue_profil : Fragment() {
         recyclerViewTrajetsVenir = view.findViewById(R.id.recyclerViewTrajetsVenir)
         recyclerViewTrajetsAnciens = view.findViewById(R.id.recyclerViewTrajetsAnciens)
 
+        _adapterVenir = ProfilAdapter(emptyList())
+        recyclerViewTrajetsVenir.adapter = _adapterVenir
+
+        _adapterAnciens = ProfilAdapter(emptyList())
+        recyclerViewTrajetsAnciens.adapter = _adapterAnciens
+
         val trajetsVenirData = présentateurProfil.getTrajetsVenirData()
         val trajetsAnciensData = présentateurProfil.getTrajetsAnciensData()
 
-
-        if (_adapterVenir == null) {
-            _adapterVenir = ProfilAdapter(trajetsVenirData)
-            recyclerViewTrajetsVenir.adapter = _adapterVenir
-        }
         setUpRecyclerView(recyclerViewTrajetsVenir, trajetsVenirData)
         setUpRecyclerView(recyclerViewTrajetsAnciens, trajetsAnciensData)
 
         return view
     }
+
 
 
 
@@ -119,23 +120,7 @@ class vue_profil : Fragment() {
             _adapterVenir?.setData(trajetsVenirData)
             _adapterVenir?.notifyDataSetChanged()
 
-            Log.d("vue_profil", "TrajetsVenirData contents: $trajetsVenirData")
-
-            Log.d("vue_profil", "Adapter data: ${trajetsVenirData.toString()}")
-
-
-            _adapterVenir?.setData(trajetsVenirData)
-            _adapterVenir?.notifyDataSetChanged()
-            recyclerViewTrajetsVenir.invalidate()
-
-
-            Log.d("vue_profil", "New Trajet added: $newTrajet")
-            Log.d("vue_profil", "Adapter data updated: ${_adapterVenir?.itemCount} items")
-
-
-
         }
-
 
     }
 
@@ -154,14 +139,12 @@ class vue_profil : Fragment() {
                 _adapterVenir = ProfilAdapter(data)
                 recyclerView.adapter = _adapterVenir
 
-                // Add this debug log statement
                 Log.d("vue_profil", "RecyclerViewTrajetsVenir contents: ${data}")
             }
             R.id.recyclerViewTrajetsAnciens -> {
                 _adapterAnciens = ProfilAdapter(data)
                 recyclerView.adapter = _adapterAnciens
 
-                // Add this debug log statement
                 Log.d("vue_profil", "RecyclerViewTrajetsAnciens contents: ${data}")
             }
         }

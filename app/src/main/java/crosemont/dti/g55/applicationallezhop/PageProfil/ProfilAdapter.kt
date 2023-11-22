@@ -18,13 +18,11 @@ class ProfilAdapter(private var data: List<Trajet>) : RecyclerView.Adapter<Profi
 
     override fun onBindViewHolder(holder: ProfilViewHolder, position: Int) {
         val trajet = data[position]
-        Log.d("ProfilAdapter", "Binding position: $position, Data: $trajet")
         holder.bind(trajet)
     }
 
     fun setData(newData: List<Trajet>) {
         data = newData.toMutableList()
-        Log.d("ProfilAdapter", "setData called with new data: $newData")
         notifyDataSetChanged()
     }
 
@@ -38,8 +36,6 @@ class ProfilAdapter(private var data: List<Trajet>) : RecyclerView.Adapter<Profi
         private val conducteurTextView: TextView = itemView.findViewById(R.id.conducteurTextView)
 
         fun bind(trajet: Trajet) {
-            Log.d("ProfilAdapter", "Date: ${trajet.date}, Destination: ${trajet.destination}, Conducteur: ${trajet.conducteur}")
-
             dateTextView.text = trajet.date ?: "N/A"
             destinationTextView.text = trajet.destination ?: "N/A"
             conducteurTextView.text = trajet.conducteur ?: "N/A"

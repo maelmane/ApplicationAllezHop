@@ -10,10 +10,4 @@
     class PrésentateurConfirmationRéservation(var vue: vue_confirmation_réservation): IPrésentateurConfirmationRéservation {
 
         var modèle = ModèleTrajet(SourceBidon())
-        private var _adapter: ProfilAdapter = ProfilAdapter(emptyList())
-
-
-
-
-
     }
