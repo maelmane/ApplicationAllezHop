@@ -33,7 +33,7 @@ class PrésentateurProfilTest {
 
     @Test
     fun `lorsqu'on demande les trajets anciens, on obtient la liste correcte`() {
-        val trajetsAnciensAttendus = listOf(
+        val trajetsAnciensAttendus = mutableListOf(
             Trajet("01/01/2023", "6400 16e Avenue,...", "Alice", "8:00", "7:00", Voiture(null)),
             Trajet("02/01/2023", "6400 16e Avenue,...", "Bob", "9:00", "8:00", Voiture(null))
         )
@@ -47,7 +47,7 @@ class PrésentateurProfilTest {
 
     @Test
     fun `lorsqu'on demande les trajets à venir, on obtient la liste correcte`() {
-        val trajetsÀVenirAttendus = listOf(
+        val trajetsÀVenirAttendus = mutableListOf(
             Trajet("10/01/2023", "6400 16e Avenue,...", "Charlie", "10:00", "9:00", Voiture(null)),
             Trajet("11/01/2023", "6400 16e Avenue,...", "Dana", "11:00", "10:00", Voiture(null))
         )

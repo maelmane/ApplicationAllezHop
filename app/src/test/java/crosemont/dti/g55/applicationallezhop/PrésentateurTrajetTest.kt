@@ -31,7 +31,7 @@ class PrésentateurTrajetTest {
 
     @Test
     fun `lorsqu'on demande les trajets à venir, on obtient la liste correcte`() {
-        val trajetsAttendus = listOf(
+        val trajetsAttendus = mutableListOf(
             Trajet("05/01/2023", "6400 16e Avenue,...", "Alice", "8:00", "7:00", Voiture(null)),
             Trajet("06/01/2023", "6400 16e Avenue,...", "Bob", "9:00", "8:00", Voiture(null))
         )
