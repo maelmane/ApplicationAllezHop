@@ -56,7 +56,8 @@ dependencies {
     //google map
     implementation("com.google.android.gms:play-services-maps:18.2.0")
 
-
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("org.json:json:20231013")
 
     // Kotlin Coroutines Testing
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3") // Replace x.x.x with the latest version
