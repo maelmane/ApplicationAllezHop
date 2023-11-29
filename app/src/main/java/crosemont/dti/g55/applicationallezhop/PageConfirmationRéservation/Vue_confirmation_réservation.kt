@@ -1,5 +1,8 @@
 package crosemont.dti.g55.applicationallezhop.PageConfirmationRéservation
 
+import android.content.Intent
+import android.provider.CalendarContract
+import android.provider.CalendarContract.Events
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -23,6 +26,8 @@ import crosemont.dti.g55.applicationallezhop.PageProfil.ProfilAdapter
 import crosemont.dti.g55.applicationallezhop.PageProfil.vue_profil
 import crosemont.dti.g55.applicationallezhop.R
 import crosemont.dti.g55.applicationallezhop.sourceDeDonnées.SourceBidon
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class vue_confirmation_réservation  : Fragment() {
     lateinit var navController: NavController
@@ -116,6 +121,19 @@ class vue_confirmation_réservation  : Fragment() {
         btnConfirmationRéservation = view.findViewById(R.id.btn_confirmer_reservation)
         btnConfirmationRéservation.setOnClickListener {
             présentateurConfirmationRéservation.ajoutéTrajetVenir(date,destination, conducteur,heureArrivé, heureDepart,voiture)
+            val intent = Intent(Intent.ACTION_INSERT)
+                .setData(Events.CONTENT_URI)
+                .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, convertirDateHeureEnMillis(date,heureDepart))
+                .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, convertirDateHeureEnMillis(date,heureArrivé))
+                .putExtra(Events.TITLE, "Covoiturage AllezHop")
+                .putExtra(Events.DESCRIPTION, "Conducteur : $conducteur")
+                .putExtra(Events.EVENT_LOCATION, "$destination")
+                .putExtra(Events.AVAILABILITY, Events.AVAILABILITY_BUSY)
+
+
+                startActivity(intent)
+
+
             naviguerVerVueProfil(bundleForProfil)
         }
     }
@@ -132,6 +150,12 @@ class vue_confirmation_réservation  : Fragment() {
 
     fun naviguerVerVueTrajet(){
         navController.navigate(R.id.action_vue_confirmation_reservation_to_vue_trajet)
+    }
+
+    private fun convertirDateHeureEnMillis(dateStr: String, heureStr: String): Long {
+        val format = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+        val dateHeure = "$dateStr $heureStr"
+        return format.parse(dateHeure)?.time ?: 0
     }
 
 }
