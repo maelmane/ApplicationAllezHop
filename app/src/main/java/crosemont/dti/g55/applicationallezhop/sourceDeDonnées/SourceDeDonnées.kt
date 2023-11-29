@@ -2,6 +2,8 @@ package crosemont.dti.g55.applicationallezhop.sourceDeDonnées
 
 import crosemont.dti.g55.applicationallezhop.Modèle.Trajet
 
+class SourceDeDonnéesException( message: String) : Exception( message ) {}
+
 interface SourceDeDonnées {
 	fun getTrajetsVenirData(): MutableList<Trajet>
 	fun getTrajetsAnciensData(): MutableList<Trajet>
