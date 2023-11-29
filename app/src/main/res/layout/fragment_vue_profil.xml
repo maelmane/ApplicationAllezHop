@@ -99,13 +99,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Adresse"
-            android:layout_marginEnd="130dp"/>
+            android:layout_marginEnd="90dp"/>
 
         <TextView
             android:id="@+id/tvConducteurIndicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Conducteur"/>
+            android:text="Conducteur" />
 
     </LinearLayout>
 
@@ -115,7 +115,6 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/tvTrajetAnciens"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/indicatorsLayout"
         app:layout_constraintVertical_bias="0.2" />
@@ -160,7 +159,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Adresse"
-            android:layout_marginEnd="130dp" />
+            android:layout_marginEnd="90dp"/>
 
         <TextView
             android:id="@+id/tvConducteurIndicator2"

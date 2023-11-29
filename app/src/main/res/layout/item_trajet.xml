@@ -8,32 +8,31 @@
 
     <TextView
         android:id="@+id/tvConducteurItem"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginRight="70dp"
-        android:layout_weight="5"
+        android:layout_marginLeft="1dp"
+        android:layout_weight="30"
         android:text="Date " />
 
     <TextView
         android:id="@+id/tvHeureArriverItem"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginRight="60dp"
-        android:layout_weight="5"
+        android:layout_weight="40"
         android:text="Destination " />
 
     <TextView
         android:id="@+id/conducteurTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="5"
+        android:layout_weight="20"
         android:text="Conducteur " />
 
     <ImageButton
         android:id="@+id/btnSupprimer"
-        android:layout_width="38dp"
+        android:layout_width="0dp"
         android:layout_height="39dp"
-        android:layout_weight="1"
+        android:layout_weight="10"
         android:src="@android:drawable/ic_menu_delete"
         android:visibility="invisible"
         tools:visibility="invisible" />

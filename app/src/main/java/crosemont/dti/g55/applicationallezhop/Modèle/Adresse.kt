@@ -8,4 +8,8 @@ data class Adresse(
     val ville : String,
     val codePostal : String,
     val pays : String
-) : Serializable
+) : Serializable{
+    override fun toString(): String {
+        return numéroCivique+" "+rue+" "+ville+", "+pays+" "+codePostal
+    }
+}
