@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -27,9 +28,9 @@ class vue_confirmation_réservation  : Fragment() {
     lateinit var navController: NavController
     var présentateurConfirmationRéservation = PrésentateurConfirmationRéservation(this)
     lateinit var btnConfirmationRéservation : Button
-    lateinit var txtConducteur : EditText
-    lateinit var txtHeureArriver : EditText
-    lateinit var txtAdresseEmbarcation : EditText
+    lateinit var txtConducteur : TextView
+    lateinit var txtHeureArriver : TextView
+    lateinit var txtAdresseEmbarcation : TextView
     lateinit var conducteur :String
     lateinit var destination : Adresse
     lateinit var heureArrivé :String
