@@ -10,15 +10,15 @@
         android:id="@+id/tvConducteurItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="70dp"
+        android:layout_marginRight="50dp"
         android:layout_weight="5"
         android:text="Date " />
 
     <TextView
         android:id="@+id/tvHeureArriverItem"
-        android:layout_width="wrap_content"
+        android:layout_width="118dp"
         android:layout_height="wrap_content"
-        android:layout_marginRight="60dp"
+        android:layout_marginRight="40dp"
         android:layout_weight="5"
         android:text="Destination " />
 
@@ -28,14 +28,5 @@
         android:layout_height="wrap_content"
         android:layout_weight="5"
         android:text="Conducteur " />
-
-    <ImageButton
-        android:id="@+id/btnSupprimer"
-        android:layout_width="38dp"
-        android:layout_height="39dp"
-        android:layout_weight="1"
-        android:src="@android:drawable/ic_menu_delete"
-        android:visibility="invisible"
-        tools:visibility="invisible" />
 
 </LinearLayout>
