@@ -67,7 +67,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_réservation" />
 
-    <EditText
+    <TextView
         android:id="@+id/txt_conducteur"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -76,7 +76,9 @@
         android:editable="false"
         android:ems="10"
         android:inputType="text"
-        android:text="Iris Voirenne"
+        android:text="Conducteur"
+        android:textColor="#000000"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/tv_heure"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.815"
@@ -91,14 +93,14 @@
         android:layout_marginTop="100dp"
         android:layout_marginEnd="169dp"
         android:layout_marginBottom="1dp"
-        android:text="Adresse d'embarcation"
+        android:text="Adresse d'embarquement"
         app:layout_constraintBottom_toTopOf="@+id/txt_adresse_embarcation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_conducteur" />
 
-    <EditText
+    <TextView
         android:id="@+id/txt_adresse_embarcation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -108,7 +110,9 @@
         android:editable="false"
         android:ems="10"
         android:inputType="text"
-        android:text="7999 Bd des Galeries d'Anjou, Mont.."
+        android:text="Adresse"
+        android:textColor="#000000"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/tv_heure"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.815"
@@ -131,7 +135,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_adresse_embarcation" />
 
-    <EditText
+    <TextView
         android:id="@+id/txt_heure_arriver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -141,7 +145,9 @@
         android:editable="false"
         android:ems="10"
         android:inputType="text"
-        android:text="8:00"
+        android:text="00:00"
+        android:textColor="#000000"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/btn_confirmer_reservation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.859"
