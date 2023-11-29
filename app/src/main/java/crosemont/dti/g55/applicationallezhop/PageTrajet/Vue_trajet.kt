@@ -21,6 +21,10 @@ import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.textfield.TextInputLayout
 import crosemont.dti.g55.applicationallezhop.Modèle.Trajet
 import crosemont.dti.g55.applicationallezhop.R
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -39,6 +43,7 @@ class vue_trajet : Fragment() {
     lateinit var Position : TextInputLayout
     lateinit var selectedTimeTV: TextView
     lateinit var selectedDateTV: TextView
+    private lateinit var chercherTrajetVenirJob : Job
 
     var présentateurTrajet = PrésentateurTrajet(this)
     lateinit var navController: NavController
@@ -153,7 +158,7 @@ class vue_trajet : Fragment() {
         }
 
         recyclerViewTrajet= view.findViewById(R.id.recyclerViewTrajets)
-        setUpRecyclerView(recyclerViewTrajet, présentateurTrajet.getTrajetsVenirData())
+        chercherTrajetVenirJob= CoroutineScope(Dispatchers.IO).launch { setUpRecyclerView(recyclerViewTrajet, présentateurTrajet.getTrajetsVenirData()) }
     }
 
     fun naviguerVerVueProfil(){

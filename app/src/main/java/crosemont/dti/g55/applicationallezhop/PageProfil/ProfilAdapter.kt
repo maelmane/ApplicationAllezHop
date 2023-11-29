@@ -8,6 +8,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import crosemont.dti.g55.applicationallezhop.Modèle.Trajet
 import crosemont.dti.g55.applicationallezhop.R
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 class ProfilAdapter(private var data: List<Trajet>) : RecyclerView.Adapter<ProfilAdapter.ProfilViewHolder>() {
 
@@ -18,7 +22,9 @@ class ProfilAdapter(private var data: List<Trajet>) : RecyclerView.Adapter<Profi
 
     override fun onBindViewHolder(holder: ProfilViewHolder, position: Int) {
         val trajet = data[position]
+        CoroutineScope(Dispatchers.Main).launch {
         holder.bind(trajet)
+        }
     }
 
     fun setData(newData: List<Trajet>) {

@@ -18,6 +18,10 @@ import crosemont.dti.g55.applicationallezhop.Modèle.Voiture
 import crosemont.dti.g55.applicationallezhop.PageTrajet.TrajetAdapter
 import crosemont.dti.g55.applicationallezhop.R
 import crosemont.dti.g55.applicationallezhop.sourceDeDonnées.SourceBidon
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 /**
  * A simple [Fragment] subclass.
@@ -26,9 +30,11 @@ import crosemont.dti.g55.applicationallezhop.sourceDeDonnées.SourceBidon
  */
 class vue_profil : Fragment() {
     lateinit var navController: NavController
-    var présentateurProfil = PrésentateurProfil(this)
+    private var présentateurProfil = PrésentateurProfil(this)
     private lateinit var recyclerViewTrajetsVenir: RecyclerView
     private lateinit var recyclerViewTrajetsAnciens: RecyclerView
+    private lateinit var chercherTrajetVenirJob : Job
+    private lateinit var chercherTrajetAncienJob : Job
 
     private var _adapterVenir: ProfilAdapter? = null
     private var _adapterAnciens: ProfilAdapter? = null
@@ -40,37 +46,16 @@ class vue_profil : Fragment() {
         val view = inflater.inflate(R.layout.fragment_vue_profil, container, false)
         recyclerViewTrajetsVenir = view.findViewById(R.id.recyclerViewTrajetsVenir)
         recyclerViewTrajetsAnciens = view.findViewById(R.id.recyclerViewTrajetsAnciens)
-        setUpRecyclerView(recyclerViewTrajetsAnciens,présentateurProfil.getTrajetsAnciensData())
-        setUpRecyclerView(recyclerViewTrajetsVenir,présentateurProfil.getTrajetsVenirData())
 
-        /*
-        _adapterVenir = ProfilAdapter(emptyList())
-        recyclerViewTrajetsVenir.adapter = _adapterVenir
-
-        _adapterAnciens = ProfilAdapter(emptyList())
-        recyclerViewTrajetsAnciens.adapter = _adapterAnciens
-
-        if (_adapterVenir == null) {
-            _adapterVenir = ProfilAdapter(emptyList())
-            recyclerViewTrajetsVenir.adapter = _adapterVenir
+        chercherTrajetAncienJob = CoroutineScope(Dispatchers.IO).launch {
+            setUpRecyclerView(recyclerViewTrajetsAnciens, présentateurProfil.getTrajetsAnciensData())
+        }
+        chercherTrajetVenirJob = CoroutineScope(Dispatchers.IO).launch {
+            setUpRecyclerView(recyclerViewTrajetsVenir, présentateurProfil.getTrajetsVenirData())
         }
 
-        if (_adapterAnciens == null) {
-            _adapterAnciens = ProfilAdapter(emptyList())
-            recyclerViewTrajetsAnciens.adapter = _adapterAnciens
-        }
-
-        val trajetsVenirData = présentateurProfil.getTrajetsVenirData()
-        val trajetsAnciensData = présentateurProfil.getTrajetsAnciensData()
-
-        setUpRecyclerView(recyclerViewTrajetsVenir, trajetsVenirData)
-        setUpRecyclerView(recyclerViewTrajetsAnciens, trajetsAnciensData)
-            */
         return view
     }
-
-
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -102,29 +87,6 @@ class vue_profil : Fragment() {
             R.id.vue_profil -> bottomNavigationView.menu.findItem(R.id.menu_profil).isChecked = true
             R.id.vue_trajet -> bottomNavigationView.menu.findItem(R.id.menu_trajet).isChecked = true
         }
-
-
-        /*val bundle = arguments
-        if (bundle != null) {
-            val conducteur = bundle.getString("Conducteur")
-            val addresseEmbarcation = bundle.getSerializable("AddresseEmbarcation")
-            val heureArrive = bundle.getString("HeureArrivé")
-            val heureDepart = bundle.getString("heureDepart", "")
-            val date = bundle.getString("Date", "")
-            val voitureString = bundle.getString("Voiture", null)
-
-            val voiture = Voiture(voitureString)
-            val newTrajet = Trajet(date, addresseEmbarcation, conducteur, heureArrive, heureDepart, voiture)
-            présentateurProfil.addReservedTrajet(newTrajet)
-            val trajetsVenirData = présentateurProfil.getTrajetsVenirData()
-
-
-            _adapterVenir?.setData(trajetsVenirData)
-            _adapterVenir?.notifyDataSetChanged()
-
-
-
-        }*/
     }
 
     // Navigation functions
@@ -135,7 +97,7 @@ class vue_profil : Fragment() {
     fun naviguerVerVueTrajet() {
         navController.navigate(R.id.action_vue_profil_to_vue_trajet)
     }
-    fun setUpRecyclerView(recyclerView: RecyclerView, data: List<Trajet>) {
+    private fun setUpRecyclerView(recyclerView: RecyclerView, data: List<Trajet>) {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         when (recyclerView.id) {
             R.id.recyclerViewTrajetsVenir -> {

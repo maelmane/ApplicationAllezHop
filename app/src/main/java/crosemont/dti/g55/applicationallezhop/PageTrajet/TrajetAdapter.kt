@@ -9,6 +9,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import crosemont.dti.g55.applicationallezhop.Modèle.Trajet
 import crosemont.dti.g55.applicationallezhop.R
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class TrajetAdapter(val _présentateur: IPrésentateurTrajet?) : RecyclerView.Adapter<TrajetAdapter.TrajetViewHolder>() {
 
@@ -17,8 +20,10 @@ class TrajetAdapter(val _présentateur: IPrésentateurTrajet?) : RecyclerView.Ad
         private val heureArriveeTextView: TextView = view.findViewById(R.id.tvHeureArriverItem)
 
         fun bind(trajet: Trajet) {
+            CoroutineScope(Dispatchers.Main).launch {
             conducteurTextView.text = trajet.conducteur
             heureArriveeTextView.text = trajet.heureArriver
+            }
         }
     }
 
