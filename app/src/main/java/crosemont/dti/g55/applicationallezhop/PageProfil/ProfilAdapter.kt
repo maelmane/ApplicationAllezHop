@@ -39,7 +39,7 @@ class ProfilAdapter(private var data: List<Trajet>) : RecyclerView.Adapter<Profi
 
         fun bind(trajet: Trajet) {
             dateTextView.text = trajet.date ?: "N/A"
-            destinationTextView.text = trajet.destination ?: "N/A"
+            destinationTextView.text = trajet.destination.toString() ?: "N/A"
             conducteurTextView.text = trajet.conducteur ?: "N/A"
         }
     }

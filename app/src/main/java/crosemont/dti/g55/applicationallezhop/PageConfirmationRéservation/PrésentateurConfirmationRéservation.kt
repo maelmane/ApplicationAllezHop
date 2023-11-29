@@ -2,12 +2,20 @@
 
     import android.os.Bundle
     import android.util.Log
+    import crosemont.dti.g55.applicationallezhop.Modèle.Adresse
     import crosemont.dti.g55.applicationallezhop.Modèle.ModèleTrajet
     import crosemont.dti.g55.applicationallezhop.Modèle.Trajet
+    import crosemont.dti.g55.applicationallezhop.Modèle.Voiture
     import crosemont.dti.g55.applicationallezhop.PageProfil.ProfilAdapter
     import crosemont.dti.g55.applicationallezhop.sourceDeDonnées.SourceBidon
 
     class PrésentateurConfirmationRéservation(var vue: vue_confirmation_réservation): IPrésentateurConfirmationRéservation {
 
-        var modèle = ModèleTrajet(SourceBidon())
+        var modèle = ModèleTrajet(SourceBidon.getInstance())
+
+        fun ajoutéTrajetVenir( date: String, destination: Adresse, conducteur: String, heureArriver: String, heureDépart: String, voiture: Voiture){
+            modèle.réserver(Trajet(date, destination, conducteur,heureArriver,heureDépart,voiture))
+            //modèle._trajetsÀVenir.add(Trajet(date, destination, conducteur,heureArriver,heureDépart,voiture))
+
+        }
     }

@@ -40,6 +40,8 @@ class vue_profil : Fragment() {
         val view = inflater.inflate(R.layout.fragment_vue_profil, container, false)
         recyclerViewTrajetsVenir = view.findViewById(R.id.recyclerViewTrajetsVenir)
         recyclerViewTrajetsAnciens = view.findViewById(R.id.recyclerViewTrajetsAnciens)
+        setUpRecyclerView(recyclerViewTrajetsAnciens,présentateurProfil.getTrajetsAnciensData())
+        setUpRecyclerView(recyclerViewTrajetsVenir,présentateurProfil.getTrajetsVenirData())
 
         /*
         _adapterVenir = ProfilAdapter(emptyList())
@@ -47,7 +49,7 @@ class vue_profil : Fragment() {
 
         _adapterAnciens = ProfilAdapter(emptyList())
         recyclerViewTrajetsAnciens.adapter = _adapterAnciens
-*/
+
         if (_adapterVenir == null) {
             _adapterVenir = ProfilAdapter(emptyList())
             recyclerViewTrajetsVenir.adapter = _adapterVenir
@@ -63,7 +65,7 @@ class vue_profil : Fragment() {
 
         setUpRecyclerView(recyclerViewTrajetsVenir, trajetsVenirData)
         setUpRecyclerView(recyclerViewTrajetsAnciens, trajetsAnciensData)
-
+            */
         return view
     }
 
@@ -102,11 +104,11 @@ class vue_profil : Fragment() {
         }
 
 
-        val bundle = arguments
+        /*val bundle = arguments
         if (bundle != null) {
-            val conducteur = bundle.getString("Conducteur", "")
-            val addresseEmbarcation = bundle.getString("AddresseEmbarcation", "")
-            val heureArrive = bundle.getString("HeureArrivé", "")
+            val conducteur = bundle.getString("Conducteur")
+            val addresseEmbarcation = bundle.getSerializable("AddresseEmbarcation")
+            val heureArrive = bundle.getString("HeureArrivé")
             val heureDepart = bundle.getString("heureDepart", "")
             val date = bundle.getString("Date", "")
             val voitureString = bundle.getString("Voiture", null)
@@ -122,8 +124,7 @@ class vue_profil : Fragment() {
 
 
 
-        }
-
+        }*/
     }
 
     // Navigation functions

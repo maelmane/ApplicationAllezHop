@@ -3,7 +3,7 @@ package crosemont.dti.g55.applicationallezhop.Modèle
 import crosemont.dti.g55.applicationallezhop.sourceDeDonnées.SourceDeDonnées
 
 class ModèleProfil(var sourceDeDonnées: SourceDeDonnées) {
-    var _trajetsÀVenir = mutableListOf<Trajet>()
+    private var _trajetsÀVenir = mutableListOf<Trajet>()
     var _anciensTrajets = mutableListOf<Trajet>()
 
     fun supprimerTrajet(indice : Int){
@@ -18,8 +18,9 @@ class ModèleProfil(var sourceDeDonnées: SourceDeDonnées) {
         return _anciensTrajets[indice]
     }
 
-    fun chargerTrajetsÀVenir() {
-        _trajetsÀVenir = sourceDeDonnées.chargerTrajetsÀVenir()
+    fun chargerTrajetsÀVenir(): MutableList<Trajet>  {
+        _trajetsÀVenir = sourceDeDonnées.getTrajetsVenirData()
+        return _trajetsÀVenir
     }
 
     fun chargerAnciensTrajets() {

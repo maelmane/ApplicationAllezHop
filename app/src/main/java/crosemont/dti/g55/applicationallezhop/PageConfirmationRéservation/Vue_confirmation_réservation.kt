@@ -13,6 +13,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
+import crosemont.dti.g55.applicationallezhop.Modèle.Adresse
 import crosemont.dti.g55.applicationallezhop.Modèle.ModèleProfil
 import crosemont.dti.g55.applicationallezhop.Modèle.Trajet
 import crosemont.dti.g55.applicationallezhop.Modèle.Voiture
@@ -30,8 +31,8 @@ class vue_confirmation_réservation  : Fragment() {
     lateinit var txtHeureArriver : EditText
     lateinit var txtAdresseEmbarcation : EditText
     lateinit var conducteur :String
-    lateinit var AddresseEmbarcation :String
-    lateinit var HeureArrivé :String
+    lateinit var destination : Adresse
+    lateinit var heureArrivé :String
 
     private var _adapter: ProfilAdapter? = null
 
@@ -87,8 +88,8 @@ class vue_confirmation_réservation  : Fragment() {
 
         this.arguments?.let {
             conducteur = it.getString("Conducteur")!!
-            AddresseEmbarcation = it.getString("AddresseEmbarcation")!!
-            HeureArrivé = it.getString("HeureArrivé")!!
+            destination = it.getSerializable("Destination") as Adresse
+            heureArrivé = it.getString("HeureArrivé")!!
             date = it.getString("Date")!!
             heureDepart = it.getString("HeureDépart")!!
             voiture = it.getSerializable("Voiture") as Voiture
@@ -98,22 +99,23 @@ class vue_confirmation_réservation  : Fragment() {
         txtHeureArriver = view.findViewById(R.id.txt_heure_arriver)
 
         txtConducteur.setText(conducteur)
-        txtAdresseEmbarcation.setText(AddresseEmbarcation)
-        txtHeureArriver.setText(HeureArrivé)
+        txtAdresseEmbarcation.setText(destination.toString())
+        txtHeureArriver.setText(heureArrivé)
 
         val bundleForProfil = Bundle().apply {
             putString("Conducteur", conducteur)
-            putString("AddresseEmbarcation", AddresseEmbarcation)
-            putString("HeureArrivé", HeureArrivé)
+            putSerializable("Destination", destination)
+            putString("HeureArrivé", heureArrivé)
             putString("Date", date)
             putString("heureDepart", heureDepart)
+            putSerializable("Voiture", voiture)
         }
 
 
         btnConfirmationRéservation = view.findViewById(R.id.btn_confirmer_reservation)
-        btnConfirmationRéservation.setOnClickListener { naviguerVerVueProfil(bundleForProfil)
-
-
+        btnConfirmationRéservation.setOnClickListener {
+            présentateurConfirmationRéservation.ajoutéTrajetVenir(date,destination, conducteur,heureArrivé, heureDepart,voiture)
+            naviguerVerVueProfil(bundleForProfil)
         }
     }
 
@@ -122,8 +124,6 @@ class vue_confirmation_réservation  : Fragment() {
     }
 
     fun naviguerVerVueProfil(bundle: Bundle) {
-
-
         navController.navigate(R.id.action_vue_confirmation_réservation_to_vue_profil, bundle)
 
     }

@@ -8,7 +8,7 @@ import crosemont.dti.g55.applicationallezhop.PageTrajet.vue_trajet
 import crosemont.dti.g55.applicationallezhop.sourceDeDonnées.SourceBidon
 
 class PrésentateurTrajet(val vue : vue_trajet): IPrésentateurTrajet {
-    var modèle = ModèleTrajet(SourceBidon())
+    var modèle = ModèleTrajet(SourceBidon.getInstance())
     override fun getTrajetsVenirData(): MutableList<Trajet> {
         return modèle.chargerTrajetsÀVenir()
     }
@@ -18,11 +18,11 @@ class PrésentateurTrajet(val vue : vue_trajet): IPrésentateurTrajet {
     }
 
     override fun effectuerRéservation(position: Int) {
-        var trajet = modèle.obtenirTrajetÀVenir(position)
-        modèle.réserver(trajet)
+//        var trajet = modèle.obtenirTrajetÀVenir(position)
+//        modèle.réserver(trajet)
         val myBundle = Bundle().apply {
             putString("Conducteur", modèle._trajetsÀVenir.get(position).conducteur)
-            putString("AddresseEmbarcation", modèle._trajetsÀVenir.get(position).destination)
+            putSerializable("Destination", modèle._trajetsÀVenir.get(position).destination)
             putString("HeureArrivé", modèle._trajetsÀVenir.get(position).heureArriver)
             putString("Date", modèle._trajetsÀVenir.get(position).date )
             putString("HeureDépart",modèle._trajetsÀVenir.get(position).heureDépart)
