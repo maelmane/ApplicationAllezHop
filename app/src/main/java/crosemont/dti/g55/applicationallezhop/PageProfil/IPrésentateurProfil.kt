@@ -5,8 +5,6 @@
     interface IPrésentateurProfil {
         fun requêteSupprimerTrajetProfil(position: Int)
 
-        fun rafraîchirAffichage()
-
         fun getItemString(position: Int): String?
 
         fun getConducteurString(position: Int): String?

@@ -43,6 +43,14 @@ class TrajetAdapter(val _présentateur: IPrésentateurTrajet?) : RecyclerView.Ad
     }
 
     override fun getItemCount():Int  = _présentateur!!.nbItems
+
+    fun setData(newData: List<Trajet>) {
+        var data = _présentateur!!.getTrajetsVenirData()
+        val updatedData = data.toMutableList()
+        updatedData.addAll(newData)
+        data = updatedData
+        notifyDataSetChanged()
+    }
 }
 
 

@@ -10,7 +10,7 @@ class ModèleTrajet(var sourceDeDonnées: SourceDeDonnées) {
     }
 
     fun chargerTrajetsÀVenir() : MutableList<Trajet>{
-        _trajetsÀVenir = sourceDeDonnées.chargerTrajetsÀVenir()
+        _trajetsÀVenir = sourceDeDonnées.chargerTrajetsÀRéserver()
         return _trajetsÀVenir
     }
 

@@ -1,4 +1,4 @@
-package dti.g55.chargeur.domaine.entitées
+package crosemont.dti.g55.applicationallezhop.Domaine.Entité
 
 class Serveur( var nom : String,
 			   var url : String ) {}

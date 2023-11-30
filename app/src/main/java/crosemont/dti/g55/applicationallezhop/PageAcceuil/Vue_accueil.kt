@@ -100,8 +100,9 @@ class vue_accueil : Fragment(), OnMapReadyCallback {
         )
 
         // Faire bouger la caméra vers les coordonnées et zoomer
+        googleMap.moveCamera(CameraUpdateFactory.zoomTo(15f))
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(montréal))
-        //googleMap.moveCamera(CameraUpdateFactory.zoomTo(10f))
+
 
         // Afficher le trafic
         googleMap.isTrafficEnabled = true

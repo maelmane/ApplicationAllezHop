@@ -23,9 +23,6 @@ class ModèleProfil(var sourceDeDonnées: SourceDeDonnées) {
         return _trajetsÀVenir
     }
 
-    fun chargerAnciensTrajets() {
-        _anciensTrajets = sourceDeDonnées.toutCharger()
-    }
 
     val tailleTrajetsÀVenir: Int
         get() = _trajetsÀVenir.size

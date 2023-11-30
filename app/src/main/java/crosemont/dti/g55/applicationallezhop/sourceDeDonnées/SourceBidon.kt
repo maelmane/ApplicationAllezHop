@@ -47,7 +47,7 @@
 			TODO("Not yet implemented")
 		}
 
-		override fun chargerTrajetsÀVenir() : MutableList<Trajet> {
+		override fun chargerTrajetsÀRéserver() : MutableList<Trajet> {
 			return mutableListOf(
 				Trajet("04/01/2023", Adresse( numéroCivique = "6400", rue = "16e Avenue", ville = "Montréal", codePostal = "H1X 2S9", pays = "Canada"), "Iris", "8:00", "7:00",  Voiture(null)),
 				Trajet("06/01/2023", Adresse( numéroCivique = "6400", rue = "16e Avenue", ville = "Montréal", codePostal = "H1X 2S9", pays = "Canada"), "Bobby", "8:00", "7:25", Voiture(null)),

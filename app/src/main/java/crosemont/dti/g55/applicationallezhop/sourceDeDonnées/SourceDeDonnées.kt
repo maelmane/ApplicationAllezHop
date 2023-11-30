@@ -13,7 +13,7 @@ interface SourceDeDonnées {
 	fun toutCharger(): MutableList<Trajet>
 	fun lire(uid: Long): Trajet
 
-	fun chargerTrajetsÀVenir() : MutableList<Trajet>
+	fun chargerTrajetsÀRéserver() : MutableList<Trajet>
 
 	fun chargerAnciensTrajet() : MutableList<Trajet>
 

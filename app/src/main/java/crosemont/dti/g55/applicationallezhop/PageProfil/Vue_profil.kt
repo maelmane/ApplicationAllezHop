@@ -115,6 +115,8 @@ class vue_profil : Fragment() {
         }
     }
 
-
+    fun rafraîchirAffichage() {
+        _adapterVenir?.setData(présentateurProfil.getTrajetsVenirData())
+    }
 
 }

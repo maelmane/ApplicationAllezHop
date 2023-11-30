@@ -1,8 +1,10 @@
 package crosemont.dti.g55.applicationallezhop.sourceDeDonnées
 
 import android.util.JsonReader
+import crosemont.dti.g55.applicationallezhop.Domaine.Entité.Donnée
+import crosemont.dti.g55.applicationallezhop.Domaine.Entité.Serveur
+import crosemont.dti.g55.applicationallezhop.Modèle.Trajet
 import java.io.StringReader
-import dti.g55.chargeur.domaine.entitées.*
 
 class DécodeurJson {
 	companion object {
@@ -14,7 +16,7 @@ class DécodeurJson {
 		 * @return La Donnée créée
 		 */
 		fun décoderJsonVersDonnée( json : String ): Donnée {
-			var nombres = emptyArray<Int>()
+			var trajet = emptyArray<Trajet>()
 			val reader = JsonReader(StringReader( json ) )
 			lateinit var description : String
 			lateinit var serveur : Serveur
@@ -27,7 +29,7 @@ class DécodeurJson {
 					"données" -> {
 						reader.beginArray()
 						while(reader.hasNext()){
-							nombres += reader.nextInt()
+							//trajet += reader.nextInt()
 						}
 						reader.endArray()
 					}
@@ -39,10 +41,10 @@ class DécodeurJson {
 			}
 			reader.endObject()
 
-			return Donnée( nombres, description, serveur )
+			return Donnée( trajet, description, serveur )
 		}
 
-		private fun décoderJsonVersServeur( reader: JsonReader ): Serveur{
+		private fun décoderJsonVersServeur( reader: JsonReader ): Serveur {
 			lateinit var nom : String
 			lateinit var url : String
 			

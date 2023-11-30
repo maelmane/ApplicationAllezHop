@@ -13,32 +13,21 @@ class PrésentateurTrajet(val vue : vue_trajet): IPrésentateurTrajet {
         return modèle.chargerTrajetsÀVenir()
     }
 
-    override fun rafraîchirAffichage() {
-        vue.rafraîchir()
-    }
 
     override fun effectuerRéservation(position: Int) {
-//        var trajet = modèle.obtenirTrajetÀVenir(position)
+        var trajet = modèle.obtenirTrajetÀVenir(position)
 //        modèle.réserver(trajet)
         val myBundle = Bundle().apply {
-            putString("Conducteur", modèle._trajetsÀVenir.get(position).conducteur)
-            putSerializable("Destination", modèle._trajetsÀVenir.get(position).destination)
-            putString("HeureArrivé", modèle._trajetsÀVenir.get(position).heureArriver)
-            putString("Date", modèle._trajetsÀVenir.get(position).date )
-            putString("HeureDépart",modèle._trajetsÀVenir.get(position).heureDépart)
-            putSerializable("Voiture", modèle._trajetsÀVenir[position].voiture)
+            putString("Conducteur", trajet.conducteur)
+            putSerializable("Destination", trajet.destination)
+            putString("HeureArrivé", trajet.heureArriver)
+            putString("Date", trajet.date )
+            putString("HeureDépart", trajet.heureDépart)
+            putSerializable("Voiture", trajet.voiture)
 
         }
 
         vue.naviguerVerVueConfirmationRéservation(myBundle)
-    }
-
-    override fun getConducteurString(position: Int): String? {
-        TODO("Not yet implemented")
-    }
-
-    override fun getHeureString(position: Int): String? {
-        TODO("Not yet implemented")
     }
 
     override val nbItems: Int

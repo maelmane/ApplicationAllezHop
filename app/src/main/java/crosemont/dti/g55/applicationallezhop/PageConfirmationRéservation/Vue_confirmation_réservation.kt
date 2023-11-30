@@ -131,8 +131,7 @@ class vue_confirmation_réservation  : Fragment() {
                 .putExtra(Events.AVAILABILITY, Events.AVAILABILITY_BUSY)
 
 
-                startActivity(intent)
-
+            startActivity(intent)
 
             naviguerVerVueProfil(bundleForProfil)
         }

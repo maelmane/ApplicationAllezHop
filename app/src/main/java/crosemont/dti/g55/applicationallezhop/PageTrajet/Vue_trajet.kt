@@ -52,7 +52,7 @@ class vue_trajet : Fragment() {
 
 
     fun rafraîchir() {
-        _adapter!!.notifyDataSetChanged()
+        _adapter!!.setData(présentateurTrajet.getTrajetsVenirData())
     }
 
     override fun onCreateView(

@@ -34,12 +34,8 @@ class PrésentateurProfil(var vue: vue_profil): IPrésentateurProfil {
     }
     override fun addReservedTrajet(trajet: Trajet) {
         modèle.sourceDeDonnées.créer(trajet)
-        rafraîchirAffichage()
+        vue.rafraîchirAffichage()
 
-    }
-
-    override fun rafraîchirAffichage() {
-        _adapter?.setData(modèle.sourceDeDonnées.getTrajetsVenirData())
     }
 
     override fun getAdresseString(position: Int): String? {
