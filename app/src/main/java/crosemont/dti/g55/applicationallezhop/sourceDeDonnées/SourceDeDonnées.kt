@@ -10,12 +10,9 @@ interface SourceDeDonnées {
 
 	fun créer(unT: Trajet): Trajet
 
-	fun toutCharger(): MutableList<Trajet>
 	fun lire(uid: Long): Trajet
 
 	fun chargerTrajetsÀRéserver() : MutableList<Trajet>
-
-	fun chargerAnciensTrajet() : MutableList<Trajet>
 
 	fun supprimerTrajet(position: Int)
 

@@ -20,31 +20,12 @@ class PrésentateurProfil(var vue: vue_profil): IPrésentateurProfil {
         return  modèle.sourceDeDonnées.getTrajetsAnciensData()
     }
 
-    override fun requêteSupprimerTrajetProfil(position: Int) {
-        TODO("Not yet implemented")
-    }
-
-
-    override fun getItemString(position: Int): String? {
-        TODO("Not yet implemented")
-    }
-
-    override fun getConducteurString(position: Int): String? {
-        TODO("Not yet implemented")
-    }
     override fun addReservedTrajet(trajet: Trajet) {
         modèle.sourceDeDonnées.créer(trajet)
         vue.rafraîchirAffichage()
 
     }
 
-    override fun getAdresseString(position: Int): String? {
-        TODO("Not yet implemented")
-    }
-
-    override fun getDateString(position: Int): String? {
-        TODO("Not yet implemented")
-    }
 
     override val nbItems: Int
         get() = modèle.tailleTrajetsÀVenir

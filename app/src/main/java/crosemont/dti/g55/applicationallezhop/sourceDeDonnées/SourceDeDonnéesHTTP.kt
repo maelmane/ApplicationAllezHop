@@ -20,19 +20,11 @@ import java.io.OutputStreamWriter
          TODO("Not yet implemented")
      }
 
-     override fun toutCharger(): MutableList<Trajet> {
-         TODO("Not yet implemented")
-     }
-
      override fun lire(uid: Long): Trajet {
          TODO("Not yet implemented")
      }
 
      override fun chargerTrajetsÀRéserver(): MutableList<Trajet> {
-         TODO("Not yet implemented")
-     }
-
-     override fun chargerAnciensTrajet(): MutableList<Trajet> {
          TODO("Not yet implemented")
      }
 
