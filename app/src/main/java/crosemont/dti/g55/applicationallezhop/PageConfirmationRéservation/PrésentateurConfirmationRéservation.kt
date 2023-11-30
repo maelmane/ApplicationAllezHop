@@ -8,6 +8,8 @@
     import crosemont.dti.g55.applicationallezhop.Modèle.Voiture
     import crosemont.dti.g55.applicationallezhop.PageProfil.ProfilAdapter
     import crosemont.dti.g55.applicationallezhop.sourceDeDonnées.SourceBidon
+    import java.text.SimpleDateFormat
+    import java.util.Locale
 
     class PrésentateurConfirmationRéservation(var vue: vue_confirmation_réservation): IPrésentateurConfirmationRéservation {
 
@@ -18,4 +20,11 @@
             //modèle._trajetsÀVenir.add(Trajet(date, destination, conducteur,heureArriver,heureDépart,voiture))
 
         }
+
+        fun convertirDateHeureEnMillis(dateStr: String, heureStr: String): Long {
+            val format = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+            val dateHeure = "$dateStr $heureStr"
+            return format.parse(dateHeure)?.time ?: 0
+        }
+
     }

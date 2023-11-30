@@ -69,7 +69,7 @@ class vue_confirmation_réservation  : Fragment() {
         bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.menu_accueil -> {
-                    naviguerVerVueAccueil()
+                    naviguerVerVueAccueil(savedInstanceState!!)
                     true
                 }
 
@@ -123,8 +123,8 @@ class vue_confirmation_réservation  : Fragment() {
             présentateurConfirmationRéservation.ajoutéTrajetVenir(date,destination, conducteur,heureArrivé, heureDepart,voiture)
             val intent = Intent(Intent.ACTION_INSERT)
                 .setData(Events.CONTENT_URI)
-                .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, convertirDateHeureEnMillis(date,heureDepart))
-                .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, convertirDateHeureEnMillis(date,heureArrivé))
+                .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, présentateurConfirmationRéservation.convertirDateHeureEnMillis(date,heureDepart))
+                .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, présentateurConfirmationRéservation.convertirDateHeureEnMillis(date,heureArrivé))
                 .putExtra(Events.TITLE, "Covoiturage AllezHop")
                 .putExtra(Events.DESCRIPTION, "Conducteur : $conducteur")
                 .putExtra(Events.EVENT_LOCATION, "$destination")
@@ -137,8 +137,8 @@ class vue_confirmation_réservation  : Fragment() {
         }
     }
 
-    fun naviguerVerVueAccueil(){
-        navController.navigate(R.id.action_vue_confirmation_reservation_to_vue_accueil)
+    fun naviguerVerVueAccueil(bundle: Bundle){
+        navController.navigate(R.id.action_vue_confirmation_reservation_to_vue_accueil, bundle)
     }
 
     fun naviguerVerVueProfil(bundle: Bundle) {
@@ -146,15 +146,9 @@ class vue_confirmation_réservation  : Fragment() {
 
     }
 
-
     fun naviguerVerVueTrajet(){
         navController.navigate(R.id.action_vue_confirmation_reservation_to_vue_trajet)
     }
 
-    private fun convertirDateHeureEnMillis(dateStr: String, heureStr: String): Long {
-        val format = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
-        val dateHeure = "$dateStr $heureStr"
-        return format.parse(dateHeure)?.time ?: 0
-    }
 
 }

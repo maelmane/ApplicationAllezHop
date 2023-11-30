@@ -1,6 +1,8 @@
 package crosemont.dti.g55.applicationallezhop.PageAcceuil
 
+import android.location.Location
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +19,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
+import crosemont.dti.g55.applicationallezhop.Modèle.Adresse
 import crosemont.dti.g55.applicationallezhop.PageAcceuil.PrésentateurAccueil
 import crosemont.dti.g55.applicationallezhop.R
 
@@ -29,6 +32,8 @@ class vue_accueil : Fragment(), OnMapReadyCallback {
     lateinit var navController: NavController
     var présentateurAccueil = PrésentateurAccueil(this)
     lateinit var map : FrameLayout
+    lateinit var adresse: String
+    lateinit var destination : Adresse
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -74,6 +79,10 @@ class vue_accueil : Fragment(), OnMapReadyCallback {
             R.id.vue_trajet -> bottomNavigationView.menu.findItem(R.id.menu_trajet).isChecked = true
         }
 
+        this.arguments?.let{
+            destination = it.getSerializable("Destination") as Adresse
+        }
+
 
     }
 
@@ -86,8 +95,10 @@ class vue_accueil : Fragment(), OnMapReadyCallback {
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
-        // Mettre les coordonnées à Montréal.
-        val montréal = LatLng(45.508888, -73.561668)
+        // Mettre les coordonnées à la destination
+        adresse = présentateurAccueil.getAdresseDestination()
+
+        var latLngDestination = présentateurAccueil.getLatitudeLongitudeAdresse(adresse)
 
         // Mettre le type de la map en hybride.
         googleMap.mapType = GoogleMap.MAP_TYPE_HYBRID
@@ -95,13 +106,13 @@ class vue_accueil : Fragment(), OnMapReadyCallback {
         // Ajouter un marqueur aux coordonnées
         googleMap.addMarker(
             MarkerOptions()
-                .position(montréal)
-                .title("Montréal")
+                .position(latLngDestination)
+                .title("Destination")
         )
 
         // Faire bouger la caméra vers les coordonnées et zoomer
         googleMap.moveCamera(CameraUpdateFactory.zoomTo(15f))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(montréal))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLngDestination))
 
 
         // Afficher le trafic
