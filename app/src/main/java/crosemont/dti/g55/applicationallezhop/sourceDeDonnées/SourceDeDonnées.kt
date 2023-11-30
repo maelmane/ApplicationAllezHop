@@ -1,5 +1,6 @@
 package crosemont.dti.g55.applicationallezhop.sourceDeDonnées
 
+import crosemont.dti.g55.applicationallezhop.Domaine.Entité.Donnée
 import crosemont.dti.g55.applicationallezhop.Modèle.Trajet
 
 class SourceDeDonnéesException( message: String) : Exception( message ) {}
@@ -15,5 +16,7 @@ interface SourceDeDonnées {
 	fun chargerTrajetsÀRéserver() : MutableList<Trajet>
 
 	fun supprimerTrajet(position: Int)
+
+	suspend fun obtenirUrl(lien: String) : String
 
 }

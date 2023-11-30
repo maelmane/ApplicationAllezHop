@@ -1,5 +1,6 @@
 	package crosemont.dti.g55.applicationallezhop.sourceDeDonnées
 
+	import crosemont.dti.g55.applicationallezhop.Domaine.Entité.Donnée
 	import crosemont.dti.g55.applicationallezhop.Modèle.Adresse
 	import crosemont.dti.g55.applicationallezhop.Modèle.Trajet
 	import crosemont.dti.g55.applicationallezhop.Modèle.Voiture
@@ -53,6 +54,11 @@
 
 		override fun supprimerTrajet(position: Int) {
 			TODO("Not yet implemented")
+		}
+
+
+		override suspend fun obtenirUrl(lien: String): String {
+			return "https://AllezHop.com"
 		}
 
 		override fun lire(uid: Long): Trajet {
