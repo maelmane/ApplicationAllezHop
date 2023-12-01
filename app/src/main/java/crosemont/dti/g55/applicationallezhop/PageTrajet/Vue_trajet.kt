@@ -44,6 +44,7 @@ class vue_trajet : Fragment() {
     lateinit var selectedTimeTV: TextView
     lateinit var selectedDateTV: TextView
     private lateinit var chercherTrajetVenirJob : Job
+    private lateinit var afficherTrajetVenirJob : Job
 
     var présentateurTrajet = PrésentateurTrajet(this)
     lateinit var navController: NavController
@@ -51,7 +52,7 @@ class vue_trajet : Fragment() {
     private var _adapter : TrajetAdapter? = null
 
 
-    fun rafraîchir() {
+    suspend fun rafraîchir() {
         _adapter!!.setData(présentateurTrajet.getTrajetsVenirData())
     }
 
@@ -71,7 +72,7 @@ class vue_trajet : Fragment() {
             reloadButton()
         }
 
-        _adapter = TrajetAdapter(présentateurTrajet)
+
 
         selectedTimeTV = vue.findViewById(R.id.idTVSelectedTime)
         var formatTemps = DateTimeFormatter.ofPattern("HH:mm")
@@ -158,7 +159,10 @@ class vue_trajet : Fragment() {
         }
 
         recyclerViewTrajet= view.findViewById(R.id.recyclerViewTrajets)
-        chercherTrajetVenirJob= CoroutineScope(Dispatchers.IO).launch { setUpRecyclerView(recyclerViewTrajet, présentateurTrajet.getTrajetsVenirData()) }
+        chercherTrajetVenirJob= CoroutineScope(Dispatchers.IO).launch {
+            var data = présentateurTrajet.getTrajetsVenirData()
+            afficherTrajetVenirJob = CoroutineScope(Dispatchers.Main).launch { setUpRecyclerView(recyclerViewTrajet, data) }
+        }
     }
 
     fun naviguerVerVueProfil(){
@@ -187,6 +191,7 @@ class vue_trajet : Fragment() {
 
     fun setUpRecyclerView(recyclerView: RecyclerView, data: List<Trajet>) {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        _adapter = TrajetAdapter(présentateurTrajet, data)
         recyclerView.adapter = _adapter
     }
 

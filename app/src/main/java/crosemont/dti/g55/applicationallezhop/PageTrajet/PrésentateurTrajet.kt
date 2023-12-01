@@ -9,12 +9,12 @@ import crosemont.dti.g55.applicationallezhop.sourceDeDonnées.SourceBidon
 
 class PrésentateurTrajet(val vue : vue_trajet): IPrésentateurTrajet {
     var modèle = ModèleTrajet(SourceBidon.getInstance())
-    override fun getTrajetsVenirData(): MutableList<Trajet> {
+    override suspend fun getTrajetsVenirData(): MutableList<Trajet> {
         return modèle.chargerTrajetsÀVenir()
     }
 
 
-    override fun effectuerRéservation(position: Int) {
+    override suspend fun effectuerRéservation(position: Int) {
         var trajet = modèle.obtenirTrajetÀVenir(position)
 //        modèle.réserver(trajet)
         val myBundle = Bundle().apply {

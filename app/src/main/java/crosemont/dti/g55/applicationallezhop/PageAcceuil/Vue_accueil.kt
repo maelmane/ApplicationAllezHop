@@ -22,6 +22,12 @@ import com.google.android.material.navigation.NavigationBarView
 import crosemont.dti.g55.applicationallezhop.Modèle.Adresse
 import crosemont.dti.g55.applicationallezhop.PageAcceuil.PrésentateurAccueil
 import crosemont.dti.g55.applicationallezhop.R
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * A simple [Fragment] subclass.
@@ -34,6 +40,8 @@ class vue_accueil : Fragment(), OnMapReadyCallback {
     lateinit var map : FrameLayout
     lateinit var adresse: String
     lateinit var destination : Adresse
+    lateinit var trajetActuelJob : Job
+    lateinit var trajetActuelAffichageJob : Job
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -96,26 +104,60 @@ class vue_accueil : Fragment(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         // Mettre les coordonnées à la destination
-        adresse = présentateurAccueil.getAdresseDestination()
+        /*trajetActuelJob = CoroutineScope(Dispatchers.IO).launch {
+            adresse = présentateurAccueil.getAdresseDestination()
 
-        var latLngDestination = présentateurAccueil.getLatitudeLongitudeAdresse(adresse)
+            var latLngDestination = présentateurAccueil.getLatitudeLongitudeAdresse(adresse)
+            trajetActuelAffichageJob = CoroutineScope(Dispatchers.Main).launch {
+                // Mettre le type de la map en hybride.
+                googleMap.mapType = GoogleMap.MAP_TYPE_HYBRID
 
-        // Mettre le type de la map en hybride.
-        googleMap.mapType = GoogleMap.MAP_TYPE_HYBRID
+                // Ajouter un marqueur aux coordonnées
+                googleMap.addMarker(
+                    MarkerOptions()
+                        .position(latLngDestination)
+                        .title("Destination")
+                )
 
-        // Ajouter un marqueur aux coordonnées
-        googleMap.addMarker(
-            MarkerOptions()
-                .position(latLngDestination)
-                .title("Destination")
-        )
-
-        // Faire bouger la caméra vers les coordonnées et zoomer
-        googleMap.moveCamera(CameraUpdateFactory.zoomTo(15f))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLngDestination))
+                // Faire bouger la caméra vers les coordonnées et zoomer
+                googleMap.moveCamera(CameraUpdateFactory.zoomTo(15f))
+                googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLngDestination))
 
 
-        // Afficher le trafic
-        googleMap.isTrafficEnabled = true
+                // Afficher le trafic
+                googleMap.isTrafficEnabled = true
+            }
+        }*/
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                val adresse = withContext(Dispatchers.IO) {
+                    présentateurAccueil.getAdresseDestination()
+                }
+
+                val latLngDestination = withContext(Dispatchers.IO) {
+                    présentateurAccueil.getLatitudeLongitudeAdresse(adresse)
+                }
+
+                // Mettre le type de la map en hybride.
+                googleMap.mapType = GoogleMap.MAP_TYPE_HYBRID
+
+                // Ajouter un marqueur aux coordonnées
+                googleMap.addMarker(
+                    MarkerOptions()
+                        .position(latLngDestination)
+                        .title("Destination")
+                )
+
+                // Faire bouger la caméra vers les coordonnées et zoomer
+                googleMap.moveCamera(CameraUpdateFactory.zoomTo(15f))
+                googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLngDestination))
+
+                // Afficher le trafic
+                googleMap.isTrafficEnabled = true
+            } catch (e: Exception) {
+                // Gérer les erreurs, par exemple, en affichant un message d'erreur
+                e.printStackTrace()
+            }
+        }
     }
 }

@@ -19,7 +19,7 @@ class PrésentateurAccueil(var vue: vue_accueil) {
         return LatLng(latitude, longitude)
     }
 
-    fun getAdresseDestination(): String{
+    suspend fun getAdresseDestination(): String{
         return modèle.chargerTrajetsÀVenir().get(0).destination.toString()
     }
 

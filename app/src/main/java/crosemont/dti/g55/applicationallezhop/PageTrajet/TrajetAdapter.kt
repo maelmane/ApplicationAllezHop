@@ -13,17 +13,16 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class TrajetAdapter(val _présentateur: IPrésentateurTrajet?) : RecyclerView.Adapter<TrajetAdapter.TrajetViewHolder>() {
+class TrajetAdapter(val _présentateur: IPrésentateurTrajet?, private var data: List<Trajet>) : RecyclerView.Adapter<TrajetAdapter.TrajetViewHolder>() {
 
     class TrajetViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+
         private val conducteurTextView: TextView = view.findViewById(R.id.tvConducteurItem)
         private val heureArriveeTextView: TextView = view.findViewById(R.id.tvHeureArriverItem)
 
         fun bind(trajet: Trajet) {
-            CoroutineScope(Dispatchers.Main).launch {
             conducteurTextView.text = trajet.conducteur
             heureArriveeTextView.text = trajet.heureArriver
-            }
         }
     }
 
@@ -33,19 +32,21 @@ class TrajetAdapter(val _présentateur: IPrésentateurTrajet?) : RecyclerView.Ad
     }
 
     override fun onBindViewHolder(holder: TrajetViewHolder, position: Int) {
-        val trajet = _présentateur!!.getTrajetsVenirData()[position]
-        holder.bind(trajet)
-        val btnReserver: Button = holder.itemView.findViewById(R.id.btnConfirmationItem)
-        btnReserver.setOnClickListener {
-            Log.d("Réservation", "réserver $position")
-            _présentateur.effectuerRéservation(position)
+        val trajet = data[position]
+        CoroutineScope(Dispatchers.Main).launch {
+            holder.bind(trajet)
+            val btnReserver: Button = holder.itemView.findViewById(R.id.btnConfirmationItem)
+            btnReserver.setOnClickListener {
+                CoroutineScope(Dispatchers.IO).launch {
+                    _présentateur?.effectuerRéservation(position)
+                }
+            }
         }
     }
 
     override fun getItemCount():Int  = _présentateur!!.nbItems
 
     fun setData(newData: List<Trajet>) {
-        var data = _présentateur!!.getTrajetsVenirData()
         val updatedData = data.toMutableList()
         updatedData.addAll(newData)
         data = updatedData

@@ -22,9 +22,7 @@ class ProfilAdapter(private var data: List<Trajet>) : RecyclerView.Adapter<Profi
 
     override fun onBindViewHolder(holder: ProfilViewHolder, position: Int) {
         val trajet = data[position]
-        CoroutineScope(Dispatchers.Main).launch {
-        holder.bind(trajet)
-        }
+        CoroutineScope(Dispatchers.Main).launch { holder.bind(trajet) }
     }
 
     fun setData(newData: List<Trajet>) {

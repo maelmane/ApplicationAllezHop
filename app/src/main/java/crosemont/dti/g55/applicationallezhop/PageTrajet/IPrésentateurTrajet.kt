@@ -4,9 +4,9 @@ import crosemont.dti.g55.applicationallezhop.Modèle.Trajet
 
 interface IPrésentateurTrajet {
 
-    fun effectuerRéservation(position: Int)
+    suspend fun effectuerRéservation(position: Int)
 
     val nbItems: Int
 
-    fun getTrajetsVenirData(): List<Trajet>
+    suspend fun getTrajetsVenirData(): List<Trajet>
 }
