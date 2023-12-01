@@ -21,6 +21,7 @@ import crosemont.dti.g55.applicationallezhop.sourceDeDonnées.SourceBidon
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 
 /**
@@ -35,6 +36,7 @@ class vue_profil : Fragment() {
     private lateinit var recyclerViewTrajetsAnciens: RecyclerView
     private lateinit var chercherTrajetVenirJob : Job
     private lateinit var chercherTrajetAncienJob : Job
+    private lateinit var afficherTrajetAncienJob : Job
 
     private var _adapterVenir: ProfilAdapter? = null
     private var _adapterAnciens: ProfilAdapter? = null
@@ -48,7 +50,9 @@ class vue_profil : Fragment() {
         recyclerViewTrajetsAnciens = view.findViewById(R.id.recyclerViewTrajetsAnciens)
 
         chercherTrajetAncienJob = CoroutineScope(Dispatchers.IO).launch {
-            setUpRecyclerView(recyclerViewTrajetsAnciens, présentateurProfil.getTrajetsAnciensData())
+            var data = présentateurProfil.getTrajetsAnciensData()
+            afficherTrajetAncienJob =CoroutineScope(Dispatchers.Main).launch { setUpRecyclerView(recyclerViewTrajetsAnciens, data) }
+
         }
         chercherTrajetVenirJob = CoroutineScope(Dispatchers.IO).launch {
             setUpRecyclerView(recyclerViewTrajetsVenir, présentateurProfil.getTrajetsVenirData())
@@ -102,6 +106,7 @@ class vue_profil : Fragment() {
         when (recyclerView.id) {
             R.id.recyclerViewTrajetsVenir -> {
                 _adapterVenir = ProfilAdapter(data)
+
                 recyclerView.adapter = _adapterVenir
 
                 Log.d("vue_profil", "RecyclerViewTrajetsVenir contents: ${data}")
@@ -115,7 +120,7 @@ class vue_profil : Fragment() {
         }
     }
 
-    fun rafraîchirAffichage() {
+    suspend fun rafraîchirAffichage() {
         _adapterVenir?.setData(présentateurProfil.getTrajetsVenirData())
     }
 

@@ -1,9 +1,11 @@
 package crosemont.dti.g55.applicationallezhop.Modèle
 
 import crosemont.dti.g55.applicationallezhop.sourceDeDonnées.SourceDeDonnées
+import crosemont.dti.g55.applicationallezhop.sourceDeDonnées.SourceDeDonnéesHTTP
 
 class ModèleProfil(var sourceDeDonnées: SourceDeDonnées) {
     private var _trajetsÀVenir = mutableListOf<Trajet>()
+    private var sourceHttp = SourceDeDonnéesHTTP("https://0898b9b0-2661-4bde-95e6-4ca06e12bef0.mock.pstmn.io")
     var _anciensTrajets = mutableListOf<Trajet>()
 
     fun supprimerTrajet(indice : Int){
@@ -18,9 +20,14 @@ class ModèleProfil(var sourceDeDonnées: SourceDeDonnées) {
         return _anciensTrajets[indice]
     }
 
-    fun chargerTrajetsÀVenir(): MutableList<Trajet>  {
+    suspend fun chargerTrajetsÀVenir(): MutableList<Trajet>  {
         _trajetsÀVenir = sourceDeDonnées.getTrajetsVenirData()
         return _trajetsÀVenir
+    }
+
+    suspend fun chargerTrajetsAnciens(): MutableList<Trajet>  {
+        _anciensTrajets = sourceHttp.getTrajetsAnciensData("https://0898b9b0-2661-4bde-95e6-4ca06e12bef0.mock.pstmn.io/trajet")
+        return _anciensTrajets
     }
 
 

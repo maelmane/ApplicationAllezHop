@@ -22,12 +22,12 @@
 
 		private val trajetsVenir = mutableListOf<Trajet>()
 
-		override fun getTrajetsVenirData(): MutableList<Trajet> {
+		override suspend fun getTrajetsVenirData(): MutableList<Trajet> {
 			return trajetsVenir.toMutableList()
 		}
 
 
-		override fun getTrajetsAnciensData(): MutableList<Trajet> {
+		override suspend fun getTrajetsAnciensData(): MutableList<Trajet> {
 
 			return mutableListOf(
 				Trajet("03/01/2023", Adresse( numéroCivique = "6400", rue = "16e Avenue", ville = "Montréal", codePostal = "H1X 2S9", pays = "Canada"), "Iris", "8:00", "7:00", voiture = Voiture(null)),

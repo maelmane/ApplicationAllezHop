@@ -6,9 +6,9 @@
 
         val nbItems: Int
 
-        fun getTrajetsVenirData(): List<Trajet>
+        suspend fun getTrajetsVenirData(): List<Trajet>
 
-        fun getTrajetsAnciensData(): List<Trajet>
-        fun addReservedTrajet(trajet: Trajet)
+        suspend fun getTrajetsAnciensData(): List<Trajet>
+        suspend fun addReservedTrajet(trajet: Trajet)
 
     }

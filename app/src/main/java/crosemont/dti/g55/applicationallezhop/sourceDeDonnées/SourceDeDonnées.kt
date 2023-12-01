@@ -3,11 +3,11 @@ package crosemont.dti.g55.applicationallezhop.sourceDeDonnées
 import crosemont.dti.g55.applicationallezhop.Domaine.Entité.Donnée
 import crosemont.dti.g55.applicationallezhop.Modèle.Trajet
 
-class SourceDeDonnéesException( message: String) : Exception( message ) {}
+
 
 interface SourceDeDonnées {
-	fun getTrajetsVenirData(): MutableList<Trajet>
-	fun getTrajetsAnciensData(): MutableList<Trajet>
+	suspend fun getTrajetsVenirData(): MutableList<Trajet>
+	suspend fun getTrajetsAnciensData(): MutableList<Trajet>
 
 	fun créer(unT: Trajet): Trajet
 
@@ -20,3 +20,4 @@ interface SourceDeDonnées {
 	suspend fun obtenirUrl(lien: String) : String
 
 }
+class SourceDeDonnéesException( message: String) : Exception( message ) {}

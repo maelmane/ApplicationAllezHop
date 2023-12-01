@@ -26,6 +26,10 @@ import crosemont.dti.g55.applicationallezhop.PageProfil.ProfilAdapter
 import crosemont.dti.g55.applicationallezhop.PageProfil.vue_profil
 import crosemont.dti.g55.applicationallezhop.R
 import crosemont.dti.g55.applicationallezhop.sourceDeDonnées.SourceBidon
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -39,6 +43,7 @@ class vue_confirmation_réservation  : Fragment() {
     lateinit var conducteur :String
     lateinit var destination : Adresse
     lateinit var heureArrivé :String
+    private lateinit var créerTrajetJob : Job
 
     private var _adapter: ProfilAdapter? = null
 
@@ -120,7 +125,7 @@ class vue_confirmation_réservation  : Fragment() {
 
         btnConfirmationRéservation = view.findViewById(R.id.btn_confirmer_reservation)
         btnConfirmationRéservation.setOnClickListener {
-            présentateurConfirmationRéservation.ajoutéTrajetVenir(date,destination, conducteur,heureArrivé, heureDepart,voiture)
+            créerTrajetJob = CoroutineScope(Dispatchers.IO).launch { présentateurConfirmationRéservation.ajoutéTrajetVenir(date,destination, conducteur,heureArrivé, heureDepart,voiture) }
             val intent = Intent(Intent.ACTION_INSERT)
                 .setData(Events.CONTENT_URI)
                 .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, présentateurConfirmationRéservation.convertirDateHeureEnMillis(date,heureDepart))

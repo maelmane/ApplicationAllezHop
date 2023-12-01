@@ -12,15 +12,15 @@ class PrésentateurProfil(var vue: vue_profil): IPrésentateurProfil {
 
     var modèle= ModèleProfil(SourceBidon.getInstance())
     private var _adapter: ProfilAdapter = ProfilAdapter(emptyList())
-    override fun getTrajetsVenirData(): List<Trajet> {
+    override suspend fun getTrajetsVenirData(): List<Trajet> {
         return modèle.chargerTrajetsÀVenir()
     }
 
-    override fun getTrajetsAnciensData(): List<Trajet> {
-        return  modèle.sourceDeDonnées.getTrajetsAnciensData()
+    override suspend fun getTrajetsAnciensData(): List<Trajet> {
+        return  modèle.chargerTrajetsAnciens()
     }
 
-    override fun addReservedTrajet(trajet: Trajet) {
+    override suspend fun addReservedTrajet(trajet: Trajet) {
         modèle.sourceDeDonnées.créer(trajet)
         vue.rafraîchirAffichage()
 
