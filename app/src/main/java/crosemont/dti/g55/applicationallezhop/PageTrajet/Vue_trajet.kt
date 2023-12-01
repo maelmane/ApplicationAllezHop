@@ -43,9 +43,8 @@ class vue_trajet : Fragment() {
     lateinit var Position : TextInputLayout
     lateinit var selectedTimeTV: TextView
     lateinit var selectedDateTV: TextView
-    private lateinit var chercherTrajetVenirJob : Job
-    private lateinit var afficherTrajetVenirJob : Job
-
+    /*private lateinit var chercherTrajetVenirJob : Job
+    private lateinit var afficherTrajetVenirJob : Job*/
     var présentateurTrajet = PrésentateurTrajet(this)
     lateinit var navController: NavController
     private lateinit var recyclerViewTrajet: RecyclerView
@@ -159,9 +158,9 @@ class vue_trajet : Fragment() {
         }
 
         recyclerViewTrajet= view.findViewById(R.id.recyclerViewTrajets)
-        chercherTrajetVenirJob= CoroutineScope(Dispatchers.IO).launch {
+        /*chercherTrajetVenirJob= */CoroutineScope(Dispatchers.IO).launch {
             var data = présentateurTrajet.getTrajetsVenirData()
-            afficherTrajetVenirJob = CoroutineScope(Dispatchers.Main).launch { setUpRecyclerView(recyclerViewTrajet, data) }
+           /* afficherTrajetVenirJob =*/ CoroutineScope(Dispatchers.Main).launch { setUpRecyclerView(recyclerViewTrajet, data) }
         }
     }
 
