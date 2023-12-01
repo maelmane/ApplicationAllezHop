@@ -97,7 +97,7 @@ class vue_trajet : Fragment() {
         }
 
         selectedDateTV = vue.findViewById(R.id.idTVSelectedDate)
-        var formatDate = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        var formatDate = DateTimeFormatter.ofPattern("yyyy/MM/dd")
         selectedDateTV.text = LocalDate.now().format(formatDate)
 
         selectedDateTV.setOnClickListener {
