@@ -2,9 +2,13 @@ package crosemont.dti.g55.applicationallezhop.Modèle
 
 import crosemont.dti.g55.applicationallezhop.sourceDeDonnées.SourceDeDonnées
 import crosemont.dti.g55.applicationallezhop.sourceDeDonnées.SourceDeDonnéesHTTP
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
 
 class ModèleProfil(var sourceDeDonnées: SourceDeDonnées) {
     private var _trajetsÀVenir = mutableListOf<Trajet>()
+    private var _trajets = mutableListOf<Trajet>()
     private var sourceHttp = SourceDeDonnéesHTTP("https://0898b9b0-2661-4bde-95e6-4ca06e12bef0.mock.pstmn.io")
     var _anciensTrajets = mutableListOf<Trajet>()
 
@@ -26,8 +30,17 @@ class ModèleProfil(var sourceDeDonnées: SourceDeDonnées) {
     }
 
     suspend fun chargerTrajetsAnciens(): MutableList<Trajet>  {
-        _anciensTrajets = sourceHttp.getTrajetsAnciensData("https://0898b9b0-2661-4bde-95e6-4ca06e12bef0.mock.pstmn.io/trajet")
+        _trajets  = chargerTrajets()
+        for(trajet in _trajets){
+            if(datePasser(trajet.date)){
+                _anciensTrajets.add(trajet)
+            }
+        }
         return _anciensTrajets
+    }
+
+    suspend fun chargerTrajets(): MutableList<Trajet>  {
+        return sourceHttp.getTrajetsAnciensData("https://0898b9b0-2661-4bde-95e6-4ca06e12bef0.mock.pstmn.io/trajets")
     }
 
 
@@ -41,4 +54,16 @@ class ModèleProfil(var sourceDeDonnées: SourceDeDonnées) {
         _trajetsÀVenir.add(trajet)
     }
 
+    private fun datePasser(dateString: String): Boolean {
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+        val dateActuel = Calendar.getInstance().apply {
+            set(Calendar.HOUR_OF_DAY, 0)
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
+        }.time
+        val date = dateFormat.parse(dateString)
+
+        return date.before(dateActuel)
+    }
 }
