@@ -22,7 +22,7 @@
         }
 
         fun convertirDateHeureEnMillis(dateStr: String, heureStr: String): Long {
-            val format = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+            val format = SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault())
             val dateHeure = "$dateStr $heureStr"
             return format.parse(dateHeure)?.time ?: 0
         }

@@ -137,8 +137,8 @@ class vue_confirmation_réservation  : Fragment() {
 
 
             startActivity(intent)
+            CoroutineScope(Dispatchers.Main).launch { naviguerVerVueProfil(bundleForProfil) }
 
-            naviguerVerVueProfil(bundleForProfil)
         }
     }
 

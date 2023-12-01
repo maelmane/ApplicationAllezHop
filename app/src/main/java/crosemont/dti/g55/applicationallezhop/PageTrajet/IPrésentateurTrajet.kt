@@ -8,5 +8,10 @@ interface IPrésentateurTrajet {
 
     val nbItems: Int
 
+
     suspend fun getTrajetsVenirData(): List<Trajet>
+
+
+    fun filtrerSelonDate(date: String)
+
 }

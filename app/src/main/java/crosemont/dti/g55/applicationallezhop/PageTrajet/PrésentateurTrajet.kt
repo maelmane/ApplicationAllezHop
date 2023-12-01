@@ -6,11 +6,22 @@ import crosemont.dti.g55.applicationallezhop.Modèle.ModèleTrajet
 import crosemont.dti.g55.applicationallezhop.Modèle.Trajet
 import crosemont.dti.g55.applicationallezhop.PageTrajet.vue_trajet
 import crosemont.dti.g55.applicationallezhop.sourceDeDonnées.SourceBidon
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class PrésentateurTrajet(val vue : vue_trajet): IPrésentateurTrajet {
     var modèle = ModèleTrajet(SourceBidon.getInstance())
     override suspend fun getTrajetsVenirData(): MutableList<Trajet> {
         return modèle.chargerTrajetsÀVenir()
+    }
+
+    override fun filtrerSelonDate(date: String) {
+        CoroutineScope(Dispatchers.IO).launch {
+            modèle.filtrerTrajetsSelonDate(date)
+
+            CoroutineScope(Dispatchers.Main).launch {   vue.rafraichir()}
+        }
     }
 
 
@@ -26,9 +37,11 @@ class PrésentateurTrajet(val vue : vue_trajet): IPrésentateurTrajet {
             putSerializable("Voiture", trajet.voiture)
 
         }
-
+        CoroutineScope(Dispatchers.Main).launch {
         vue.naviguerVerVueConfirmationRéservation(myBundle)
+        }
     }
+
 
     override val nbItems: Int
         get() = modèle.tailleTrajetsÀVenir

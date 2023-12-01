@@ -3,6 +3,7 @@ package crosemont.dti.g55.applicationallezhop.PageTrajet
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -104,15 +106,18 @@ class vue_trajet : Fragment() {
             val year = c.get(Calendar.YEAR)
             val month = c.get(Calendar.MONTH)
             val day = c.get(Calendar.DAY_OF_MONTH)
-
+            var zero =""
             val datePickerDialog = DatePickerDialog(
                 // on below line we are passing context.
                 requireContext(),
-                { view, year, monthOfYear, dayOfMonth ->
+                { view, year, monthOfYear, dayOfMonth  ->
                     // on below line we are setting
                     // date to our text view.
+                    if(dayOfMonth<10){
+                        zero = "0"
+                    }
                     selectedDateTV.text =
-                        (dayOfMonth.toString() + "-" + (monthOfYear + 1) + "-" + year)
+                        (year.toString() + "-" + (monthOfYear + 1) + "-"+zero + dayOfMonth.toString())
                 },
                 // on below line we are passing year, month
                 // and day for the selected date in our date picker.
@@ -122,6 +127,11 @@ class vue_trajet : Fragment() {
             )
 
             datePickerDialog.show()
+        }
+
+        selectedDateTV.doAfterTextChanged {
+            Log.d("Temps", selectedDateTV.text.toString())
+            présentateurTrajet.filtrerSelonDate(selectedDateTV.text.toString())
         }
 
         // Inflate the layout for this fragment
@@ -158,10 +168,7 @@ class vue_trajet : Fragment() {
         }
 
         recyclerViewTrajet= view.findViewById(R.id.recyclerViewTrajets)
-        /*chercherTrajetVenirJob= */CoroutineScope(Dispatchers.IO).launch {
-            var data = présentateurTrajet.getTrajetsVenirData()
-           /* afficherTrajetVenirJob =*/ CoroutineScope(Dispatchers.Main).launch { setUpRecyclerView(recyclerViewTrajet, data) }
-        }
+        rafraichir()
     }
 
     fun naviguerVerVueProfil(){
@@ -192,6 +199,13 @@ class vue_trajet : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         _adapter = TrajetAdapter(présentateurTrajet, data)
         recyclerView.adapter = _adapter
+    }
+
+    fun rafraichir(){
+        /*chercherTrajetVenirJob= */CoroutineScope(Dispatchers.IO).launch {
+            var data = présentateurTrajet.getTrajetsVenirData()
+            /* afficherTrajetVenirJob =*/ CoroutineScope(Dispatchers.Main).launch { setUpRecyclerView(recyclerViewTrajet, data) }
+        }
     }
 
 

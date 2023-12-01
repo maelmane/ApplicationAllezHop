@@ -18,15 +18,19 @@ class ModèleTrajet(var sourceDeDonnées: SourceDeDonnées) {
     }
 
     suspend fun chargerTrajetsÀVenir() : MutableList<Trajet>{
+        if (_trajetsÀVenir.isEmpty()){
+            _trajets = chargerTrajets()
+            _trajetsÀVenir = _trajets
+        }
 
-        _trajets = chargerTrajets()
-        Log.d("twest","$_trajets")
+        /*Log.d("twest","$_trajets")
         for(trajet in _trajets){
             if(dateAjourdhui(trajet.date)){
                 _trajetsÀVenir.add(trajet)
             }
         }
-        Log.d("twest","$_trajetsÀVenir")
+        Log.d("twest","$_trajetsÀVenir")*/
+        Log.d("test", "$_trajets")
         return _trajetsÀVenir
     }
     suspend fun chargerTrajets(): MutableList<Trajet>  {
@@ -42,6 +46,17 @@ class ModèleTrajet(var sourceDeDonnées: SourceDeDonnées) {
         val date = dateFormat.parse(dateString)
 
         return date == dateActuel
+    }
+
+    fun filtrerTrajetsSelonDate(date: String): MutableList<Trajet>{
+        var listeTrajetsFiltrés = mutableListOf<Trajet>()
+        for (trajet in _trajetsÀVenir){
+            if (trajet.date == date){
+                listeTrajetsFiltrés.add(trajet)
+            }
+        }
+        _trajetsÀVenir = listeTrajetsFiltrés
+        return listeTrajetsFiltrés
     }
 
     val tailleTrajetsÀVenir: Int
