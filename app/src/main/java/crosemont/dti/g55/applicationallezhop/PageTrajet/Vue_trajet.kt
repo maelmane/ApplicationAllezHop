@@ -87,7 +87,7 @@ class vue_trajet : Fragment() {
             val timePickerDialog = TimePickerDialog(
                 context,
                 { view, hourOfDay, minute ->
-                    selectedTimeTV.setText("$hourOfDay:$minute")
+                    selectedTimeTV.setText((hourOfDay.toString()).padStart(2, '0')+":"+ (minute.toString()).padStart(2, '0'))
                 },
                 hour,
                 minute,
@@ -117,7 +117,7 @@ class vue_trajet : Fragment() {
                         zero = "0"
                     }
                     selectedDateTV.text =
-                        (year.toString() + "-" + (monthOfYear + 1) + "-"+zero + dayOfMonth.toString())
+                        (year.toString() + "-" + (monthOfYear + 1) + "-"+ (dayOfMonth.toString()).padStart(2, '0'))
                 },
                 // on below line we are passing year, month
                 // and day for the selected date in our date picker.
