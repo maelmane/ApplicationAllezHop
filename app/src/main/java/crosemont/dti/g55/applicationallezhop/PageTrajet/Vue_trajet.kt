@@ -3,6 +3,7 @@ package crosemont.dti.g55.applicationallezhop.PageTrajet
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -112,7 +114,7 @@ class vue_trajet : Fragment() {
                     // on below line we are setting
                     // date to our text view.
                     selectedDateTV.text =
-                        (dayOfMonth.toString() + "-" + (monthOfYear + 1) + "-" + year)
+                        (dayOfMonth.toString() + "/" + (monthOfYear + 1) + "/" + year)
                 },
                 // on below line we are passing year, month
                 // and day for the selected date in our date picker.
@@ -122,6 +124,11 @@ class vue_trajet : Fragment() {
             )
 
             datePickerDialog.show()
+        }
+
+        selectedDateTV.doAfterTextChanged {
+            Log.d("Temps", selectedDateTV.text.toString())
+            présentateurTrajet.filtrerSelonDate(selectedDateTV.text.toString())
         }
 
         // Inflate the layout for this fragment
@@ -188,6 +195,10 @@ class vue_trajet : Fragment() {
     fun setUpRecyclerView(recyclerView: RecyclerView, data: List<Trajet>) {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = _adapter
+    }
+
+    fun rafraichir(){
+        _adapter!!.setData(présentateurTrajet.getTrajetsVenirData())
     }
 
 

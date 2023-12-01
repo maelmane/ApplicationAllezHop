@@ -9,4 +9,6 @@ interface IPrésentateurTrajet {
     val nbItems: Int
 
     fun getTrajetsVenirData(): List<Trajet>
+
+    fun filtrerSelonDate(date: String): MutableList<Trajet>
 }

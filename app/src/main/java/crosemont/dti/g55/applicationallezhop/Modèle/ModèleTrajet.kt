@@ -18,6 +18,17 @@ class ModèleTrajet(var sourceDeDonnées: SourceDeDonnées) {
         sourceDeDonnées.créer(trajet)
     }
 
+    fun filtrerTrajetsSelonDate(date: String): MutableList<Trajet>{
+        var listeTrajetsFiltrés = mutableListOf<Trajet>()
+        for (trajet in _trajetsÀVenir){
+            if (trajet.date == date){
+                listeTrajetsFiltrés.add(trajet)
+            }
+        }
+        _trajetsÀVenir = listeTrajetsFiltrés
+        return listeTrajetsFiltrés
+    }
+
     val tailleTrajetsÀVenir: Int
         get() = _trajetsÀVenir.size
 }

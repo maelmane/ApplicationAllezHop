@@ -13,6 +13,12 @@ class PrésentateurTrajet(val vue : vue_trajet): IPrésentateurTrajet {
         return modèle.chargerTrajetsÀVenir()
     }
 
+    override fun filtrerSelonDate(date: String): MutableList<Trajet> {
+        modèle.filtrerTrajetsSelonDate(date)
+        vue.rafraichir()
+        return modèle.filtrerTrajetsSelonDate(date)
+    }
+
 
     override fun effectuerRéservation(position: Int) {
         var trajet = modèle.obtenirTrajetÀVenir(position)
@@ -29,6 +35,7 @@ class PrésentateurTrajet(val vue : vue_trajet): IPrésentateurTrajet {
 
         vue.naviguerVerVueConfirmationRéservation(myBundle)
     }
+
 
     override val nbItems: Int
         get() = modèle.tailleTrajetsÀVenir
