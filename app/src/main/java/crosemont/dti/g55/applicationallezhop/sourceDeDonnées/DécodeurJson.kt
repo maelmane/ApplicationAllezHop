@@ -25,7 +25,7 @@ class DécodeurJson {
 
 			val reader = JsonReader(StringReader(json))
 
-			/*if (reader.peek() == JsonToken.BEGIN_ARRAY){
+			if (reader.peek() == JsonToken.BEGIN_ARRAY){
 				reader.beginArray()
 					while (reader.hasNext()) {
 						reader.beginObject()
@@ -55,49 +55,43 @@ class DécodeurJson {
 					}
 				reader.endArray()
 			}
-			else{*/
-			Log.d("Test",json)
-			Log.d("Test","Test avant le premier begin object")
+			else{
+				reader.beginObject()
+				lateinit var date: String
+				lateinit var destination: Adresse
+				lateinit var conducteur: String
+				lateinit var heureArriver: String
+				lateinit var heureDépart: String
+				lateinit var voiture: Voiture
 
-			Log.d("Test","Test après le premier begin object")
-
-					Log.d("Test","Test avant le deuxieme begin object dans le while")
-
-					reader.beginObject()
-					Log.d("Test","Test après le deuxieme begin object dans le while")
-					lateinit var date: String
-					lateinit var destination: Adresse
-					lateinit var conducteur: String
-					lateinit var heureArriver: String
-					lateinit var heureDépart: String
-					lateinit var voiture: Voiture
-
-					while (reader.hasNext()) {
-						val clé = reader.nextName()
-						when (clé) {
-							"date" -> date = reader.nextString()
-							"destination" -> {
-								Log.d("Test","Test avant la destination")
-								destination = décoderJsonVersAdresse(reader)
-								Log.d("Test","Test après la destination: $destination")
-							}
-							"conducteur" -> conducteur = reader.nextString()
-							"heureArriver" -> heureArriver = reader.nextString()
-							"heureDépart" -> heureDépart = reader.nextString()
-							"voiture" -> {
-								Log.d("Test","Test avant la voiture")
-								voiture = décoderJsonVersVoiture(reader)
-								Log.d("Test","Test après la voiture")
-							}
-							else -> reader.skipValue()
+				while (reader.hasNext()) {
+					val clé = reader.nextName()
+					when (clé) {
+						"date" -> date = reader.nextString()
+						"destination" -> {
+							Log.d("Test", "Test avant la destination")
+							destination = décoderJsonVersAdresse(reader)
+							Log.d("Test", "Test après la destination: $destination")
 						}
+
+						"conducteur" -> conducteur = reader.nextString()
+						"heureArriver" -> heureArriver = reader.nextString()
+						"heureDépart" -> heureDépart = reader.nextString()
+						"voiture" -> {
+							Log.d("Test", "Test avant la voiture")
+							voiture = décoderJsonVersVoiture(reader)
+							Log.d("Test", "Test après la voiture")
+						}
+
+						else -> reader.skipValue()
 					}
-					Log.d("Test","Test avant le deuxieme end object dans le while")
-					reader.endObject()
+				}
+				Log.d("Test", "Test avant le deuxieme end object dans le while")
+				reader.endObject()
 
-					val unTrajet = Trajet(date, destination, conducteur, heureArriver, heureDépart, voiture)
-					trajet.add(unTrajet)
-
+				val unTrajet = Trajet(date, destination, conducteur, heureArriver, heureDépart, voiture)
+				trajet.add(unTrajet)
+			}
 
 			return Donnée(trajet)
 		}
