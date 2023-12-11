@@ -73,7 +73,7 @@ class PasInternetLayout : Fragment() {
             internetLayout.visibility = View.VISIBLE
             noInternetLayout.visibility = View.GONE
 
-            // Revenir au dernier fragment dans la pile de fragments
+
             findNavController().popBackStack()
         } else {
             noInternetLayout.visibility = View.VISIBLE
