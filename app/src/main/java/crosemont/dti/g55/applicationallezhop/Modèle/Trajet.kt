@@ -8,5 +8,7 @@ data class Trajet(
     val conducteur: String,
     val heureArriver: String,
     val heureDépart: String,
-    val voiture: Voiture
+    val voiture: Voiture,
+    var estFavori: Boolean = false
+
 )

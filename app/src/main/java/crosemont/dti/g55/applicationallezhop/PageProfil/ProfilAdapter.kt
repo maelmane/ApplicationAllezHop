@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import crosemont.dti.g55.applicationallezhop.Modèle.Trajet
@@ -45,6 +46,25 @@ class ProfilAdapter(private var data: List<Trajet>) : RecyclerView.Adapter<Profi
             dateTextView.text = trajet.date ?: "N/A"
             destinationTextView.text = trajet.destination.toString() ?: "N/A"
             conducteurTextView.text = trajet.conducteur ?: "N/A"
+            val btnFavori: ImageButton = itemView.findViewById(R.id.btnFavori)
+
+
+            if (trajet.estFavori) {
+                btnFavori.setImageResource(android.R.drawable.btn_star_big_on)
+            } else {
+                btnFavori.setImageResource(android.R.drawable.btn_star_big_off)
+            }
+
+            btnFavori.setOnClickListener {
+                trajet.estFavori = !trajet.estFavori
+                // UI
+                if (trajet.estFavori) {
+                    btnFavori.setImageResource(android.R.drawable.btn_star_big_on)
+                } else {
+                    btnFavori.setImageResource(android.R.drawable.btn_star_big_off)
+                }
+
+            }
         }
     }
 }
