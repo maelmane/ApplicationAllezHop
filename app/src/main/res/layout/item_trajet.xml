@@ -28,6 +28,12 @@
         android:layout_weight="20"
         android:text="Conducteur " />
 
+    <ImageButton android:id="@+id/btnFavori"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:src="@android:drawable/btn_star_big_off"
+        android:background="#00ffffff"
+        android:onClick="onToggleStar"/>
     <ImageButton
         android:id="@+id/btnSupprimer"
         android:layout_width="0dp"
