@@ -1,11 +1,17 @@
 package crosemont.dti.g55.applicationallezhop.PageAcceuil
 
+import android.content.Context.CONNECTIVITY_SERVICE
 import android.location.Location
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities.NET_CAPABILITY_INTERNET
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -43,6 +49,7 @@ class vue_accueil : Fragment(), OnMapReadyCallback {
     lateinit var trajetActuelJob : Job
     lateinit var trajetActuelAffichageJob : Job
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -68,11 +75,21 @@ class vue_accueil : Fragment(), OnMapReadyCallback {
         bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.menu_profil -> {
-                    naviguerVerVueProfil()
+                    if(isNetworkAvailable()){
+                        naviguerVerVueProfil()
+                    }
+                    else{
+                        navController.navigate(R.id.action_vue_accueil_to_pasInternetLayout)
+                    }
                     true
                 }
                 R.id.menu_trajet -> {
-                    naviguerVerVueTrajet()
+                    if(isNetworkAvailable()){
+                        naviguerVerVueTrajet()
+                    }
+                    else{
+                        navController.navigate(R.id.action_vue_accueil_to_pasInternetLayout)
+                    }
                     true
                 }
                 R.id.menu_accueil -> true
@@ -90,9 +107,22 @@ class vue_accueil : Fragment(), OnMapReadyCallback {
         this.arguments?.let{
             destination = it.getSerializable("Destination") as Adresse
         }
+        if (!isNetworkAvailable()) {
+            // Naviguer vers PasInternetLayout lorsque l'Internet n'est pas disponible
+            navController.navigate(R.id.action_vue_accueil_to_pasInternetLayout)
+        }
+
+
 
 
     }
+    private fun isNetworkAvailable(): Boolean {
+        val cm = requireActivity().getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+        val capabilities = cm.getNetworkCapabilities(cm.activeNetwork)
+        return capabilities != null && capabilities.hasCapability(NET_CAPABILITY_INTERNET)
+    }
+
+
 
     fun naviguerVerVueProfil(){
         navController.navigate(R.id.action_vue_accueil_to_vue_profil)

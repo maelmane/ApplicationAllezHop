@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_vue_profil_to_vue_trajet"
             app:destination="@id/vue_trajet" />
+        <action
+            android:id="@+id/action_vue_profil_to_pasInternetLayout"
+            app:destination="@id/pasInternetLayout" />
     </fragment>
     <fragment
         android:id="@+id/vue_accueil"
@@ -34,6 +37,9 @@
         <action
             android:id="@+id/action_vue_accueil_self"
             app:destination="@id/vue_accueil" />
+        <action
+            android:id="@+id/action_vue_accueil_to_pasInternetLayout"
+            app:destination="@id/pasInternetLayout" />
     </fragment>
     <fragment
         android:id="@+id/vue_trajet"
@@ -52,6 +58,9 @@
         <action
             android:id="@+id/action_vue_trajet_to_vue_confirmation_reservation"
             app:destination="@id/vue_confirmation_réservation" />
+        <action
+            android:id="@+id/action_vue_trajet_to_pasInternetLayout"
+            app:destination="@id/pasInternetLayout" />
     </fragment>
     <fragment
         android:id="@+id/vue_confirmation_réservation"
@@ -67,5 +76,20 @@
         <action
             android:id="@+id/action_vue_confirmation_réservation_to_vue_profil"
             app:destination="@id/vue_profil" />
+    </fragment>
+    <fragment
+        android:id="@+id/pasInternetLayout"
+        android:name="crosemont.dti.g55.applicationallezhop.PasInternetLayout"
+        android:label="fragment_pas_internet_layout"
+        tools:layout="@layout/fragment_pas_internet_layout" >
+        <action
+            android:id="@+id/action_pasInternetLayout_to_vue_accueil"
+            app:destination="@id/vue_accueil" />
+        <action
+            android:id="@+id/action_pasInternetLayout_to_vue_profil"
+            app:destination="@id/vue_profil" />
+        <action
+            android:id="@+id/action_pasInternetLayout_to_vue_trajet"
+            app:destination="@id/vue_trajet" />
     </fragment>
 </navigation>

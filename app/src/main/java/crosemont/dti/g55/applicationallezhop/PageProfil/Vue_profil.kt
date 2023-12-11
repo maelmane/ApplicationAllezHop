@@ -1,5 +1,8 @@
 package crosemont.dti.g55.applicationallezhop.PageProfil
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -74,11 +77,21 @@ class vue_profil : Fragment() {
         bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.menu_accueil -> {
-                    naviguerVerVueAccueil()
+                    if(isNetworkAvailable()){
+                        naviguerVerVueAccueil()
+                    }
+                    else{
+                        navController.navigate(R.id.action_vue_profil_to_pasInternetLayout)
+                    }
                     true
                 }
                 R.id.menu_trajet -> {
-                    naviguerVerVueTrajet()
+                    if(isNetworkAvailable()){
+                        naviguerVerVueTrajet()
+                    }
+                    else{
+                        navController.navigate(R.id.action_vue_profil_to_pasInternetLayout)
+                    }
                     true
                 }
                 R.id.menu_profil -> true
@@ -91,8 +104,16 @@ class vue_profil : Fragment() {
             R.id.vue_profil -> bottomNavigationView.menu.findItem(R.id.menu_profil).isChecked = true
             R.id.vue_trajet -> bottomNavigationView.menu.findItem(R.id.menu_trajet).isChecked = true
         }
+        if (!isNetworkAvailable()) {
+            // Naviguer vers PasInternetLayout lorsque l'Internet n'est pas disponible
+            navController.navigate(R.id.action_vue_profil_to_pasInternetLayout)
+        }
     }
-
+    private fun isNetworkAvailable(): Boolean {
+        val cm = requireActivity().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val capabilities = cm.getNetworkCapabilities(cm.activeNetwork)
+        return capabilities != null && capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+    }
     // Navigation functions
     fun naviguerVerVueAccueil() {
         navController.navigate(R.id.action_vue_profil_to_vue_accueil)
