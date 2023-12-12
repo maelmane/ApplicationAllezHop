@@ -63,8 +63,6 @@ class vue_profil : Fragment() {
             setUpRecyclerView(recyclerViewTrajetsVenir, présentateurProfil.getTrajetsVenirData())
         }
 
-
-
         val recyclerViewAdresseFavoris = view.findViewById<RecyclerView>(R.id.recyclerViewAdresseFavoris)
         setUpRecyclerViewAdresseFavoris(recyclerViewAdresseFavoris)
 

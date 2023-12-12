@@ -28,18 +28,13 @@ class PrésentateurProfil(var vue: vue_profil): IPrésentateurProfil {
         vue.rafraîchirAffichage()
 
     }
-
-
     override val nbItems: Int
         get() = modèle.tailleTrajetsÀVenir
+
     override fun saveFavoriteAddress(address: String) {
-        // Implement the logic to save the favorite address
-        // For example, you can save it in SharedPreferences
         val sharedPreferences =
             vue.requireContext().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
-
-        // Retrieve existing favorite addresses
         val savedFavoriteAddressesJson =
             sharedPreferences.getString("favoriteAddresses", null)
         val savedFavoriteAddresses = if (savedFavoriteAddressesJson != null) {
@@ -47,26 +42,16 @@ class PrésentateurProfil(var vue: vue_profil): IPrésentateurProfil {
         } else {
             mutableListOf()
         }
-
-
-
-        // Add the new address
         savedFavoriteAddresses.add(address)
-
-        // Convert to JSON and save
         val addressesJson = Gson().toJson(savedFavoriteAddresses)
         editor.putString("favoriteAddresses", addressesJson)
         editor.apply()
     }
 
     override fun removeFavoriteAddress(address: String) {
-        // Implement the logic to remove the favorite address
-        // For example, you can remove it from SharedPreferences
         val sharedPreferences =
             vue.requireContext().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
-
-        // Retrieve existing favorite addresses
         val savedFavoriteAddressesJson =
             sharedPreferences.getString("favoriteAddresses", null)
         val savedFavoriteAddresses = if (savedFavoriteAddressesJson != null) {
@@ -74,12 +59,7 @@ class PrésentateurProfil(var vue: vue_profil): IPrésentateurProfil {
         } else {
             mutableListOf()
         }
-
-
-        // Remove the specified address
         savedFavoriteAddresses.remove(address)
-
-        // Convert to JSON and save
         val addressesJson = Gson().toJson(savedFavoriteAddresses)
         editor.putString("favoriteAddresses", addressesJson)
         editor.apply()

@@ -24,16 +24,19 @@ class AdresseAdapter(private var data: List<String>,private val presentateurProf
         return data.size
     }
 
-    inner class AdresseFavorisViewHolder(itemView: View,private val presentateurProfil: PrésentateurProfil) : RecyclerView.ViewHolder(itemView) {
-        private val favoriteAddressTextView: TextView = itemView.findViewById(R.id.tvfavoriteAddressTextView)
+    inner class AdresseFavorisViewHolder(
+        itemView: View,
+        private val presentateurProfil: PrésentateurProfil
+    ) : RecyclerView.ViewHolder(itemView) {
+        private val favoriteAddressTextView: TextView =
+            itemView.findViewById(R.id.tvfavoriteAddressTextView)
 
         fun bind(address: String) {
             favoriteAddressTextView.text = address
         }
+
         fun bindAdresse(trajet: Trajet) {
             val btnFavori: ImageButton = itemView.findViewById(R.id.btnFavori)
-
-
             if (trajet.estFavori) {
                 btnFavori.setImageResource(android.R.drawable.btn_star_big_on)
             } else {
@@ -51,8 +54,7 @@ class AdresseAdapter(private var data: List<String>,private val presentateurProf
                     btnFavori.setImageResource(android.R.drawable.btn_star_big_off)
                     presentateurProfil.removeFavoriteAddress(trajet.destination.toString())
                 }
-
-
             }
+        }
     }
-}}
+}

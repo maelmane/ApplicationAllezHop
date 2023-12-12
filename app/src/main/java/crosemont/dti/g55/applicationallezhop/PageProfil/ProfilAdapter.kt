@@ -57,8 +57,6 @@ class ProfilAdapter(private var data: List<Trajet>,private val presentateurProfi
 
             btnFavori.setOnClickListener {
                 trajet.estFavori = !trajet.estFavori
-
-                // UI
                 if (trajet.estFavori) {
                     btnFavori.setImageResource(android.R.drawable.btn_star_big_on)
                     presentateurProfil.saveFavoriteAddress(trajet.destination.toString())
