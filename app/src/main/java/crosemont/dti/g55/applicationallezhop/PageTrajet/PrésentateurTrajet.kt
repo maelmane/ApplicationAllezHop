@@ -24,6 +24,14 @@ class PrésentateurTrajet(val vue : vue_trajet): IPrésentateurTrajet {
         }
     }
 
+    override fun filtrerSelonHeure(heure: String) {
+        CoroutineScope(Dispatchers.IO).launch {
+            modèle.filtrerTrajetsSelonHeure(heure)
+
+            CoroutineScope(Dispatchers.Main).launch {   vue.rafraichir()}
+        }
+    }
+
 
     override suspend fun effectuerRéservation(position: Int) {
         var trajet = modèle.obtenirTrajetÀVenir(position)

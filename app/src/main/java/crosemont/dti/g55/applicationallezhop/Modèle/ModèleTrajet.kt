@@ -58,6 +58,16 @@ class ModèleTrajet(var sourceDeDonnées: SourceDeDonnées) {
         _trajetsÀVenir = listeTrajetsFiltrés
         return listeTrajetsFiltrés
     }
+    fun filtrerTrajetsSelonHeure(heure: String): MutableList<Trajet>{
+        var listeTrajetsFiltrés = mutableListOf<Trajet>()
+        for (trajet in _trajetsÀVenir){
+            if (trajet.heureDépart == heure){
+                listeTrajetsFiltrés.add(trajet)
+            }
+        }
+        _trajetsÀVenir = listeTrajetsFiltrés
+        return listeTrajetsFiltrés
+    }
 
     val tailleTrajetsÀVenir: Int
         get() = _trajetsÀVenir.size

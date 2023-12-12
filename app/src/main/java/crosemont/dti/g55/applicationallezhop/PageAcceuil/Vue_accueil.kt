@@ -134,7 +134,7 @@ class vue_accueil : Fragment(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         // Mettre les coordonnées à la destination
-        /*trajetActuelJob = CoroutineScope(Dispatchers.IO).launch {
+        trajetActuelJob = CoroutineScope(Dispatchers.IO).launch {
             adresse = présentateurAccueil.getAdresseDestination()
 
             var latLngDestination = présentateurAccueil.getLatitudeLongitudeAdresse(adresse)
@@ -157,7 +157,7 @@ class vue_accueil : Fragment(), OnMapReadyCallback {
                 // Afficher le trafic
                 googleMap.isTrafficEnabled = true
             }
-        }*/
+        }
         CoroutineScope(Dispatchers.Main).launch {
             try {
                 val adresse = withContext(Dispatchers.IO) {

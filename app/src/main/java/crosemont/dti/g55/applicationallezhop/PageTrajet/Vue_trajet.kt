@@ -136,6 +136,11 @@ class vue_trajet : Fragment() {
             Log.d("Temps", selectedDateTV.text.toString())
             présentateurTrajet.filtrerSelonDate(selectedDateTV.text.toString())
         }
+        selectedTimeTV.doAfterTextChanged {
+            Log.d("Temps", selectedTimeTV.text.toString())
+            présentateurTrajet.filtrerSelonHeure(selectedTimeTV.text.toString())
+        }
+
 
         // Inflate the layout for this fragment
         return vue

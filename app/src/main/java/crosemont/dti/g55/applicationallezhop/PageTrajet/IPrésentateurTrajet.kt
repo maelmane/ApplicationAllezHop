@@ -14,4 +14,6 @@ interface IPrésentateurTrajet {
 
     fun filtrerSelonDate(date: String)
 
+    fun filtrerSelonHeure(heure: String)
+
 }
