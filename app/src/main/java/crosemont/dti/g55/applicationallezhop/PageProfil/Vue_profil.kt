@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import crosemont.dti.g55.applicationallezhop.Modèle.Trajet
 import crosemont.dti.g55.applicationallezhop.Modèle.Voiture
 import crosemont.dti.g55.applicationallezhop.PageTrajet.TrajetAdapter
@@ -61,6 +63,12 @@ class vue_profil : Fragment() {
             setUpRecyclerView(recyclerViewTrajetsVenir, présentateurProfil.getTrajetsVenirData())
         }
 
+
+
+        val recyclerViewAdresseFavoris = view.findViewById<RecyclerView>(R.id.recyclerViewAdresseFavoris)
+        setUpRecyclerViewAdresseFavoris(recyclerViewAdresseFavoris)
+
+        return view
         return view
     }
 
@@ -126,14 +134,14 @@ class vue_profil : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         when (recyclerView.id) {
             R.id.recyclerViewTrajetsVenir -> {
-                _adapterVenir = ProfilAdapter(data)
+                _adapterVenir = ProfilAdapter(data, présentateurProfil)
 
                 recyclerView.adapter = _adapterVenir
 
                 Log.d("vue_profil", "RecyclerViewTrajetsVenir contents: ${data}")
             }
             R.id.recyclerViewTrajetsAnciens -> {
-                _adapterAnciens = ProfilAdapter(data)
+                _adapterAnciens = ProfilAdapter(data, présentateurProfil)
                 recyclerView.adapter = _adapterAnciens
 
                 Log.d("vue_profil", "RecyclerViewTrajetsAnciens contents: ${data}")
@@ -143,6 +151,28 @@ class vue_profil : Fragment() {
 
     suspend fun rafraîchirAffichage() {
         _adapterVenir?.setData(présentateurProfil.getTrajetsVenirData())
+    }
+
+    private fun saveFavoriteAddresses(addresses: String) {
+        présentateurProfil.saveFavoriteAddress(addresses)
+    }
+
+
+    private fun setUpRecyclerViewAdresseFavoris(recyclerView: RecyclerView) {
+        val sharedPreferences = requireContext().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
+        val savedFavoriteAddressesJson = sharedPreferences.getString("favoriteAddresses", null)
+        val savedFavoriteAddresses = if (savedFavoriteAddressesJson != null) {
+            Gson().fromJson<List<String>>(
+                savedFavoriteAddressesJson,
+                object : TypeToken<List<String>>() {}.type
+            )
+        } else {
+            emptyList()
+        }
+        var présentateurProfil = PrésentateurProfil(this)
+        val adapter = AdresseAdapter(savedFavoriteAddresses, présentateurProfil)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.adapter = adapter
     }
 
 }

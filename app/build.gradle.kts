@@ -59,6 +59,11 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("org.json:json:20231013")
 
+
+    //gson
+
+    implementation ("com.google.code.gson:gson:2.8.8")
+
     // Kotlin Coroutines Testing
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3") // Replace x.x.x with the latest version
 

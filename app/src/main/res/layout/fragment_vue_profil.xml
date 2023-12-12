@@ -28,27 +28,26 @@
         android:id="@+id/tvAdressesFavorites"
         android:layout_width="165dp"
         android:layout_height="30dp"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="160dp"
         android:text="Adresses Favorites"
         android:textAllCaps="false"
         android:textColor="#1E55B3"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/staticAddresses"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.065"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.22" />
 
-    <TextView
-        android:id="@+id/staticAddresses"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewAdresseFavoris"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="6400 16e Avenue, Montréal, QC H1X 2S9\n7275 R.Sherbrooke E, Montréal, QC H1N 1E9\n"
-        app:layout_constraintBottom_toTopOf="@id/tvTrajetVenir"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvTrajetVenir"
         app:layout_constraintTop_toBottomOf="@+id/tvAdressesFavorites"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintVertical_bias="0.1" />
 
     <ImageView
@@ -73,7 +72,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.065"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <LinearLayout
         android:id="@+id/indicatorsLayout"

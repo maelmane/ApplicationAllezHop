@@ -2,6 +2,8 @@
 
     import crosemont.dti.g55.applicationallezhop.Modèle.Trajet
 
+
+
     interface IPrésentateurProfil {
 
         val nbItems: Int
@@ -10,5 +12,9 @@
 
         suspend fun getTrajetsAnciensData(): List<Trajet>
         suspend fun addReservedTrajet(trajet: Trajet)
+
+
+        fun saveFavoriteAddress(address: String)
+        fun removeFavoriteAddress(address: String)
 
     }

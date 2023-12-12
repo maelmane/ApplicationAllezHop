@@ -14,11 +14,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class ProfilAdapter(private var data: List<Trajet>) : RecyclerView.Adapter<ProfilAdapter.ProfilViewHolder>() {
+class ProfilAdapter(private var data: List<Trajet>,private val presentateurProfil: PrésentateurProfil) : RecyclerView.Adapter<ProfilAdapter.ProfilViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfilViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_trajet, parent, false)
-        return ProfilViewHolder(view)
+        return ProfilViewHolder(view, presentateurProfil)
     }
 
     override fun onBindViewHolder(holder: ProfilViewHolder, position: Int) {
@@ -37,7 +37,7 @@ class ProfilAdapter(private var data: List<Trajet>) : RecyclerView.Adapter<Profi
         return data.size
     }
 
-    class ProfilViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ProfilViewHolder(itemView: View, private val presentateurProfil: PrésentateurProfil) : RecyclerView.ViewHolder(itemView) {
         private val dateTextView: TextView = itemView.findViewById(R.id.tvConducteurItem)
         private val destinationTextView: TextView = itemView.findViewById(R.id.tvHeureArriverItem)
         private val conducteurTextView: TextView = itemView.findViewById(R.id.conducteurTextView)
@@ -57,12 +57,16 @@ class ProfilAdapter(private var data: List<Trajet>) : RecyclerView.Adapter<Profi
 
             btnFavori.setOnClickListener {
                 trajet.estFavori = !trajet.estFavori
+
                 // UI
                 if (trajet.estFavori) {
                     btnFavori.setImageResource(android.R.drawable.btn_star_big_on)
+                    presentateurProfil.saveFavoriteAddress(trajet.destination.toString())
                 } else {
                     btnFavori.setImageResource(android.R.drawable.btn_star_big_off)
+                    presentateurProfil.removeFavoriteAddress(trajet.destination.toString())
                 }
+
 
             }
         }
