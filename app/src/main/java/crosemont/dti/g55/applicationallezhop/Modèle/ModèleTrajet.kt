@@ -61,7 +61,7 @@ class ModèleTrajet(var sourceDeDonnées: SourceDeDonnées) {
     fun filtrerTrajetsSelonHeure(heure: String): MutableList<Trajet>{
         var listeTrajetsFiltrés = mutableListOf<Trajet>()
         for (trajet in _trajetsÀVenir){
-            if (trajet.heureDépart == heure){
+            if (trajet.heureArriver == heure){
                 listeTrajetsFiltrés.add(trajet)
             }
         }
