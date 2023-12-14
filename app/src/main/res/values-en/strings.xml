@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ApplicationAllezHop</string>
+    <string name="conducteur">Driver</string>
+    <string name="passager">Passenger</string>
+    <string name="réservation">Reservation</string>
+    <string name="adresse_embarquement">Boarding address</string>
+    <string name="heure_arrivée">Arrival Time</string>
+    <string name="confirmer">Confirm</string>
+    <string name="adresses_favorites">Favourite Addresses</string>
+    <string name="trajets_venir">Upcoming Trips</string>
+    <string name="anciens_trajets">Old Trips</string>
+    <string name="adresse">Address</string>
+    <string name="date">Date</string>
+    <string name="réserver_place">Book a seat</string>
+    <string name="vérifier_connexion">Check your Internet Connection and Try Again</string>
+    <string name="réessayer">Try Again</string>
+    <string name="pas_connexion_internet">No Internet Connection</string>
+    <string name="connexion_internet">We are connected to the Internet</string>
+    <string name="destination">Destination</string>
+    <string name="accueil">Home</string>
+    <string name="trajet">Trips</string>
+    <string name="profil">Profile</string>
+</resources>

@@ -3,14 +3,14 @@
     <item
         android:id="@+id/menu_accueil"
         android:icon="@drawable/accueil_menu"
-        android:title="Accueil"/>
+        android:title="@string/accueil" />
     <item
         android:id="@+id/menu_trajet"
         android:icon="@drawable/trajet_menu"
-        android:title="Trajet"/>
+        android:title="@string/trajet" />
     <item
         android:id="@+id/menu_profil"
         android:icon="@drawable/profil_menu"
-        android:title="Profil" />
+        android:title="@string/profil" />
 
 </menu>
