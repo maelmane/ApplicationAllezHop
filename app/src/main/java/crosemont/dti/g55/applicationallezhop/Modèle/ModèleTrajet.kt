@@ -69,6 +69,17 @@ class ModèleTrajet(var sourceDeDonnées: SourceDeDonnées) {
         return listeTrajetsFiltrés
     }
 
+    fun filtrerTrajetsSelonAdresse(adresse: String): MutableList<Trajet>{
+        var listeTrajetsFiltrés = mutableListOf<Trajet>()
+        for (trajet in _trajetsÀVenir){
+            if (trajet.destination.toString().contains(adresse)){
+                listeTrajetsFiltrés.add(trajet)
+            }
+        }
+        _trajetsÀVenir = listeTrajetsFiltrés
+        return listeTrajetsFiltrés
+    }
+
     val tailleTrajetsÀVenir: Int
         get() = _trajetsÀVenir.size
 

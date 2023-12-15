@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
@@ -34,6 +35,7 @@ import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.util.Calendar
+import kotlin.math.log
 
 
 /**
@@ -48,6 +50,7 @@ class vue_trajet : Fragment() {
     lateinit var Position : TextInputLayout
     lateinit var selectedTimeTV: TextView
     lateinit var selectedDateTV: TextView
+    lateinit var destinationET: EditText
     /*private lateinit var chercherTrajetVenirJob : Job
     private lateinit var afficherTrajetVenirJob : Job*/
     var présentateurTrajet = PrésentateurTrajet(this)
@@ -76,7 +79,11 @@ class vue_trajet : Fragment() {
             reloadButton()
         }
 
-
+        destinationET = vue.findViewById(R.id.txtiearriverPosition)
+        destinationET.doAfterTextChanged {
+            Log.d("adresse", destinationET.text.toString())
+            présentateurTrajet.filtrerSelonAdresse(destinationET.text.toString())
+        }
 
         selectedTimeTV = vue.findViewById(R.id.idTVSelectedTime)
         var formatTemps = DateTimeFormatter.ofPattern("HH:mm")
@@ -148,6 +155,7 @@ class vue_trajet : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Destination = view.findViewById(R.id.Destination)
+
         // Obtient le NavController pour la navigation
         navController = Navigation.findNavController(view)
         val bottomNavigationView = view.findViewById<BottomNavigationView>(R.id.bottom_navigation)

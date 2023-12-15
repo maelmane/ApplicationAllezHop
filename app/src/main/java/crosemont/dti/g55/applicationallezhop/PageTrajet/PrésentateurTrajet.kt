@@ -32,6 +32,14 @@ class PrésentateurTrajet(val vue : vue_trajet): IPrésentateurTrajet {
         }
     }
 
+    override fun filtrerSelonAdresse(adresse: String) {
+        CoroutineScope(Dispatchers.IO).launch {
+            modèle.filtrerTrajetsSelonAdresse(adresse)
+
+            CoroutineScope(Dispatchers.Main).launch {   vue.rafraichir()}
+        }
+    }
+
 
     override suspend fun effectuerRéservation(position: Int) {
         var trajet = modèle.obtenirTrajetÀVenir(position)

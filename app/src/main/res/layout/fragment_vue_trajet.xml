@@ -118,12 +118,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.241">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
             android:id="@+id/txtiedepartPosition"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:text="Position actuelle" />
+            android:hint="Position actuelle"
+            android:inputType="text" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -185,26 +185,25 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.241">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
             android:id="@+id/txtiearriverPosition"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:text="6400 16e Avenue, Montréal, QC H1X 2S9" />
+            android:hint="@string/destination"
+            android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- RecyclerView -->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewTrajets"
-        android:layout_width="0dp"
-        android:layout_height="320dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="411dp"
+        android:layout_height="300dp"
+        android:layout_marginBottom="36dp"
+        app:layout_constraintBottom_toTopOf="@+id/passagerButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.774" />
+        app:layout_constraintTop_toBottomOf="@+id/indicatorsLayout" />
 
     <ImageButton
         android:id="@+id/reload"
