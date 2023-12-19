@@ -2,6 +2,8 @@ package crosemont.dti.g55.applicationallezhop.PageTrajet
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
@@ -15,6 +17,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -25,6 +28,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.textfield.TextInputLayout
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import crosemont.dti.g55.applicationallezhop.Modèle.Adresse
 import crosemont.dti.g55.applicationallezhop.Modèle.Trajet
 import crosemont.dti.g55.applicationallezhop.R
 import kotlinx.coroutines.CoroutineScope
@@ -71,6 +77,7 @@ class vue_trajet : Fragment() {
         val vue = inflater.inflate(R.layout.fragment_vue_trajet, container, false)
 
 
+
         reloadButton = vue.findViewById(R.id.reload)
         reloadButton.setImageResource(android.R.drawable.ic_popup_sync)
         reloadButton.setColorFilter(ContextCompat.getColor(requireContext(), android.R.color.black))
@@ -81,7 +88,7 @@ class vue_trajet : Fragment() {
 
         destinationET = vue.findViewById(R.id.txtiearriverPosition)
         destinationET.doAfterTextChanged {
-            Log.d("adresse", destinationET.text.toString())
+            //Log.d("adresse", savedFavoriteAddresses.toString())
             présentateurTrajet.filtrerSelonAdresse(destinationET.text.toString())
         }
 
@@ -236,10 +243,34 @@ class vue_trajet : Fragment() {
     }
 
     fun rafraichir(){
+
         /*chercherTrajetVenirJob= */CoroutineScope(Dispatchers.IO).launch {
             var data = présentateurTrajet.getTrajetsVenirData()
+
             /* afficherTrajetVenirJob =*/ CoroutineScope(Dispatchers.Main).launch { setUpRecyclerView(recyclerViewTrajet, data) }
         }
+    }
+
+    fun créerClipBoard(adresses: List<String>){
+        val clip = requireActivity().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        for (i in adresses){
+            val clipData = ClipData.newPlainText("adresse", i)
+            clip.setPrimaryClip(clipData)
+        }
+    }
+
+    fun chercherFavoris(): List<String>{
+        val sharedPreferences = requireContext().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
+        val savedFavoriteAddressesJson = sharedPreferences.getString("favoriteAddresses", null)
+        val savedFavoriteAddresses = if (savedFavoriteAddressesJson != null) {
+            Gson().fromJson<List<String>>(
+                savedFavoriteAddressesJson,
+                object : TypeToken<List<String>>() {}.type
+            )
+        } else {
+            emptyList()
+        }
+        return savedFavoriteAddresses
     }
 
 
