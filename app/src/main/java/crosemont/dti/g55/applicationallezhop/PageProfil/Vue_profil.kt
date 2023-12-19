@@ -1,5 +1,7 @@
 package crosemont.dti.g55.applicationallezhop.PageProfil
 
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
@@ -171,10 +173,19 @@ class vue_profil : Fragment() {
         } else {
             emptyList()
         }
+        créerClipBoard(savedFavoriteAddresses)
         var présentateurProfil = PrésentateurProfil(this)
         val adapter = AdresseAdapter(savedFavoriteAddresses, présentateurProfil)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
+    }
+
+    fun créerClipBoard(adresses: List<String>){
+        val clip = requireActivity().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        for (i in adresses){
+            val clipData = ClipData.newPlainText("adresse", i)
+            clip.setPrimaryClip(clipData)
+        }
     }
 
 }
