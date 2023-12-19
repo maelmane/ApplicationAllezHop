@@ -1,5 +1,6 @@
 package crosemont.dti.g55.applicationallezhop.PageProfil
 
+import android.content.ClipboardManager
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +11,9 @@ import crosemont.dti.g55.applicationallezhop.Modèle.ModèleTrajet
 import crosemont.dti.g55.applicationallezhop.Modèle.Trajet
 import crosemont.dti.g55.applicationallezhop.PageTrajet.TrajetAdapter
 import crosemont.dti.g55.applicationallezhop.sourceDeDonnées.SourceBidon
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class PrésentateurProfil(var vue: vue_profil): IPrésentateurProfil {
 
@@ -42,10 +46,15 @@ class PrésentateurProfil(var vue: vue_profil): IPrésentateurProfil {
         } else {
             mutableListOf()
         }
+
         savedFavoriteAddresses.add(address)
         val addressesJson = Gson().toJson(savedFavoriteAddresses)
         editor.putString("favoriteAddresses", addressesJson)
         editor.apply()
+        CoroutineScope(Dispatchers.Main).launch {
+        vue.rafraîchirAffichage()}
+
+
     }
 
     override fun removeFavoriteAddress(address: String) {

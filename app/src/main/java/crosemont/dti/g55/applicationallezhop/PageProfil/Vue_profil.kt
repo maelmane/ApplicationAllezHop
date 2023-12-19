@@ -39,6 +39,7 @@ class vue_profil : Fragment() {
     private var présentateurProfil = PrésentateurProfil(this)
     private lateinit var recyclerViewTrajetsVenir: RecyclerView
     private lateinit var recyclerViewTrajetsAnciens: RecyclerView
+    private lateinit var recyclerViewAdresseFavoris : RecyclerView
     private lateinit var chercherTrajetVenirJob : Job
     private lateinit var chercherTrajetAncienJob : Job
     private lateinit var afficherTrajetAncienJob : Job
@@ -63,10 +64,9 @@ class vue_profil : Fragment() {
             setUpRecyclerView(recyclerViewTrajetsVenir, présentateurProfil.getTrajetsVenirData())
         }
 
-        val recyclerViewAdresseFavoris = view.findViewById<RecyclerView>(R.id.recyclerViewAdresseFavoris)
+        recyclerViewAdresseFavoris = view.findViewById(R.id.recyclerViewAdresseFavoris)
         setUpRecyclerViewAdresseFavoris(recyclerViewAdresseFavoris)
 
-        return view
         return view
     }
 
@@ -149,7 +149,11 @@ class vue_profil : Fragment() {
 
     suspend fun rafraîchirAffichage() {
         _adapterVenir?.setData(présentateurProfil.getTrajetsVenirData())
-    }
+        CoroutineScope(Dispatchers.IO).launch {
+            _adapterVenir?.setData(présentateurProfil.getTrajetsVenirData())
+            /* afficherTrajetVenirJob =*/ CoroutineScope(Dispatchers.Main).launch { setUpRecyclerViewAdresseFavoris(recyclerViewAdresseFavoris) }
+
+        }}
 
     private fun saveFavoriteAddresses(addresses: String) {
         présentateurProfil.saveFavoriteAddress(addresses)
