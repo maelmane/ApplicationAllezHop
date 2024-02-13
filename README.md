@@ -1,4 +1,4 @@
-# PickMeUp
+# AllezHop
 
 ## Description
 La congestion routière et les émissions de CO2 sont des problèmes majeurs dans les zones urbaines. De nombreux étudiants et employés du collège Rosemont utilisent leur propre véhicule pour se rendre au collège, contribuant ainsi à ces problèmes. L'application "Pick Me Up" vise à résoudre cette problématique en mettant en relation des conducteurs et des passagers souhaitant partager un trajet commun pour le collège Rosemont. Cette solution permettra de réduire le nombre de véhicules sur les routes, de diminuer les émissions de CO2 et d'offrir un moyen de transport moins coûteux et convivial.
